@@ -1,0 +1,10 @@
+## LogGuard Terminal Compression
+
+Always prefix EVERY execution command with `uv run lg run` (e.g., `uv run lg run pytest`, `uv run lg run npm install`, `uv run lg run make`).
+
+// - `uv run lg run <command>`: Run and compress output of any command.
+// - `uv run lg raw <id>`: Show full, uncompressed output by ID.
+// - `uv run lg get <id> <n> [<m> ...]`: Print only specific tagged ([#n]) outputs with values.
+// - `uv run lg read <file_path>`: Similar to lg run, but for a file.
+
+If a compressed summary hides critical details, retrieve the full output using `uv run lg raw <id>` where `<id>` is shown in the `[LogGuard:<id>]` header.

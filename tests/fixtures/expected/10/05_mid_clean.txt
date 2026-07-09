@@ -1,0 +1,132 @@
+[PROGRESS]
+= Kaggle setup diagnose =
+code_input: .../dpo-rag-opt-code
+Caches under .../cache HF_HOME=.../huggingface
+Copied src -> .../src
+Copied scripts -> .../scripts
+Copied kaggle_support -> .../kaggle_support
+Copied data -> .../data
+Split file missing — building .../bitext_seed42.json downloads Bitext once
+| __main__:<module>:36 - Loading bitext/Bitext-customer-support-llm-chatbot-training-dataset ...
+You are sending unauthenticated requests to the HF Hub. P...
+[PROGRESS]
+Saved splits to .../bitext_seed42.json
+code_input: .../dpo-rag-opt-code
+dpo_rag: .../__init__.py
+Next: ks.ensure_train_stack before efficient steps 0–2
+Kaggle setup_bootstrap complete — project_root=/kaggle/working/dpo-rag-opt
+Staged adapter dpo-rag-code02s-cur-e2-best -> cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best
+= scripts/build_code_splits.py =
+Split file already exists locked : .../code_opt_seed42.json
+= scripts/code/audit_seq_lengths.py --experiment code02s_cur_e2 =
+Train stack ready ok transformers=4.53.3 . torchrun / !python use fresh subprocesses — avoid `from transformers import ...` in this kernel until restart.
+Loaded 974 MBPP full rows from mbpp.jsonl
+Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+[PROGRESS]
+Loaded 17562 CodeRM rows
+
+Wrote .../code_opt_max_seq.json
+= scripts/run.py code05e_parallel3 --preliminary =
+Resolved config for code05e_parallel3:
+Applied seq caps from .../code_opt_max_seq.json
+Experiment session code05e_parallel3 -> .../20260626_073743
+Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+Loaded 17562 CodeRM rows
+Resolved best adapter for code02s_cur_e2 -> .../best
+
+All log messages before absl::InitializeLog is called a...
+W0000 00:00:1782459489.905879 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782459489.905923 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782459489.905926 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782459489.905929 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+_install_fused_forward
+Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
+ Unsloth Zoo will now patch everything to make training faster!
+`trust_remote_code` is True.
+Are you certain you want to do remote code execution?
+O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+\ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
+Loading PEFT adapter from .../best is_trainable=False
+No HF checkpoint found in .../20260626_073743 — starting fresh
+Model prepared for inference Unsloth for_inference + padding_side=left
+unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
+[PROGRESS]
+Saved 10 predictions -> predictions_post.json
+No HF checkpoint found in .../20260626_073743 — starting fresh
+= scripts/run.py code05e_parallel3 =
+Resolved config for code05e_parallel3:
+Applied seq caps from .../code_opt_max_seq.json
+Experiment session code05e_parallel3 -> .../20260626_074037
+Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+Loaded 17562 CodeRM rows
+Resolved best adapter for code02s_cur_e2 -> .../best
+
+All log messages before absl::InitializeLog is called a...
+W0000 00:00:1782459659.194098 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782459659.194143 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782459659.194147 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782459659.194149 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+_install_fused_forward
+Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
+ Unsloth Zoo will now patch everything to make training faster!
+`trust_remote_code` is True.
+Are you certain you want to do remote code execution?
+O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+\ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
+Loading PEFT adapter from .../best is_trainable=False
+No HF checkpoint found in .../20260626_074037 — starting fresh
+Model prepared for inference Unsloth for_inference + padding_side=left
+unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
+= scripts/run.py code05e_repair_std =
+ Unsloth Zoo will now patch everything to make training faster!
+`trust_remote_code` is True.
+Are you certain you want to do remote code execution?
+O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+\ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
+[PROGRESS]
+Saved 300 predictions -> predictions_post.json
+No HF checkpoint found in .../20260626_074037 — starting fresh
+Resolved config for code05e_repair_std:
+Applied seq caps from .../code_opt_max_seq.json
+Experiment session code05e_repair_std -> .../20260626_093957
+Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+Loaded 17562 CodeRM rows
+Resolved best adapter for code02s_cur_e2 -> .../best
+
+All log messages before absl::InitializeLog is called a...
+W0000 00:00:1782466819.360243 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782466819.360264 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782466819.360266 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782466819.360269 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+_install_fused_forward
+Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
+Loading PEFT adapter from .../best is_trainable=False
+No HF checkpoint found in .../20260626_093957 — starting fresh
+Model prepared for inference Unsloth for_inference + padding_side=left
+[PROGRESS]
+unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
+Saved 300 predictions -> predictions_post.json
+No HF checkpoint found in .../20260626_093957 — starting fresh
+= scripts/run.py code05e_repair_min =
+Resolved config for code05e_repair_min:
+Applied seq caps from .../code_opt_max_seq.json
+Experiment session code05e_repair_min -> .../20260626_102449
+Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+Loaded 17562 CodeRM rows
+Resolved best adapter for code02s_cur_e2 -> .../best
+
+All log messages before absl::InitializeLog is called a...
+W0000 00:00:1782469510.096170 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782469510.096191 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782469510.096194 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1782469510.096196 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
+_install_fused_forward
+Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
+ Unsloth Zoo will now patch everything to make training faster!
+`trust_remote_code` is True.
+Are you certain you want to do remote code execution?
+O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+\ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
+Loading PEFT adapter from .../best is_trainable=False
+No HF checkpoint found in .../20260626_102449 — starting fresh
+Model prepared for inference Unsloth for_inference + padding_side=left

@@ -1,0 +1,1209 @@
+Skip to
+content
+Kaggle
+
+Create
+Home
+
+Competitions
+
+Benchmarks
+
+Game Arena
+
+Data Hub
+
+More
+
+Your Work
+
+Viewed
+
+
+code-opt-phase5-inference
+
+
+code-opt-phase4-all
+
+Edited
+
+
+notebooka9f4f6d99e
+
+
+2
+View Active Events
+
+Search
+
+Dmitry Savkov 2 · 3h ago · 9 views · Private
+
+Share
+
+Edit
+
+Download
+code-opt-phase5-inference
+Logs
+Running for 11109.7s
+Accelerator
+GPU T4 x2
+
+Environment
+Latest Container Image
+
+Output
+0 B
+
+Time
+#
+Log Message
+7.2s	0	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.6/61.6 kB 2.1 MB/s eta 0:00:00
+9.5s	1	2026-06-26 07:34:09.167 | INFO     | kaggle_support.init:_diagnose:531 - === Kaggle setup diagnose ===
+9.5s	2	2026-06-26 07:34:09.167 | INFO     | kaggle_support.init:_diagnose:532 - free_disk_gb: 19.50
+9.5s	3	2026-06-26 07:34:09.168 | INFO     | kaggle_support.init:_diagnose:533 - code_input: /kaggle/input/datasets/dmitrysavkov2/dpo-rag-opt-code
+9.5s	4	2026-06-26 07:34:09.168 | INFO     | kaggle_support.init:_diagnose:534 - legacy services/ exists: False
+9.5s	5	2026-06-26 07:34:09.168 | INFO     | kaggle_support.init:_diagnose:543 - tier train: marked=False (not installed)
+9.5s	6	2026-06-26 07:34:09.168 | INFO     | kaggle_support.init:_diagnose:543 - tier outlines: marked=False (not installed)
+9.5s	7	2026-06-26 07:34:09.168 | INFO     | kaggle_support.init:_diagnose:543 - tier vllm: marked=False (not installed)
+25.9s	8	2026-06-26 07:34:25.588 | INFO     | kaggle_support.init:_uv_pip_install:663 - Running: uv pip install --system loguru>=0.7 python-dotenv>=1.0 datasets>=2.0 torch==2.10.0+cu128 torchvision==0.25.0+cu128 triton==3.6.0
+27.6s	9	2026-06-26 07:34:27.306 | INFO     | kaggle_support.init:configure_caches:767 - Caches under /kaggle/working/dpo-rag-opt/cache (HF_HOME=/kaggle/working/dpo-rag-opt/cache/huggingface)
+28.0s	10	2026-06-26 07:34:27.612 | INFO     | kaggle_support.init:sync_project_assets:821 - Copied src -> /kaggle/working/dpo-rag-opt/src
+28.1s	11	2026-06-26 07:34:27.788 | INFO     | kaggle_support.init:sync_project_assets:821 - Copied scripts -> /kaggle/working/dpo-rag-opt/scripts
+28.2s	12	2026-06-26 07:34:27.807 | INFO     | kaggle_support.init:sync_project_assets:821 - Copied kaggle_support -> /kaggle/working/dpo-rag-opt/kaggle_support
+28.3s	13	2026-06-26 07:34:27.925 | INFO     | kaggle_support.init:sync_project_assets:821 - Copied data -> /kaggle/working/dpo-rag-opt/data
+28.3s	14	2026-06-26 07:34:27.929 | INFO     | kaggle_support.init:ensure_splits:899 - Split file missing — building /kaggle/working/dpo-rag-opt/data/splits/bitext_seed42.json (downloads Bitext once)
+34.7s	15	2026-06-26 07:34:34.389 | INFO     | __main__:<module>:36 - Loading bitext/Bitext-customer-support-llm-chatbot-training-dataset ...
+34.9s	16	Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+37.9s	17	
+Generating train split:   0%|          | 0/26872 [00:00<?, ? examples/s]
+Generating train split:  37%|███▋      | 10000/26872 [00:00<00:00, 66419.69 examples/s]
+Generating train split: 100%|██████████| 26872/26872 [00:00<00:00, 84492.20 examples/s]
+Generating train split: 100%|██████████| 26872/26872 [00:00<00:00, 81695.28 examples/s]
+38.9s	18	2026-06-26 07:34:38.586 | INFO     | dpo_rag.core.splits:build_splits:121 - Built splits: val=100 test=2000 lean_test=300 train_pool=24772 (27 intent classes, 27 strata)
+38.9s	19	2026-06-26 07:34:38.597 | INFO     | dpo_rag.core.splits:save_splits:134 - Saved splits to /kaggle/working/dpo-rag-opt/data/splits/bitext_seed42.json
+39.3s	20	2026-06-26 07:34:38.947 | INFO     | kaggle_support.init:warn_if_low_disk:887 - Free disk at /kaggle/working/dpo-rag-opt: 19.46 GB
+39.3s	368	=== Kaggle bootstrap STATUS: READY ===
+39.3s	369	code_input:     /kaggle/input/datasets/dmitrysavkov2/dpo-rag-opt-code
+39.3s	370	project_root:   /kaggle/working/dpo-rag-opt
+39.3s	371	synced src:     OK (dpo_rag/data/pipeline.py present)
+39.3s	372	dpo_rag:        /kaggle/working/dpo-rag-opt/src/dpo_rag/__init__.py
+39.3s	373	free_disk_gb:   19.46
+39.3s	374	Next: ks.ensure_train_stack() before efficient steps 0–2
+40.4s	21	2026-06-26 07:34:40.035 | INFO     | kaggle_support.init:setup_bootstrap:979 - Kaggle setup_bootstrap complete — project_root=/kaggle/working/dpo-rag-opt
+40.4s	22	2026-06-26 07:34:40.046 | INFO     | kaggle_support.init:_uv_pip_install:663 - Running: uv pip install --system transformers>=4.46.0,<4.54 unsloth>=2026.6.1 unsloth-zoo>=2026.6.1 peft>=0.11 torchao>=0.16 accelerate>=0.30 bitsandbytes>=0.43.1,<0.46 torch==2.10.0+cu128 torchvision==0.25.0+cu128 triton==3.6.0
+120.8s	375	=== Kaggle tier [train] STATUS: READY ===
+120.8s	376	project_root:   /kaggle/working/dpo-rag-opt
+120.8s	377	verify:         ok transformers=4.53.3
+120.8s	378	/kaggle/input mounts: ['datasets']
+122.7s	379	Staged adapter dpo-rag-code02s-cur-e2-best -> cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best
+122.7s	380	
+122.7s	381	=== scripts/build_code_splits.py ===
+122.9s	382	Split file already exists (locked): /kaggle/working/dpo-rag-opt/data/splits/code_opt_seed42.json
+122.9s	383	{
+122.9s	384	  "seed": 42,
+122.9s	385	  "stratify": "mbpp_length_quartile_sanitized",
+122.9s	386	  "mbpp_eval_ids": [
+122.9s	387	    6,
+122.9s	388	    8,
+122.9s	389	    16,
+122.9s	390	    18,
+122.9s	391	    19,
+122.9s	392	    20,
+122.9s	393	    57,
+122.9s	394	    58,
+122.9s	395	    64,
+122.9s	396	    68,
+122.9s	397	    82,
+122.9s	398	    83,
+122.9s	399	    84,
+122.9s	400	    89,
+122.9s	401	    90,
+122.9s	402	    91,
+122.9s	403	    93,
+122.9s	404	    101,
+122.9s	405	    102,
+122.9s	406	    105,
+122.9s	407	    108,
+122.9s	408	    113,
+122.9s	409	    117,
+122.9s	410	    118,
+122.9s	411	    124,
+122.9s	412	    129,
+122.9s	413	    132,
+122.9s	414	    137,
+122.9s	415	    138,
+122.9s	416	    139,
+122.9s	417	    142,
+122.9s	418	    143,
+122.9s	419	    145,
+122.9s	420	    160,
+122.9s	421	    161,
+122.9s	422	    162,
+122.9s	423	    164,
+122.9s	424	    165,
+122.9s	425	    166,
+122.9s	426	    223,
+122.9s	427	    226,
+122.9s	428	    229,
+122.9s	429	    230,
+122.9s	430	    234,
+122.9s	431	    246,
+122.9s	432	    247,
+122.9s	433	    248,
+122.9s	434	    250,
+122.9s	435	  
+122.9s	436	
+122.9s	437	=== scripts/code/audit_seq_lengths.py --experiment code02s_cur_e2 ===
+120.8s	23	2026-06-26 07:36:00.450 | INFO     | kaggle_support.init:ensure_train_stack:1012 - Train stack ready (ok transformers=4.53.3). torchrun / !python use fresh subprocesses — avoid `from transformers import ...` in this kernel until restart.
+123.4s	24	2026-06-26 07:36:03.086 | INFO     | dpo_rag.data.code_datasets:load_mbpp_full_rows:88 - Loaded 974 MBPP full rows from mbpp.jsonl
+123.5s	25	2026-06-26 07:36:03.188 | INFO     | dpo_rag.data.code_datasets:load_mbpp_sanitized_rows:101 - Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+149.2s	26	
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 14292 examples [00:08, 1600.25 examples/s]
+Generating train split: 17562 examples [00:09, 2019.10 examples/s]
+Generating train split: 17562 examples [00:09, 1863.74 examples/s]
+173.4s	27	
+Generating test split: 0 examples [00:00, ? examples/s]
+Generating test split: 28090 examples [00:11, 2349.61 examples/s]
+Generating test split: 45338 examples [00:13, 3762.44 examples/s]
+Generating test split: 59630 examples [00:23, 2362.31 examples/s]
+Generating test split: 62900 examples [00:24, 2506.08 examples/s]
+Generating test split: 62900 examples [00:24, 2602.43 examples/s]
+191.2s	28	2026-06-26 07:37:10.881 | INFO     | dpo_rag.data.code_datasets:load_coderM_rows:149 - Loaded 17562 CodeRM rows
+191.3s	29	2026-06-26 07:37:10.954 | INFO     | dpo_rag.core.code_format:log_code_sample:212 - code sample [mbpp_sft]: prompt='Write a function to find sequences of lowercase letters joined with an underscore using regex.\n\nYour solution must define a function named exactly `text_match(...)` (same spelling and casing as the test harness).' code="import re\r\ndef text_match(text):\r\n  patterns = '^[a-z]+_[a-z]+$'\r\n  if re.search(patterns,  text):\r\n    return ('Found a match!')\r\n  else:\r\n    return ('Not matched!')"
+191.3s	30	2026-06-26 07:37:10.955 | INFO     | dpo_rag.data.code_datasets:build_mbpp_sft_rows:577 - MBPP SFT rows: 500 (pool=824)
+191.6s	31	2026-06-26 07:37:11.207 | INFO     | dpo_rag.core.code_format:log_code_sample:212 - code sample [coderM_sft]: prompt='Given a string S. The task is to find the first repeated character in it. We need to find the character that occurs more than once and whose index of second occurrence is smallest. S contains only lowercase letters.\n \nExample 1:\nInput: S="geeksforgeeks"\nOutput: e\nExplanation: \'e\' repeats at third position.\n \nExample 2:\nInput: S="hellogeeks"\nOutput: l\nExplanation: \'l\' repeats at fourth position.\n \nExample 3:\nInput: S="abc"\nOutput: -1\nExplanation: There is no repeated character.\nYour Task:  \nYou d' code='def first_repeated_character(s: str) -> str:\n    seen = set()\n    for char in s:\n        if char in seen:\n            return char\n        seen.add(char)\n    return "-1"'
+191.6s	32	2026-06-26 07:37:11.208 | INFO     | dpo_rag.data.code_datasets:build_coderM_sft_rows:243 - CodeRM SFT rows: 418 (pool=17412)
+191.6s	33	2026-06-26 07:37:11.208 | INFO     | dpo_rag.data.code_datasets:build_mixed_code_sft_rows:268 - Mixed SFT: 500 MBPP + 418 CodeRM -> 918 total (ratio=1.0)
+191.8s	34	2026-06-26 07:37:11.471 | INFO     | dpo_rag.core.code_format:log_code_sample:212 - code sample [coderM_dpo]: prompt='You are given an array A containing N integers. Find if it is possible to choose exactly M elements from the array such that the MEX of the chosen elements is exactly K.\n\nRecall that the *MEX* of an array is the smallest non-negative integer that does not belong to the array. For example, the *MEX* of [2, 2, 1] is 0 because 0 does not belong to the array, the *MEX* of [3, 1, 0, 1] is 2 because 0 and 1 belong to the array, but 2 does not.\n\n------ Input Format ------ \n\n- The first line contains an' code='from collections import Counter\n\ndef can_achieve_mex(A, M, K):\n    # Count the occurrences of each element in the array\n    b = Counter(A)\n    \n    # Count the number of elements less than K\n    s_count = sum(1 for x in b if x < K)\n    \n    # Check the conditions for achieving the required MEX\n    if s_count < K or K > M or M > len(A) - b.get(K, 0):\n        return False\n    else:\n        return True'
+191.8s	35	2026-06-26 07:37:11.471 | INFO     | dpo_rag.data.code_datasets:build_coderM_dpo_rows:682 - CodeRM DPO triples: 500 stats={'requested': 500, 'usable': 500, 'skipped_same': 0, 'skipped_no_reject': 0, 'skipped_syntax': 0, 'skipped_missing_def': 89, 'pair_rate': 1.0}
+192.0s	36	/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+192.0s	37	  warnings.warn(
+214.3s	38	2026-06-26 07:37:33.949 | INFO     | dpo_rag.data.code_seq_audit:audit_code_seq_lengths:161 - Seq audit: max_new_tokens=1024 eval_prompt=1536 sft_max=1664 model_max=2560
+214.8s	438	{
+214.8s	439	  "method": "p99_10pct_margin_align128",
+214.8s	440	  "mbpp": {
+214.8s	441	    "gold_column": "code",
+214.8s	442	    "eval_prompt_source": "format_code_eval_prompt(sanitized prompt + test_list hints)",
+214.8s	443	    "n_gold": 1124,
+214.8s	444	    "p99_gold_tokens": 209,
+214.8s	445	    "p99_eval_prompt_tokens": 127
+214.8s	446	  },
+214.8s	447	  "coderM": {
+214.8s	448	    "gold_column": "code_ground_truth",
+214.8s	449	    "eval_prompt_source": "format_code_eval_prompt(question + gold/unit_tests hints)",
+214.8s	450	    "n_gold": 17562,
+214.8s	451	    "p99_gold_tokens": 867,
+214.8s	452	    "p99_eval_prompt_tokens": 1411
+214.8s	453	  },
+214.8s	454	  "max_new_tokens": 1024,
+214.8s	455	  "eval_max_prompt_length": 1536,
+214.8s	456	  "max_seq_length": 1664,
+214.8s	457	  "sft_max_seq_length": 1664,
+214.8s	458	  "dpo_max_length": 1920,
+214.8s	459	  "dpo_max_prompt_length": 1280,
+214.8s	460	  "model_max_seq_length": 2560,
+214.8s	461	  "n_sft_rows": 918,
+214.8s	462	  "n_dpo_triples": 500,
+214.8s	463	  "experiment": "code02s_cur_e2"
+214.8s	464	}
+214.8s	465	Wrote /kaggle/working/dpo-rag-opt/analysis/code_opt_max_seq.json
+219.5s	466	
+219.5s	467	=== scripts/run.py code05e_parallel3 --preliminary ===
+219.7s	39	2026-06-26 07:37:39.380 | INFO     | __main__:main:51 - Resolved config for code05e_parallel3:
+219.7s	40	{
+219.7s	41	  "format_version": "v1",
+219.7s	42	  "seed": 42,
+219.7s	43	  "backend": "code_opt",
+219.7s	44	  "topic": "code_opt",
+219.7s	45	  "checkpoint_topic": "code_opt",
+219.7s	46	  "model_slug": "unsloth/Qwen2.5-3B-Instruct-bnb-4bit",
+219.7s	47	  "inference_base_slug": "Qwen/Qwen2.5-3B-Instruct",
+219.7s	48	  "mbpp_slug": "Muennighoff/mbpp",
+219.7s	49	  "coderM_slug": "KAKA22/CodeRM-UnitTest",
+219.7s	50	  "split_file": "data/splits/code_opt_seed42.json",
+219.7s	51	  "load_in_4bit": true,
+219.7s	52	  "max_seq_length": 2048,
+219.7s	53	  "per_device_train_batch_size": 4,
+219.7s	54	  "per_device_eval_batch_size": 8,
+219.7s	55	  "eval_batch_size_fallbacks": [
+219.7s	56	    8,
+219.7s	57	    4,
+219.7s	58	    2
+219.7s	59	  ],
+219.7s	60	  "gradient_accumulation_steps": 2,
+219.7s	61	  "lora_r": 16,
+219.7s	62	  "lora_alpha_multiplier": 2,
+219.7s	63	  "batch_order": "sorted_batch_shuffle",
+219.7s	64	  "generation": {
+219.7s	65	    "max_new_tokens": 768,
+219.7s	66	    "do_sample": true,
+219.7s	67	    "temperature": 0.65
+219.7s	68	  },
+219.7s	69	  "exec_timeout_sec": 2.0,
+219.7s	70	  "coderM_exec_timeout_sec": 3.0,
+219.7s	71	  "coderM_max_test_blocks": 15,
+219.7s	72	  "coderM_memory_limit_mb": 512,
+219.7s	73	  "eval_sources": [
+219.7s	74	    "mbpp",
+219.7s	75	    "coderM"
+219.7s	76	  ],
+219.7s	77	  "logging_steps": 10,
+219.7s	78	  "eval_only": true,
+219.7s	79	  "checkpoint": "code02s_cur_e2_best",
+219.7s	80	  "inference_strategy": "parallel_n3",
+219.7s	81	  "parallel_n": 3,
+219.7s	82	  "parallel_temperature": 0.65,
+219.7s	83	  "hypotheses": [
+219.7s	84	    "Phase 5 Track C: N=3 parallel samples (T=0.65); first ast.parse-ok candidate."
+219.7s	85	  ],
+219.7s	86	  "preliminary": true
+219.7s	87	}
+223.4s	88	2026-06-26 07:37:43.091 | INFO     | dpo_rag.pipeline_code:resolve_seq_lengths:100 - Applied seq caps from /kaggle/working/dpo-rag-opt/analysis/code_opt_max_seq.json
+223.4s	89	2026-06-26 07:37:43.096 | INFO     | dpo_rag.core.session:__init__:44 - Experiment session code05e_parallel3 -> /kaggle/working/dpo-rag-opt/results/code_opt/code05e_parallel3/20260626_073743
+223.8s	90	2026-06-26 07:37:43.422 | INFO     | dpo_rag.data.code_datasets:load_mbpp_sanitized_rows:101 - Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+242.1s	91	2026-06-26 07:38:01.709 | INFO     | dpo_rag.data.code_datasets:load_coderM_rows:149 - Loaded 17562 CodeRM rows
+242.6s	92	2026-06-26 07:38:02.298 | INFO     | dpo_rag.core.checkpoints:find_best_adapter:91 - Resolved best adapter for code02s_cur_e2 -> /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best
+244.3s	93	/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+244.3s	94	  warnings.warn(
+248.6s	95	2026-06-26 07:38:08.274451: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+249.0s	96	WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+249.0s	97	E0000 00:00:1782459488.700500     180 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+249.2s	98	E0000 00:00:1782459488.832942     180 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+250.2s	99	W0000 00:00:1782459489.905879     180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+250.2s	100	W0000 00:00:1782459489.905923     180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+250.2s	101	W0000 00:00:1782459489.905926     180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+250.2s	102	W0000 00:00:1782459489.905929     180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+260.2s	103	/usr/local/lib/python3.12/dist-packages/unsloth_zoo/__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
+260.2s	104	  _install_fused_forward()
+272.1s	105	2026-06-26 07:38:31.780 | INFO     | dpo_rag.train.sft:load_model_tokenizer:52 - Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
+272.7s	468	🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+272.7s	469	🦥 Unsloth Zoo will now patch everything to make training faster!
+272.7s	470	Unsloth: WARNING `trust_remote_code` is True.
+272.7s	471	Are you certain you want to do remote code execution?
+272.7s	472	==((====))==  Unsloth 2026.6.9: Fast Qwen2 patching. Transformers: 4.53.3.
+272.7s	473	   \\   /|    Tesla T4. Num GPUs = 2. Max memory: 14.562 GB. Platform: Linux.
+272.7s	474	O^O/ \_/ \    Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+272.7s	475	\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.35. FA2 = False]
+272.7s	476	 "-____-"     Free license: http://github.com/unslothai/unsloth
+272.7s	477	Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+289.6s	106	2026-06-26 07:38:49.241 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+289.6s	107	2026-06-26 07:38:49.241 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+289.6s	108	2026-06-26 07:38:49.241 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+289.6s	109	2026-06-26 07:38:49.242 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+289.6s	110	2026-06-26 07:38:49.242 | INFO     | dpo_rag.train.sft:load_peft_adapter:199 - Loading PEFT adapter from /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best (is_trainable=False)
+291.1s	111	2026-06-26 07:38:50.781 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_parallel3/20260626_073743 — starting fresh
+291.1s	112	2026-06-26 07:38:50.781 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=False
+291.1s	113	2026-06-26 07:38:50.796 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+291.1s	114	2026-06-26 07:38:50.796 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+291.1s	115	2026-06-26 07:38:50.797 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+291.1s	116	2026-06-26 07:38:50.797 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+291.1s	117	2026-06-26 07:38:50.797 | INFO     | dpo_rag.train.inference:prepare_for_inference:16 - Model prepared for inference (Unsloth for_inference + padding_side=left)
+386.9s	478	unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
+390.4s	118	
+sandbox:   0%|          | 0/10 [00:00<?, ?it/s]
+sandbox:  10%|█         | 1/10 [00:00<00:03,  2.64it/s]
+sandbox:  20%|██        | 2/10 [00:00<00:02,  2.83it/s]
+sandbox:  30%|███       | 3/10 [00:01<00:02,  2.92it/s]
+sandbox:  40%|████      | 4/10 [00:01<00:02,  2.90it/s]
+sandbox:  50%|█████     | 5/10 [00:01<00:01,  2.94it/s]
+sandbox:  60%|██████    | 6/10 [00:02<00:01,  2.90it/s]
+sandbox:  70%|███████   | 7/10 [00:02<00:01,  2.82it/s]
+sandbox:  80%|████████  | 8/10 [00:02<00:00,  2.85it/s]
+sandbox:  90%|█████████ | 9/10 [00:03<00:00,  2.89it/s]
+sandbox: 100%|██████████| 10/10 [00:03<00:00,  2.89it/s]
+sandbox: 100%|██████████| 10/10 [00:03<00:00,  2.88it/s]
+390.4s	119	2026-06-26 07:40:30.020 | INFO     | dpo_rag.eval.code_run:run_code_eval:218 - Code eval code_eval: pass_rate=0.500 pre_syntax=0 post_syntax=0
+390.4s	120	2026-06-26 07:40:30.022 | INFO     | dpo_rag.core.session:save_predictions:147 - Saved 10 predictions -> predictions_post.json
+390.4s	121	2026-06-26 07:40:30.022 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_parallel3/20260626_073743 — starting fresh
+390.4s	122	2026-06-26 07:40:30.023 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=True
+394.7s	479	
+394.7s	480	=== scripts/run.py code05e_parallel3 ===
+394.8s	123	2026-06-26 07:40:34.465 | INFO     | __main__:main:51 - Resolved config for code05e_parallel3:
+394.8s	124	{
+394.8s	125	  "format_version": "v1",
+394.8s	126	  "seed": 42,
+394.8s	127	  "backend": "code_opt",
+394.8s	128	  "topic": "code_opt",
+394.8s	129	  "checkpoint_topic": "code_opt",
+394.8s	130	  "model_slug": "unsloth/Qwen2.5-3B-Instruct-bnb-4bit",
+394.8s	131	  "inference_base_slug": "Qwen/Qwen2.5-3B-Instruct",
+394.8s	132	  "mbpp_slug": "Muennighoff/mbpp",
+394.8s	133	  "coderM_slug": "KAKA22/CodeRM-UnitTest",
+394.8s	134	  "split_file": "data/splits/code_opt_seed42.json",
+394.8s	135	  "load_in_4bit": true,
+394.8s	136	  "max_seq_length": 2048,
+394.8s	137	  "per_device_train_batch_size": 4,
+394.8s	138	  "per_device_eval_batch_size": 8,
+394.8s	139	  "eval_batch_size_fallbacks": [
+394.8s	140	    8,
+394.8s	141	    4,
+394.8s	142	    2
+394.8s	143	  ],
+394.8s	144	  "gradient_accumulation_steps": 2,
+394.8s	145	  "lora_r": 16,
+394.8s	146	  "lora_alpha_multiplier": 2,
+394.8s	147	  "batch_order": "sorted_batch_shuffle",
+394.8s	148	  "generation": {
+394.8s	149	    "max_new_tokens": 768,
+394.8s	150	    "do_sample": true,
+394.8s	151	    "temperature": 0.65
+394.8s	152	  },
+394.8s	153	  "exec_timeout_sec": 2.0,
+394.8s	154	  "coderM_exec_timeout_sec": 3.0,
+394.8s	155	  "coderM_max_test_blocks": 15,
+394.8s	156	  "coderM_memory_limit_mb": 512,
+394.8s	157	  "eval_sources": [
+394.8s	158	    "mbpp",
+394.8s	159	    "coderM"
+394.8s	160	  ],
+394.8s	161	  "logging_steps": 10,
+394.8s	162	  "eval_only": true,
+394.8s	163	  "checkpoint": "code02s_cur_e2_best",
+394.8s	164	  "inference_strategy": "parallel_n3",
+394.8s	165	  "parallel_n": 3,
+394.8s	166	  "parallel_temperature": 0.65,
+394.8s	167	  "hypotheses": [
+394.8s	168	    "Phase 5 Track C: N=3 parallel samples (T=0.65); first ast.parse-ok candidate."
+394.8s	169	  ],
+394.8s	170	  "preliminary": false
+394.8s	171	}
+398.1s	172	2026-06-26 07:40:37.784 | INFO     | dpo_rag.pipeline_code:resolve_seq_lengths:100 - Applied seq caps from /kaggle/working/dpo-rag-opt/analysis/code_opt_max_seq.json
+398.1s	173	2026-06-26 07:40:37.788 | INFO     | dpo_rag.core.session:__init__:44 - Experiment session code05e_parallel3 -> /kaggle/working/dpo-rag-opt/results/code_opt/code05e_parallel3/20260626_074037
+398.5s	174	2026-06-26 07:40:38.119 | INFO     | dpo_rag.data.code_datasets:load_mbpp_sanitized_rows:101 - Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+416.3s	175	2026-06-26 07:40:55.994 | INFO     | dpo_rag.data.code_datasets:load_coderM_rows:149 - Loaded 17562 CodeRM rows
+416.8s	176	2026-06-26 07:40:56.429 | INFO     | dpo_rag.core.checkpoints:find_best_adapter:91 - Resolved best adapter for code02s_cur_e2 -> /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best
+418.4s	177	/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+418.4s	178	  warnings.warn(
+419.5s	179	2026-06-26 07:40:59.148488: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+419.5s	180	WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+419.5s	181	E0000 00:00:1782459659.168914     366 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+419.5s	182	E0000 00:00:1782459659.175759     366 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+419.5s	183	W0000 00:00:1782459659.194098     366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+419.5s	184	W0000 00:00:1782459659.194143     366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+419.5s	185	W0000 00:00:1782459659.194147     366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+419.5s	186	W0000 00:00:1782459659.194149     366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+425.3s	187	/usr/local/lib/python3.12/dist-packages/unsloth_zoo/__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
+425.3s	188	  _install_fused_forward()
+434.7s	189	2026-06-26 07:41:14.327 | INFO     | dpo_rag.train.sft:load_model_tokenizer:52 - Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
+435.2s	481	🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+435.2s	482	🦥 Unsloth Zoo will now patch everything to make training faster!
+435.2s	483	Unsloth: WARNING `trust_remote_code` is True.
+435.2s	484	Are you certain you want to do remote code execution?
+435.2s	485	==((====))==  Unsloth 2026.6.9: Fast Qwen2 patching. Transformers: 4.53.3.
+435.2s	486	   \\   /|    Tesla T4. Num GPUs = 2. Max memory: 14.562 GB. Platform: Linux.
+435.2s	487	O^O/ \_/ \    Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+435.2s	488	\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.35. FA2 = False]
+435.2s	489	 "-____-"     Free license: http://github.com/unslothai/unsloth
+435.2s	490	Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+443.8s	190	2026-06-26 07:41:23.495 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+443.8s	191	2026-06-26 07:41:23.495 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+443.8s	192	2026-06-26 07:41:23.495 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+443.8s	193	2026-06-26 07:41:23.495 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+443.8s	194	2026-06-26 07:41:23.495 | INFO     | dpo_rag.train.sft:load_peft_adapter:199 - Loading PEFT adapter from /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best (is_trainable=False)
+444.6s	195	2026-06-26 07:41:24.218 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_parallel3/20260626_074037 — starting fresh
+444.6s	196	2026-06-26 07:41:24.219 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=False
+444.6s	197	2026-06-26 07:41:24.236 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+444.6s	198	2026-06-26 07:41:24.236 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+444.6s	199	2026-06-26 07:41:24.236 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+444.6s	200	2026-06-26 07:41:24.236 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+444.6s	201	2026-06-26 07:41:24.236 | INFO     | dpo_rag.train.inference:prepare_for_inference:16 - Model prepared for inference (Unsloth for_inference + padding_side=left)
+7405.0s	491	unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
+7554.8s	492	
+7554.8s	493	=== scripts/run.py code05e_repair_std ===
+7595.4s	494	🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+7595.4s	495	🦥 Unsloth Zoo will now patch everything to make training faster!
+7595.4s	496	Unsloth: WARNING `trust_remote_code` is True.
+7595.4s	497	Are you certain you want to do remote code execution?
+7595.4s	498	==((====))==  Unsloth 2026.6.9: Fast Qwen2 patching. Transformers: 4.53.3.
+7595.4s	499	   \\   /|    Tesla T4. Num GPUs = 2. Max memory: 14.562 GB. Platform: Linux.
+7595.4s	500	O^O/ \_/ \    Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+7595.4s	501	\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.35. FA2 = False]
+7595.4s	502	 "-____-"     Free license: http://github.com/unslothai/unsloth
+7595.4s	503	Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+7550.5s	202	
+sandbox:   0%|          | 0/300 [00:00<?, ?it/s]
+sandbox:   0%|          | 1/300 [00:00<01:48,  2.76it/s]
+sandbox:   1%|          | 2/300 [00:00<01:53,  2.64it/s]
+sandbox:   1%|          | 3/300 [00:01<01:49,  2.72it/s]
+sandbox:   1%|▏         | 4/300 [00:01<01:44,  2.84it/s]
+sandbox:   2%|▏         | 5/300 [00:01<01:42,  2.88it/s]
+sandbox:   2%|▏         | 6/300 [00:02<01:39,  2.94it/s]
+sandbox:   2%|▏         | 7/300 [00:02<01:39,  2.95it/s]
+sandbox:   3%|▎         | 8/300 [00:02<01:42,  2.85it/s]
+sandbox:   3%|▎         | 9/300 [00:03<01:42,  2.84it/s]
+sandbox:   3%|▎         | 10/300 [00:03<01:40,  2.90it/s]
+sandbox:   4%|▎         | 11/300 [00:03<01:37,  2.95it/s]
+sandbox:   4%|▍         | 12/300 [00:04<01:36,  2.99it/s]
+sandbox:   4%|▍         | 13/300 [00:04<01:36,  2.98it/s]
+sandbox:   5%|▍         | 14/300 [00:04<01:35,  3.00it/s]
+sandbox:   5%|▌         | 15/300 [00:05<01:34,  3.00it/s]
+sandbox:   5%|▌         | 16/300 [00:05<01:38,  2.88it/s]
+sandbox:   6%|▌         | 17/300 [00:05<01:39,  2.85it/s]
+sandbox:   6%|▌         | 18/300 [00:06<01:40,  2.81it/s]
+sandbox:   6%|▋         | 19/300 [00:06<01:40,  2.79it/s]
+sandbox:   7%|▋         | 20/300 [00:06<01:37,  2.88it/s]
+sandbox:   7%|▋         | 21/300 [00:07<01:34,  2.94it/s]
+sandbox:   7%|▋         | 22/300 [00:07<01:37,  2.86it/s]
+sandbox:   8%|▊         | 23/300 [00:07<01:36,  2.87it/s]
+sandbox:   8%|▊         | 24/300 [00:08<01:34,  2.91it/s]
+sandbox:   8%|▊         | 25/300 [00:08<01:32,  2.99it/s]
+sandbox:   9%|▊         | 26/300 [00:08<01:30,  3.02it/s]
+sandbox:   9%|▉         | 27/300 [00:09<01:30,  3.03it/s]
+sandbox:   9%|▉         | 28/300 [00:09<01:31,  2.97it/s]
+sandbox:  10%|▉         | 29/300 [00:10<01:34,  2.88it/s]
+sandbox:  10%|█         | 30/300 [00:10<01:33,  2.90it/s]
+sandbox:  10%|█         | 31/300 [00:10<01:31,  2.95it/s]
+sandbox:  11%|█         | 32/300 [00:11<01:30,  2.95it/s]
+sandbox:  11%|█         | 33/300 [00:11<01:30,  2.95it/s]
+sandbox:  11%|█▏        | 34/300 [00:11<01:29,  2.99it/s]
+sandbox:  12%|█▏        | 35/300 [00:11<01:27,  3.02it/s]
+sandbox:  12%|█▏        | 36/300 [00:12<01:30,  2.92it/s]
+sandbox:  12%|█▏        | 37/300 [00:12<01:31,  2.89it/s]
+sandbox:  13%|█▎        | 38/300 [00:13<01:28,  2.95it/s]
+sandbox:  13%|█▎        | 39/300 [00:13<01:28,  2.96it/s]
+sandbox:  13%|█▎        | 40/300 [00:13<01:27,  2.95it/s]
+sandbox:  14%|█▎        | 41/300 [00:14<01:26,  2.99it/s]
+sandbox:  14%|█▍        | 42/300 [00:14<01:25,  3.02it/s]
+sandbox:  14%|█▍        | 43/300 [00:14<01:25,  2.99it/s]
+sandbox:  15%|█▍        | 44/300 [00:15<01:28,  2.91it/s]
+sandbox:  15%|█▌        | 45/300 [00:15<01:26,  2.94it/s]
+sandbox:  15%|█▌        | 46/300 [00:15<01:25,  2.98it/s]
+sandbox:  16%|█▌        | 47/300 [00:16<01:24,  2.99it/s]
+sandbox:  16%|█▌        | 48/300 [00:16<01:25,  2.93it/s]
+sandbox:  16%|█▋        | 49/300 [00:16<01:27,  2.88it/s]
+sandbox:  17%|█▋        | 50/300 [00:17<01:28,  2.83it/s]
+sandbox:  17%|█▋        | 51/300 [00:17<01:27,  2.86it/s]
+sandbox:  17%|█▋        | 52/300 [00:17<01:25,  2.90it/s]
+sandbox:  18%|█▊        | 53/300 [00:18<01:24,  2.92it/s]
+sandbox:  18%|█▊        | 54/300 [00:18<01:23,  2.96it/s]
+sandbox:  18%|█▊        | 55/300 [00:18<01:22,  2.97it/s]
+sandbox:  19%|█▊        | 56/300 [00:19<01:25,  2.85it/s]
+sandbox:  19%|█▉        | 57/300 [00:19<01:25,  2.83it/s]
+sandbox:  19%|█▉        | 58/300 [00:19<01:24,  2.86it/s]
+sandbox:  20%|█▉        | 59/300 [00:20<01:23,  2.90it/s]
+sandbox:  20%|██        | 60/300 [00:20<01:22,  2.92it/s]
+sandbox:  20%|██        | 61/300 [00:20<01:22,  2.88it/s]
+sandbox:  21%|██        | 62/300 [00:21<01:25,  2.80it/s]
+sandbox:  21%|██        | 63/300 [00:21<01:23,  2.82it/s]
+sandbox:  21%|██▏       | 64/300 [00:21<01:21,  2.89it/s]
+sandbox:  22%|██▏       | 65/300 [00:22<01:20,  2.91it/s]
+sandbox:  22%|██▏       | 66/300 [00:22<01:19,  2.95it/s]
+sandbox:  22%|██▏       | 67/300 [00:22<01:18,  2.98it/s]
+sandbox:  23%|██▎       | 68/300 [00:23<01:17,  3.00it/s]
+sandbox:  23%|██▎       | 69/300 [00:23<01:18,  2.94it/s]
+sandbox:  23%|██▎       | 70/300 [00:24<01:20,  2.85it/s]
+sandbox:  24%|██▎       | 71/300 [00:24<01:19,  2.88it/s]
+sandbox:  24%|██▍       | 72/300 [00:24<01:18,  2.90it/s]
+sandbox:  24%|██▍       | 73/300 [00:25<01:17,  2.94it/s]
+sandbox:  25%|██▍       | 74/300 [00:25<01:16,  2.95it/s]
+sandbox:  25%|██▌       | 75/300 [00:25<01:14,  3.00it/s]
+sandbox:  25%|██▌       | 76/300 [00:26<01:17,  2.90it/s]
+sandbox:  26%|██▌       | 77/300 [00:26<01:19,  2.79it/s]
+sandbox:  26%|██▌       | 78/300 [00:26<01:17,  2.86it/s]
+sandbox:  26%|██▋       | 79/300 [00:27<01:15,  2.93it/s]
+sandbox:  27%|██▋       | 80/300 [00:27<01:14,  2.96it/s]
+sandbox:  27%|██▋       | 81/300 [00:27<01:12,  3.02it/s]
+sandbox:  27%|██▋       | 82/300 [00:28<01:15,  2.90it/s]
+sandbox:  28%|██▊       | 83/300 [00:28<01:16,  2.84it/s]
+sandbox:  28%|██▊       | 84/300 [00:28<01:14,  2.88it/s]
+sandbox:  28%|██▊       | 85/300 [00:29<01:13,  2.93it/s]
+sandbox:  29%|██▊       | 86/300 [00:29<01:12,  2.95it/s]
+sandbox:  29%|██▉       | 87/300 [00:29<01:10,  3.02it/s]
+sandbox:  29%|██▉       | 88/300 [00:30<01:08,  3.09it/s]
+sandbox:  30%|██▉       | 89/300 [00:30<01:11,  2.95it/s]
+sandbox:  30%|███       | 90/300 [00:30<01:12,  2.89it/s]
+sandbox:  30%|███       | 91/300 [00:31<01:11,  2.91it/s]
+sandbox:  31%|███       | 92/300 [00:31<01:10,  2.95it/s]
+sandbox:  31%|███       | 93/300 [00:31<01:09,  2.98it/s]
+sandbox:  31%|███▏      | 94/300 [00:32<01:07,  3.04it/s]
+sandbox:  32%|███▏      | 95/300 [00:32<01:10,  2.91it/s]
+sandbox:  32%|███▏      | 96/300 [00:32<01:11,  2.87it/s]
+sandbox:  32%|███▏      | 97/300 [00:33<01:09,  2.92it/s]
+sandbox:  33%|███▎      | 98/300 [00:33<01:08,  2.94it/s]
+sandbox:  33%|███▎      | 99/300 [00:33<01:07,  3.00it/s]
+sandbox:  33%|███▎      | 100/300 [00:34<01:05,  3.07it/s]
+sandbox:  34%|███▎      | 101/300 [00:34<01:05,  3.04it/s]
+sandbox:  34%|███▍      | 102/300 [00:34<01:06,  2.96it/s]
+sandbox:  34%|███▍      | 103/300 [00:35<01:06,  2.96it/s]
+sandbox:  35%|███▍      | 104/300 [00:35<01:06,  2.96it/s]
+sandbox:  35%|███▌      | 105/300 [00:35<01:04,  3.01it/s]
+sandbox:  35%|███▌      | 106/300 [00:36<01:05,  2.97it/s]
+sandbox:  36%|███▌      | 107/300 [00:36<01:07,  2.84it/s]
+sandbox:  36%|███▌      | 108/300 [00:36<01:07,  2.83it/s]
+sandbox:  36%|███▋      | 109/300 [00:37<01:06,  2.86it/s]
+sandbox:  37%|███▋      | 110/300 [00:37<01:05,  2.90it/s]
+sandbox:  37%|███▋      | 111/300 [00:37<01:04,  2.93it/s]
+sandbox:  37%|███▋      | 112/300 [00:38<01:03,  2.95it/s]
+sandbox:  38%|███▊      | 113/300 [00:38<01:03,  2.95it/s]
+sandbox:  38%|███▊      | 114/300 [00:39<01:05,  2.86it/s]
+sandbox:  38%|███▊      | 115/300 [00:39<01:03,  2.92it/s]
+sandbox:  39%|███▊      | 116/300 [00:39<01:02,  2.96it/s]
+sandbox:  39%|███▉      | 117/300 [00:40<01:01,  2.97it/s]
+sandbox:  39%|███▉      | 118/300 [00:40<01:00,  3.01it/s]
+sandbox:  40%|███▉      | 119/300 [00:40<01:00,  2.99it/s]
+sandbox:  40%|████      | 120/300 [00:41<01:02,  2.88it/s]
+sandbox:  40%|████      | 121/300 [00:41<01:03,  2.84it/s]
+sandbox:  41%|████      | 122/300 [00:41<01:01,  2.89it/s]
+sandbox:  41%|████      | 123/300 [00:42<01:00,  2.90it/s]
+sandbox:  41%|████▏     | 124/300 [00:42<00:59,  2.96it/s]
+sandbox:  42%|████▏     | 125/300 [00:42<00:58,  2.99it/s]
+sandbox:  42%|████▏     | 126/300 [00:43<01:00,  2.87it/s]
+sandbox:  42%|████▏     | 127/300 [00:43<01:01,  2.83it/s]
+sandbox:  43%|████▎     | 128/300 [00:43<00:59,  2.90it/s]
+sandbox:  43%|████▎     | 129/300 [00:44<00:58,  2.91it/s]
+sandbox:  43%|████▎     | 130/300 [00:44<00:57,  2.93it/s]
+sandbox:  44%|████▎     | 131/300 [00:44<00:57,  2.95it/s]
+sandbox:  44%|████▍     | 132/300 [00:45<00:56,  2.95it/s]
+sandbox:  44%|████▍     | 133/300 [00:45<00:58,  2.86it/s]
+sandbox:  45%|████▍     | 134/300 [00:45<00:58,  2.82it/s]
+sandbox:  45%|████▌     | 135/300 [00:46<00:57,  2.85it/s]
+sandbox:  45%|████▌     | 136/300 [00:46<00:58,  2.82it/s]
+sandbox:  46%|████▌     | 137/300 [00:46<00:56,  2.87it/s]
+sandbox:  46%|████▌     | 138/300 [00:47<00:55,  2.91it/s]
+sandbox:  46%|████▋     | 139/300 [00:47<00:57,  2.82it/s]
+sandbox:  47%|████▋     | 140/300 [00:47<00:56,  2.84it/s]
+sandbox:  47%|████▋     | 141/300 [00:48<00:55,  2.89it/s]
+sandbox:  47%|████▋     | 142/300 [00:48<00:53,  2.93it/s]
+sandbox:  48%|████▊     | 143/300 [00:48<00:52,  2.99it/s]
+sandbox:  48%|████▊     | 144/300 [00:49<00:51,  3.04it/s]
+sandbox:  48%|████▊     | 145/300 [00:49<00:53,  2.92it/s]
+sandbox:  49%|████▊     | 146/300 [00:50<00:53,  2.89it/s]
+sandbox:  49%|████▉     | 147/300 [00:50<00:52,  2.93it/s]
+sandbox:  49%|████▉     | 148/300 [00:50<00:51,  2.95it/s]
+sandbox:  50%|████▉     | 149/300 [00:51<00:51,  2.95it/s]
+sandbox:  50%|█████     | 150/300 [00:51<00:50,  2.97it/s]
+sandbox:  50%|█████     | 151/300 [00:51<01:03,  2.34it/s]
+sandbox:  51%|█████     | 152/300 [00:52<01:10,  2.11it/s]
+sandbox:  51%|█████     | 153/300 [00:53<01:14,  1.97it/s]
+sandbox:  51%|█████▏    | 154/300 [00:53<01:17,  1.88it/s]
+sandbox:  52%|█████▏    | 155/300 [00:54<01:21,  1.79it/s]
+sandbox:  52%|█████▏    | 156/300 [00:54<01:21,  1.77it/s]
+sandbox:  52%|█████▏    | 157/300 [00:55<01:21,  1.76it/s]
+sandbox:  53%|█████▎    | 158/300 [00:56<01:23,  1.71it/s]
+sandbox:  53%|█████▎    | 159/300 [00:56<01:24,  1.67it/s]
+sandbox:  53%|█████▎    | 160/300 [00:57<01:22,  1.69it/s]
+sandbox:  54%|█████▎    | 161/300 [00:57<01:20,  1.72it/s]
+sandbox:  54%|█████▍    | 162/300 [00:58<01:21,  1.69it/s]
+sandbox:  54%|█████▍    | 163/300 [00:59<01:19,  1.72it/s]
+sandbox:  55%|█████▍    | 164/300 [00:59<01:18,  1.73it/s]
+sandbox:  55%|█████▌    | 165/300 [01:00<01:17,  1.74it/s]
+sandbox:  55%|█████▌    | 166/300 [01:00<01:19,  1.69it/s]
+sandbox:  56%|█████▌    | 167/300 [01:01<01:17,  1.71it/s]
+sandbox:  56%|█████▌    | 168/300 [01:01<01:16,  1.72it/s]
+sandbox:  56%|█████▋    | 169/300 [01:02<01:15,  1.74it/s]
+sandbox:  57%|█████▋    | 170/300 [01:03<01:16,  1.69it/s]
+sandbox:  57%|█████▋    | 171/300 [01:03<01:15,  1.71it/s]
+sandbox:  57%|█████▋    | 172/300 [01:04<01:14,  1.72it/s]
+sandbox:  58%|█████▊    | 173/300 [01:04<01:14,  1.71it/s]
+sandbox:  58%|█████▊    | 174/300 [01:05<01:15,  1.68it/s]
+sandbox:  58%|█████▊    | 175/300 [01:06<01:14,  1.67it/s]
+sandbox:  59%|█████▊    | 176/300 [01:06<01:13,  1.68it/s]
+sandbox:  59%|█████▉    | 177/300 [01:07<01:12,  1.70it/s]
+sandbox:  59%|█████▉    | 178/300 [01:07<01:12,  1.68it/s]
+sandbox:  60%|█████▉    | 179/300 [01:08<01:11,  1.69it/s]
+sandbox:  60%|██████    | 180/300 [01:09<01:10,  1.70it/s]
+sandbox:  60%|██████    | 181/300 [01:09<01:08,  1.73it/s]
+sandbox:  61%|██████    | 182/300 [01:10<01:09,  1.70it/s]
+sandbox:  61%|██████    | 183/300 [01:10<01:09,  1.69it/s]
+sandbox:  61%|██████▏   | 184/300 [01:11<01:09,  1.67it/s]
+sandbox:  62%|██████▏   | 185/300 [01:12<01:17,  1.49it/s]
+sandbox:  62%|██████▏   | 186/300 [01:12<01:14,  1.52it/s]
+sandbox:  62%|██████▏   | 187/300 [01:13<01:12,  1.56it/s]
+sandbox:  63%|██████▎   | 188/300 [01:14<01:09,  1.61it/s]
+sandbox:  63%|██████▎   | 189/300 [01:14<01:08,  1.61it/s]
+sandbox:  63%|██████▎   | 190/300 [01:15<01:05,  1.67it/s]
+sandbox:  64%|██████▎   | 191/300 [01:15<01:04,  1.70it/s]
+sandbox:  64%|██████▍   | 192/300 [01:16<01:04,  1.67it/s]
+sandbox:  64%|██████▍   | 193/300 [01:17<01:04,  1.66it/s]
+sandbox:  65%|██████▍   | 194/300 [01:17<01:03,  1.68it/s]
+sandbox:  65%|██████▌   | 195/300 [01:18<01:01,  1.70it/s]
+sandbox:  65%|██████▌   | 196/300 [01:18<01:00,  1.71it/s]
+sandbox:  66%|██████▌   | 197/300 [01:19<01:00,  1.69it/s]
+sandbox:  66%|██████▌   | 198/300 [01:19<00:59,  1.70it/s]
+sandbox:  66%|██████▋   | 199/300 [01:20<00:58,  1.73it/s]
+sandbox:  67%|██████▋   | 200/300 [01:21<00:58,  1.70it/s]
+sandbox:  67%|██████▋   | 201/300 [01:21<00:58,  1.71it/s]
+sandbox:  67%|██████▋   | 202/300 [01:22<00:57,  1.71it/s]
+sandbox:  68%|██████▊   | 203/300 [01:22<00:55,  1.73it/s]
+sandbox:  68%|██████▊   | 204/300 [01:23<00:56,  1.69it/s]
+sandbox:  68%|██████▊   | 205/300 [01:24<00:56,  1.69it/s]
+sandbox:  69%|██████▊   | 206/300 [01:24<00:55,  1.71it/s]
+sandbox:  69%|██████▉   | 207/300 [01:25<00:54,  1.72it/s]
+sandbox:  69%|██████▉   | 208/300 [01:25<00:54,  1.68it/s]
+sandbox:  70%|██████▉   | 209/300 [01:26<00:54,  1.66it/s]
+sandbox:  70%|███████   | 210/300 [01:27<00:53,  1.68it/s]
+sandbox:  70%|███████   | 211/300 [01:27<00:53,  1.67it/s]
+sandbox:  71%|███████   | 212/300 [01:28<00:52,  1.68it/s]
+sandbox:  71%|███████   | 213/300 [01:28<00:51,  1.70it/s]
+sandbox:  71%|███████▏  | 214/300 [01:29<00:49,  1.73it/s]
+sandbox:  72%|███████▏  | 215/300 [01:30<00:51,  1.66it/s]
+sandbox:  72%|███████▏  | 216/300 [01:30<00:50,  1.68it/s]
+sandbox:  72%|███████▏  | 217/300 [01:31<00:49,  1.69it/s]
+sandbox:  73%|███████▎  | 218/300 [01:31<00:47,  1.72it/s]
+sandbox:  73%|███████▎  | 219/300 [01:32<00:48,  1.68it/s]
+sandbox:  73%|███████▎  | 220/300 [01:32<00:47,  1.68it/s]
+sandbox:  74%|███████▎  | 221/300 [01:33<00:46,  1.71it/s]
+sandbox:  74%|███████▍  | 222/300 [01:34<00:44,  1.73it/s]
+sandbox:  74%|███████▍  | 223/300 [01:34<00:49,  1.55it/s]
+sandbox:  75%|███████▍  | 224/300 [01:35<00:47,  1.60it/s]
+sandbox:  75%|███████▌  | 225/300 [01:36<00:45,  1.66it/s]
+sandbox:  75%|███████▌  | 226/300 [01:36<00:46,  1.61it/s]
+sandbox:  76%|███████▌  | 227/300 [01:37<00:44,  1.64it/s]
+sandbox:  76%|███████▌  | 228/300 [01:37<00:43,  1.67it/s]
+sandbox:  76%|███████▋  | 229/300 [01:38<00:42,  1.69it/s]
+sandbox:  77%|███████▋  | 230/300 [01:39<00:41,  1.67it/s]
+sandbox:  77%|███████▋  | 231/300 [01:39<00:40,  1.69it/s]
+sandbox:  77%|███████▋  | 232/300 [01:40<00:39,  1.72it/s]
+sandbox:  78%|███████▊  | 233/300 [01:40<00:39,  1.69it/s]
+sandbox:  78%|███████▊  | 234/300 [01:41<00:39,  1.69it/s]
+sandbox:  78%|███████▊  | 235/300 [01:41<00:38,  1.70it/s]
+sandbox:  79%|███████▊  | 236/300 [01:42<00:37,  1.70it/s]
+sandbox:  79%|███████▉  | 237/300 [01:48<02:24,  2.29s/it]
+sandbox:  79%|███████▉  | 238/300 [01:49<01:50,  1.78s/it]
+sandbox:  80%|███████▉  | 239/300 [01:49<01:26,  1.41s/it]
+sandbox:  80%|████████  | 240/300 [01:50<01:09,  1.15s/it]
+sandbox:  80%|████████  | 241/300 [01:51<00:57,  1.02it/s]
+sandbox:  81%|████████  | 242/300 [01:51<00:49,  1.18it/s]
+sandbox:  81%|████████  | 243/300 [01:52<00:43,  1.32it/s]
+sandbox:  81%|████████▏ | 244/300 [01:52<00:38,  1.44it/s]
+sandbox:  82%|████████▏ | 245/300 [01:53<00:36,  1.53it/s]
+sandbox:  82%|████████▏ | 246/300 [01:53<00:33,  1.60it/s]
+sandbox:  82%|████████▏ | 247/300 [01:54<00:32,  1.65it/s]
+sandbox:  83%|████████▎ | 248/300 [01:54<00:30,  1.70it/s]
+sandbox:  83%|████████▎ | 249/300 [01:55<00:29,  1.73it/s]
+sandbox:  83%|████████▎ | 250/300 [01:56<00:28,  1.77it/s]
+sandbox:  84%|████████▎ | 251/300 [01:56<00:29,  1.69it/s]
+sandbox:  84%|████████▍ | 252/300 [01:57<00:27,  1.72it/s]
+sandbox:  84%|████████▍ | 253/300 [01:57<00:26,  1.76it/s]
+sandbox:  85%|████████▍ | 254/300 [01:58<00:26,  1.77it/s]
+sandbox:  85%|████████▌ | 255/300 [01:58<00:25,  1.79it/s]
+sandbox:  85%|████████▌ | 256/300 [01:59<00:24,  1.77it/s]
+sandbox:  86%|████████▌ | 257/300 [02:00<00:24,  1.79it/s]
+sandbox:  86%|████████▌ | 258/300 [02:00<00:23,  1.79it/s]
+sandbox:  86%|████████▋ | 259/300 [02:01<00:23,  1.78it/s]
+sandbox:  87%|████████▋ | 260/300 [02:01<00:22,  1.80it/s]
+sandbox:  87%|████████▋ | 261/300 [02:02<00:21,  1.80it/s]
+sandbox:  87%|████████▋ | 262/300 [02:02<00:21,  1.77it/s]
+sandbox:  88%|████████▊ | 263/300 [02:03<00:21,  1.73it/s]
+sandbox:  88%|████████▊ | 264/300 [02:04<00:20,  1.73it/s]
+sandbox:  88%|████████▊ | 265/300 [02:04<00:20,  1.73it/s]
+sandbox:  89%|████████▊ | 266/300 [02:05<00:20,  1.68it/s]
+sandbox:  89%|████████▉ | 267/300 [02:05<00:19,  1.70it/s]
+sandbox:  89%|████████▉ | 268/300 [02:06<00:19,  1.67it/s]
+sandbox:  90%|████████▉ | 269/300 [02:07<00:18,  1.67it/s]
+sandbox:  90%|█████████ | 270/300 [02:07<00:17,  1.67it/s]
+sandbox:  90%|█████████ | 271/300 [02:08<00:17,  1.68it/s]
+sandbox:  91%|█████████ | 272/300 [02:08<00:16,  1.70it/s]
+sandbox:  91%|█████████ | 273/300 [02:09<00:16,  1.65it/s]
+sandbox:  91%|█████████▏| 274/300 [02:09<00:15,  1.67it/s]
+sandbox:  92%|█████████▏| 275/300 [02:10<00:14,  1.67it/s]
+sandbox:  92%|█████████▏| 276/300 [02:11<00:14,  1.67it/s]
+sandbox:  92%|█████████▏| 277/300 [02:11<00:14,  1.55it/s]
+sandbox:  93%|█████████▎| 278/300 [02:12<00:13,  1.60it/s]
+sandbox:  93%|█████████▎| 279/300 [02:13<00:12,  1.64it/s]
+sandbox:  93%|█████████▎| 280/300 [02:13<00:12,  1.66it/s]
+sandbox:  94%|█████████▎| 281/300 [02:14<00:11,  1.64it/s]
+sandbox:  94%|█████████▍| 282/300 [02:14<00:10,  1.64it/s]
+sandbox:  94%|█████████▍| 283/300 [02:15<00:10,  1.69it/s]
+sandbox:  95%|█████████▍| 284/300 [02:16<00:09,  1.66it/s]
+sandbox:  95%|█████████▌| 285/300 [02:16<00:09,  1.65it/s]
+sandbox:  95%|█████████▌| 286/300 [02:17<00:08,  1.68it/s]
+sandbox:  96%|█████████▌| 287/300 [02:17<00:07,  1.71it/s]
+sandbox:  96%|█████████▌| 288/300 [02:18<00:07,  1.67it/s]
+sandbox:  96%|█████████▋| 289/300 [02:19<00:06,  1.69it/s]
+sandbox:  97%|█████████▋| 290/300 [02:19<00:05,  1.71it/s]
+sandbox:  97%|█████████▋| 291/300 [02:20<00:05,  1.73it/s]
+sandbox:  97%|█████████▋| 292/300 [02:20<00:04,  1.69it/s]
+sandbox:  98%|█████████▊| 293/300 [02:21<00:04,  1.71it/s]
+sandbox:  98%|█████████▊| 294/300 [02:21<00:03,  1.73it/s]
+sandbox:  98%|█████████▊| 295/300 [02:22<00:02,  1.73it/s]
+sandbox:  99%|█████████▊| 296/300 [02:23<00:02,  1.70it/s]
+sandbox:  99%|█████████▉| 297/300 [02:23<00:01,  1.71it/s]
+sandbox:  99%|█████████▉| 298/300 [02:24<00:01,  1.73it/s]
+sandbox: 100%|█████████▉| 299/300 [02:24<00:00,  1.71it/s]
+sandbox: 100%|██████████| 300/300 [02:25<00:00,  1.69it/s]
+sandbox: 100%|██████████| 300/300 [02:25<00:00,  2.06it/s]
+7550.5s	203	2026-06-26 09:39:50.124 | INFO     | dpo_rag.eval.code_run:run_code_eval:218 - Code eval code_eval: pass_rate=0.260 pre_syntax=0 post_syntax=0
+7550.5s	204	2026-06-26 09:39:50.145 | INFO     | dpo_rag.core.session:save_predictions:147 - Saved 300 predictions -> predictions_post.json
+7550.5s	205	2026-06-26 09:39:50.147 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_parallel3/20260626_074037 — starting fresh
+7550.5s	206	2026-06-26 09:39:50.148 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=True
+7554.9s	207	2026-06-26 09:39:54.548 | INFO     | __main__:main:51 - Resolved config for code05e_repair_std:
+7554.9s	208	{
+7554.9s	209	  "format_version": "v1",
+7554.9s	210	  "seed": 42,
+7554.9s	211	  "backend": "code_opt",
+7554.9s	212	  "topic": "code_opt",
+7554.9s	213	  "checkpoint_topic": "code_opt",
+7554.9s	214	  "model_slug": "unsloth/Qwen2.5-3B-Instruct-bnb-4bit",
+7554.9s	215	  "inference_base_slug": "Qwen/Qwen2.5-3B-Instruct",
+7554.9s	216	  "mbpp_slug": "Muennighoff/mbpp",
+7554.9s	217	  "coderM_slug": "KAKA22/CodeRM-UnitTest",
+7554.9s	218	  "split_file": "data/splits/code_opt_seed42.json",
+7554.9s	219	  "load_in_4bit": true,
+7554.9s	220	  "max_seq_length": 2048,
+7554.9s	221	  "per_device_train_batch_size": 4,
+7554.9s	222	  "per_device_eval_batch_size": 8,
+7554.9s	223	  "eval_batch_size_fallbacks": [
+7554.9s	224	    8,
+7554.9s	225	    4,
+7554.9s	226	    2
+7554.9s	227	  ],
+7554.9s	228	  "gradient_accumulation_steps": 2,
+7554.9s	229	  "lora_r": 16,
+7554.9s	230	  "lora_alpha_multiplier": 2,
+7554.9s	231	  "batch_order": "sorted_batch_shuffle",
+7554.9s	232	  "generation": {
+7554.9s	233	    "max_new_tokens": 768,
+7554.9s	234	    "do_sample": false,
+7554.9s	235	    "temperature": 0
+7554.9s	236	  },
+7554.9s	237	  "exec_timeout_sec": 2.0,
+7554.9s	238	  "coderM_exec_timeout_sec": 3.0,
+7554.9s	239	  "coderM_max_test_blocks": 15,
+7554.9s	240	  "coderM_memory_limit_mb": 512,
+7554.9s	241	  "eval_sources": [
+7554.9s	242	    "mbpp",
+7554.9s	243	    "coderM"
+7554.9s	244	  ],
+7554.9s	245	  "logging_steps": 10,
+7554.9s	246	  "eval_only": true,
+7554.9s	247	  "checkpoint": "code02s_cur_e2_best",
+7554.9s	248	  "inference_strategy": "repair_standard",
+7554.9s	249	  "repair_max_extra_iters": 1,
+7554.9s	250	  "hypotheses": [
+7554.9s	251	    "Phase 5 Track C: greedy + 1 standard repair (task prompt + traceback tail)."
+7554.9s	252	  ],
+7554.9s	253	  "preliminary": false
+7554.9s	254	}
+7558.1s	255	2026-06-26 09:39:57.754 | INFO     | dpo_rag.pipeline_code:resolve_seq_lengths:100 - Applied seq caps from /kaggle/working/dpo-rag-opt/analysis/code_opt_max_seq.json
+7558.1s	256	2026-06-26 09:39:57.758 | INFO     | dpo_rag.core.session:__init__:44 - Experiment session code05e_repair_std -> /kaggle/working/dpo-rag-opt/results/code_opt/code05e_repair_std/20260626_093957
+7558.4s	257	2026-06-26 09:39:58.059 | INFO     | dpo_rag.data.code_datasets:load_mbpp_sanitized_rows:101 - Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+7576.5s	258	2026-06-26 09:40:16.177 | INFO     | dpo_rag.data.code_datasets:load_coderM_rows:149 - Loaded 17562 CodeRM rows
+7577.0s	259	2026-06-26 09:40:16.611 | INFO     | dpo_rag.core.checkpoints:find_best_adapter:91 - Resolved best adapter for code02s_cur_e2 -> /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best
+7578.6s	260	/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+7578.6s	261	  warnings.warn(
+7579.7s	262	2026-06-26 09:40:19.313372: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+7579.7s	263	WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+7579.7s	264	E0000 00:00:1782466819.333913    1371 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+7579.7s	265	E0000 00:00:1782466819.340932    1371 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+7579.7s	266	W0000 00:00:1782466819.360243    1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+7579.7s	267	W0000 00:00:1782466819.360264    1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+7579.7s	268	W0000 00:00:1782466819.360266    1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+7579.7s	269	W0000 00:00:1782466819.360269    1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+7585.4s	270	/usr/local/lib/python3.12/dist-packages/unsloth_zoo/__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
+7585.4s	271	  _install_fused_forward()
+7594.9s	272	2026-06-26 09:40:34.523 | INFO     | dpo_rag.train.sft:load_model_tokenizer:52 - Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
+7604.0s	273	2026-06-26 09:40:43.639 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+7604.0s	274	2026-06-26 09:40:43.640 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+7604.0s	275	2026-06-26 09:40:43.640 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+7604.0s	276	2026-06-26 09:40:43.640 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+7604.0s	277	2026-06-26 09:40:43.640 | INFO     | dpo_rag.train.sft:load_peft_adapter:199 - Loading PEFT adapter from /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best (is_trainable=False)
+7604.7s	278	2026-06-26 09:40:44.377 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_repair_std/20260626_093957 — starting fresh
+7604.7s	279	2026-06-26 09:40:44.377 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=False
+7604.7s	280	2026-06-26 09:40:44.392 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+7604.7s	281	2026-06-26 09:40:44.392 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+7604.7s	282	2026-06-26 09:40:44.392 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+7604.7s	283	2026-06-26 09:40:44.392 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+7604.7s	284	2026-06-26 09:40:44.393 | INFO     | dpo_rag.train.inference:prepare_for_inference:16 - Model prepared for inference (Unsloth for_inference + padding_side=left)
+sandbox:   0%|          | 0/300 [00:00<?, ?it/s]
+sandbox:   0%|          | 1/300 [00:00<01:36,  3.09it/s]
+sandbox:   1%|          | 2/300 [00:00<01:36,  3.08it/s]
+sandbox:   1%|          | 3/300 [00:00<01:35,  3.12it/s]
+sandbox:   1%|▏         | 4/300 [00:01<01:34,  3.13it/s]
+sandbox:   2%|▏         | 5/300 [00:01<01:34,  3.13it/s]
+sandbox:   2%|▏         | 6/300 [00:01<01:32,  3.17it/s]
+sandbox:   2%|▏         | 7/300 [00:02<01:32,  3.17it/s]
+sandbox:   3%|▎         | 8/300 [00:02<01:31,  3.18it/s]
+sandbox:   3%|▎         | 9/300 [00:02<01:31,  3.19it/s]
+sandbox:   3%|▎         | 10/300 [00:03<01:30,  3.20it/s]
+sandbox:   4%|▎         | 11/300 [00:03<01:30,  3.21it/s]
+sandbox:   4%|▍         | 12/300 [00:03<01:29,  3.20it/s]
+sandbox:   4%|▍         | 13/300 [00:04<01:30,  3.17it/s]
+sandbox:   5%|▍         | 14/300 [00:04<01:30,  3.16it/s]
+sandbox:   5%|▌         | 15/300 [00:04<01:30,  3.16it/s]
+sandbox:   5%|▌         | 16/300 [00:05<01:30,  3.15it/s]
+sandbox:   6%|▌         | 17/300 [00:05<01:29,  3.16it/s]
+sandbox:   6%|▌         | 18/300 [00:05<01:29,  3.16it/s]
+sandbox:   6%|▋         | 19/300 [00:06<01:34,  2.98it/s]
+sandbox:   7%|▋         | 20/300 [00:06<01:32,  3.03it/s]
+sandbox:   7%|▋         | 21/300 [00:06<01:30,  3.07it/s]
+sandbox:   7%|▋         | 22/300 [00:07<01:30,  3.09it/s]
+sandbox:   8%|▊         | 23/300 [00:07<01:31,  3.04it/s]
+sandbox:   8%|▊         | 24/300 [00:07<01:32,  2.98it/s]
+sandbox:   8%|▊         | 25/300 [00:08<01:32,  2.97it/s]
+sandbox:   9%|▊         | 26/300 [00:08<01:31,  3.01it/s]
+sandbox:   9%|▉         | 27/300 [00:08<01:29,  3.07it/s]
+sandbox:   9%|▉         | 28/300 [00:09<01:27,  3.10it/s]
+sandbox:  10%|▉         | 29/300 [00:09<01:27,  3.11it/s]
+sandbox:  10%|█         | 30/300 [00:09<01:26,  3.14it/s]
+sandbox:  10%|█         | 31/300 [00:09<01:25,  3.13it/s]
+sandbox:  11%|█         | 32/300 [00:10<01:25,  3.13it/s]
+sandbox:  11%|█         | 33/300 [00:10<01:25,  3.11it/s]
+sandbox:  11%|█▏        | 34/300 [00:10<01:25,  3.13it/s]
+sandbox:  12%|█▏        | 35/300 [00:11<01:24,  3.13it/s]
+sandbox:  12%|█▏        | 36/300 [00:11<01:23,  3.15it/s]
+sandbox:  12%|█▏        | 37/300 [00:11<01:23,  3.14it/s]
+sandbox:  13%|█▎        | 38/300 [00:12<01:22,  3.16it/s]
+sandbox:  13%|█▎        | 39/300 [00:12<01:22,  3.15it/s]
+sandbox:  13%|█▎        | 40/300 [00:12<01:22,  3.17it/s]
+sandbox:  14%|█▎        | 41/300 [00:13<01:22,  3.16it/s]
+sandbox:  14%|█▍        | 42/300 [00:13<01:22,  3.13it/s]
+sandbox:  14%|█▍        | 43/300 [00:13<01:21,  3.15it/s]
+sandbox:  15%|█▍        | 44/300 [00:14<01:20,  3.16it/s]
+sandbox:  15%|█▌        | 45/300 [00:14<01:20,  3.18it/s]
+sandbox:  15%|█▌        | 46/300 [00:14<01:20,  3.17it/s]
+sandbox:  16%|█▌        | 47/300 [00:15<01:19,  3.17it/s]
+sandbox:  16%|█▌        | 48/300 [00:15<01:19,  3.16it/s]
+sandbox:  16%|█▋        | 49/300 [00:15<01:19,  3.17it/s]
+sandbox:  17%|█▋        | 50/300 [00:15<01:20,  3.12it/s]
+sandbox:  17%|█▋        | 51/300 [00:16<01:21,  3.07it/s]
+sandbox:  17%|█▋        | 52/300 [00:16<01:19,  3.11it/s]
+sandbox:  18%|█▊        | 53/300 [00:16<01:19,  3.12it/s]
+sandbox:  18%|█▊        | 54/300 [00:17<01:18,  3.13it/s]
+sandbox:  18%|█▊        | 55/300 [00:17<01:17,  3.15it/s]
+sandbox:  19%|█▊        | 56/300 [00:17<01:17,  3.17it/s]
+sandbox:  19%|█▉        | 57/300 [00:18<01:17,  3.15it/s]
+sandbox:  19%|█▉        | 58/300 [00:18<01:16,  3.15it/s]
+sandbox:  20%|█▉        | 59/300 [00:18<01:16,  3.17it/s]
+sandbox:  20%|██        | 60/300 [00:19<01:15,  3.16it/s]
+sandbox:  20%|██        | 61/300 [00:19<01:15,  3.16it/s]
+sandbox:  21%|██        | 62/300 [00:19<01:14,  3.20it/s]
+sandbox:  21%|██        | 63/300 [00:20<01:14,  3.19it/s]
+sandbox:  21%|██▏       | 64/300 [00:20<01:14,  3.16it/s]
+sandbox:  22%|██▏       | 65/300 [00:20<01:14,  3.15it/s]
+sandbox:  22%|██▏       | 66/300 [00:21<01:14,  3.16it/s]
+sandbox:  22%|██▏       | 67/300 [00:21<01:13,  3.17it/s]
+sandbox:  23%|██▎       | 68/300 [00:21<01:13,  3.17it/s]
+sandbox:  23%|██▎       | 69/300 [00:22<01:13,  3.15it/s]
+sandbox:  23%|██▎       | 70/300 [00:22<01:12,  3.15it/s]
+sandbox:  24%|██▎       | 71/300 [00:22<01:12,  3.17it/s]
+sandbox:  24%|██▍       | 72/300 [00:22<01:11,  3.19it/s]
+sandbox:  24%|██▍       | 73/300 [00:23<01:11,  3.16it/s]
+sandbox:  25%|██▍       | 74/300 [00:23<01:11,  3.17it/s]
+sandbox:  25%|██▌       | 75/300 [00:23<01:10,  3.18it/s]
+sandbox:  25%|██▌       | 76/300 [00:24<01:10,  3.17it/s]
+sandbox:  26%|██▌       | 77/300 [00:24<01:10,  3.17it/s]
+sandbox:  26%|██▌       | 78/300 [00:24<01:10,  3.16it/s]
+sandbox:  26%|██▋       | 79/300 [00:25<01:09,  3.16it/s]
+sandbox:  27%|██▋       | 80/300 [00:25<01:09,  3.16it/s]
+sandbox:  27%|██▋       | 81/300 [00:25<01:09,  3.13it/s]
+sandbox:  27%|██▋       | 82/300 [00:26<01:11,  3.07it/s]
+sandbox:  28%|██▊       | 83/300 [00:26<01:10,  3.09it/s]
+sandbox:  28%|██▊       | 84/300 [00:26<01:08,  3.14it/s]
+sandbox:  28%|██▊       | 85/300 [00:27<01:08,  3.15it/s]
+sandbox:  29%|██▊       | 86/300 [00:27<01:07,  3.16it/s]
+sandbox:  29%|██▉       | 87/300 [00:27<01:06,  3.18it/s]
+sandbox:  29%|██▉       | 88/300 [00:28<01:07,  3.15it/s]
+sandbox:  30%|██▉       | 89/300 [00:28<01:07,  3.13it/s]
+sandbox:  30%|███       | 90/300 [00:28<01:06,  3.15it/s]
+sandbox:  30%|███       | 91/300 [00:28<01:06,  3.14it/s]
+sandbox:  31%|███       | 92/300 [00:29<01:06,  3.15it/s]
+sandbox:  31%|███       | 93/300 [00:29<01:05,  3.17it/s]
+sandbox:  31%|███▏      | 94/300 [00:29<01:04,  3.19it/s]
+sandbox:  32%|███▏      | 95/300 [00:30<01:04,  3.17it/s]
+sandbox:  32%|███▏      | 96/300 [00:30<01:04,  3.15it/s]
+sandbox:  32%|███▏      | 97/300 [00:30<01:04,  3.16it/s]
+sandbox:  33%|███▎      | 98/300 [00:31<01:03,  3.17it/s]
+sandbox:  33%|███▎      | 99/300 [00:31<01:03,  3.17it/s]
+sandbox:  33%|███▎      | 100/300 [00:31<01:03,  3.17it/s]
+sandbox:  34%|███▎      | 101/300 [00:32<01:03,  3.15it/s]
+sandbox:  34%|███▍      | 102/300 [00:32<01:02,  3.15it/s]
+sandbox:  34%|███▍      | 103/300 [00:32<01:02,  3.17it/s]
+sandbox:  35%|███▍      | 104/300 [00:33<01:02,  3.15it/s]
+sandbox:  35%|███▌      | 105/300 [00:33<01:01,  3.16it/s]
+sandbox:  35%|███▌      | 106/300 [00:33<01:01,  3.16it/s]
+sandbox:  36%|███▌      | 107/300 [00:34<01:01,  3.15it/s]
+sandbox:  36%|███▌      | 108/300 [00:34<01:01,  3.11it/s]
+sandbox:  36%|███▋      | 109/300 [00:34<01:00,  3.13it/s]
+sandbox:  37%|███▋      | 110/300 [00:35<01:00,  3.13it/s]
+sandbox:  37%|███▋      | 111/300 [00:35<01:00,  3.15it/s]
+sandbox:  37%|███▋      | 112/300 [00:35<00:59,  3.18it/s]
+sandbox:  38%|███▊      | 113/300 [00:35<01:00,  3.10it/s]
+sandbox:  38%|███▊      | 114/300 [00:36<01:00,  3.07it/s]
+sandbox:  38%|███▊      | 115/300 [00:36<00:59,  3.10it/s]
+sandbox:  39%|███▊      | 116/300 [00:36<00:59,  3.11it/s]
+sandbox:  39%|███▉      | 117/300 [00:37<00:59,  3.10it/s]
+sandbox:  39%|███▉      | 118/300 [00:37<00:58,  3.12it/s]
+sandbox:  40%|███▉      | 119/300 [00:37<00:57,  3.13it/s]
+sandbox:  40%|████      | 120/300 [00:38<00:57,  3.10it/s]
+sandbox:  40%|████      | 121/300 [00:38<00:57,  3.10it/s]
+sandbox:  41%|████      | 122/300 [00:38<00:56,  3.13it/s]
+sandbox:  41%|████      | 123/300 [00:39<00:56,  3.14it/s]
+sandbox:  41%|████▏     | 124/300 [00:39<00:55,  3.15it/s]
+sandbox:  42%|████▏     | 125/300 [00:39<00:55,  3.16it/s]
+sandbox:  42%|████▏     | 126/300 [00:40<00:55,  3.16it/s]
+sandbox:  42%|████▏     | 127/300 [00:40<00:55,  3.14it/s]
+sandbox:  43%|████▎     | 128/300 [00:40<00:54,  3.13it/s]
+sandbox:  43%|████▎     | 129/300 [00:41<00:54,  3.14it/s]
+sandbox:  43%|████▎     | 130/300 [00:41<00:53,  3.15it/s]
+sandbox:  44%|████▎     | 131/300 [00:41<00:53,  3.16it/s]
+sandbox:  44%|████▍     | 132/300 [00:42<00:52,  3.17it/s]
+sandbox:  44%|████▍     | 133/300 [00:42<00:52,  3.17it/s]
+sandbox:  45%|████▍     | 134/300 [00:42<00:52,  3.16it/s]
+sandbox:  45%|████▌     | 135/300 [00:42<00:52,  3.17it/s]
+sandbox:  45%|████▌     | 136/300 [00:43<00:52,  3.15it/s]
+sandbox:  46%|████▌     | 137/300 [00:43<00:51,  3.15it/s]
+sandbox:  46%|████▌     | 138/300 [00:43<00:51,  3.15it/s]
+sandbox:  46%|████▋     | 139/300 [00:44<00:51,  3.15it/s]
+sandbox:  47%|████▋     | 140/300 [00:44<00:50,  3.14it/s]
+sandbox:  47%|████▋     | 141/300 [00:44<00:50,  3.14it/s]
+sandbox:  47%|████▋     | 142/300 [00:45<00:50,  3.14it/s]
+sandbox:  48%|████▊     | 143/300 [00:45<00:49,  3.16it/s]
+sandbox:  48%|████▊     | 144/300 [00:45<00:50,  3.10it/s]
+sandbox:  48%|████▊     | 145/300 [00:46<00:50,  3.05it/s]
+sandbox:  49%|████▊     | 146/300 [00:46<00:49,  3.09it/s]
+sandbox:  49%|████▉     | 147/300 [00:46<00:48,  3.13it/s]
+sandbox:  49%|████▉     | 148/300 [00:47<00:48,  3.14it/s]
+sandbox:  50%|████▉     | 149/300 [00:47<00:47,  3.17it/s]
+sandbox:  50%|█████     | 150/300 [00:47<00:46,  3.20it/s]
+sandbox:  50%|█████     | 151/300 [00:48<00:56,  2.62it/s]
+sandbox:  51%|█████     | 152/300 [00:48<01:03,  2.32it/s]
+sandbox:  51%|█████     | 153/300 [00:49<01:08,  2.14it/s]
+sandbox:  51%|█████▏    | 154/300 [00:49<01:11,  2.03it/s]
+sandbox:  52%|█████▏    | 155/300 [00:50<01:14,  1.96it/s]
+sandbox:  52%|█████▏    | 156/300 [00:51<01:15,  1.91it/s]
+sandbox:  52%|█████▏    | 157/300 [00:51<01:16,  1.87it/s]
+sandbox:  53%|█████▎    | 158/300 [00:52<01:16,  1.85it/s]
+sandbox:  53%|█████▎    | 159/300 [00:52<01:16,  1.84it/s]
+sandbox:  53%|█████▎    | 160/300 [00:53<01:16,  1.82it/s]
+sandbox:  54%|█████▎    | 161/300 [00:53<01:16,  1.81it/s]
+sandbox:  54%|█████▍    | 162/300 [00:54<01:16,  1.81it/s]
+sandbox:  54%|█████▍    | 163/300 [00:54<01:15,  1.81it/s]
+sandbox:  55%|█████▍    | 164/300 [00:55<01:15,  1.81it/s]
+sandbox:  55%|█████▌    | 165/300 [00:56<01:16,  1.76it/s]
+sandbox:  55%|█████▌    | 166/300 [00:56<01:15,  1.77it/s]
+sandbox:  56%|█████▌    | 167/300 [00:57<01:14,  1.78it/s]
+sandbox:  56%|█████▌    | 168/300 [00:57<01:13,  1.79it/s]
+sandbox:  56%|█████▋    | 169/300 [00:58<01:12,  1.80it/s]
+sandbox:  57%|█████▋    | 170/300 [00:58<01:11,  1.81it/s]
+sandbox:  57%|█████▋    | 171/300 [00:59<01:11,  1.81it/s]
+sandbox:  57%|█████▋    | 172/300 [00:59<01:10,  1.80it/s]
+sandbox:  58%|█████▊    | 173/300 [01:00<01:11,  1.78it/s]
+sandbox:  58%|█████▊    | 174/300 [01:01<01:10,  1.79it/s]
+sandbox:  58%|█████▊    | 175/300 [01:01<01:09,  1.80it/s]
+sandbox:  59%|█████▊    | 176/300 [01:02<01:08,  1.81it/s]
+sandbox:  59%|█████▉    | 177/300 [01:02<01:07,  1.82it/s]
+sandbox:  59%|█████▉    | 178/300 [01:03<01:07,  1.82it/s]
+sandbox:  60%|█████▉    | 179/300 [01:03<01:06,  1.81it/s]
+sandbox:  60%|██████    | 180/300 [01:04<01:06,  1.79it/s]
+sandbox:  60%|██████    | 181/300 [01:04<01:06,  1.80it/s]
+sandbox:  61%|██████    | 182/300 [01:05<01:05,  1.80it/s]
+sandbox:  61%|██████    | 183/300 [01:06<01:06,  1.76it/s]
+sandbox:  61%|██████▏   | 184/300 [01:06<01:05,  1.77it/s]
+sandbox:  62%|██████▏   | 185/300 [01:07<01:07,  1.71it/s]
+sandbox:  62%|██████▏   | 186/300 [01:07<01:05,  1.73it/s]
+sandbox:  62%|██████▏   | 187/300 [01:08<01:05,  1.74it/s]
+sandbox:  63%|██████▎   | 188/300 [01:09<01:03,  1.76it/s]
+sandbox:  63%|██████▎   | 189/300 [01:09<01:02,  1.77it/s]
+sandbox:  63%|██████▎   | 190/300 [01:10<01:01,  1.78it/s]
+sandbox:  64%|██████▎   | 191/300 [01:10<01:01,  1.78it/s]
+sandbox:  64%|██████▍   | 192/300 [01:11<01:00,  1.79it/s]
+sandbox:  64%|██████▍   | 193/300 [01:11<00:59,  1.79it/s]
+sandbox:  65%|██████▍   | 194/300 [01:12<00:58,  1.80it/s]
+sandbox:  65%|██████▌   | 195/300 [01:12<00:58,  1.80it/s]
+sandbox:  65%|██████▌   | 196/300 [01:13<00:57,  1.81it/s]
+sandbox:  66%|██████▌   | 197/300 [01:13<00:56,  1.81it/s]
+sandbox:  66%|██████▌   | 198/300 [01:14<00:56,  1.81it/s]
+sandbox:  66%|██████▋   | 199/300 [01:15<00:55,  1.81it/s]
+sandbox:  67%|██████▋   | 200/300 [01:15<00:55,  1.81it/s]
+sandbox:  67%|██████▋   | 201/300 [01:16<00:55,  1.78it/s]
+sandbox:  67%|██████▋   | 202/300 [01:16<00:54,  1.79it/s]
+sandbox:  68%|██████▊   | 203/300 [01:17<00:53,  1.80it/s]
+sandbox:  68%|██████▊   | 204/300 [01:17<00:53,  1.81it/s]
+sandbox:  68%|██████▊   | 205/300 [01:18<00:52,  1.80it/s]
+sandbox:  69%|██████▊   | 206/300 [01:18<00:51,  1.81it/s]
+sandbox:  69%|██████▉   | 207/300 [01:19<00:51,  1.82it/s]
+sandbox:  69%|██████▉   | 208/300 [01:20<00:50,  1.82it/s]
+sandbox:  70%|██████▉   | 209/300 [01:20<00:50,  1.82it/s]
+sandbox:  70%|███████   | 210/300 [01:21<00:49,  1.82it/s]
+sandbox:  70%|███████   | 211/300 [01:21<00:48,  1.83it/s]
+sandbox:  71%|███████   | 212/300 [01:22<00:48,  1.83it/s]
+sandbox:  71%|███████   | 213/300 [01:22<00:47,  1.83it/s]
+sandbox:  71%|███████▏  | 214/300 [01:23<00:47,  1.82it/s]
+sandbox:  72%|███████▏  | 215/300 [01:23<00:48,  1.75it/s]
+sandbox:  72%|███████▏  | 216/300 [01:24<00:47,  1.77it/s]
+sandbox:  72%|███████▏  | 217/300 [01:25<00:46,  1.78it/s]
+sandbox:  73%|███████▎  | 218/300 [01:25<00:45,  1.79it/s]
+sandbox:  73%|███████▎  | 219/300 [01:26<00:46,  1.76it/s]
+sandbox:  73%|███████▎  | 220/300 [01:26<00:45,  1.77it/s]
+sandbox:  74%|███████▎  | 221/300 [01:27<00:44,  1.79it/s]
+sandbox:  74%|███████▍  | 222/300 [01:27<00:43,  1.80it/s]
+sandbox:  74%|███████▍  | 223/300 [01:28<00:47,  1.63it/s]
+sandbox:  75%|███████▍  | 224/300 [01:29<00:45,  1.67it/s]
+sandbox:  75%|███████▌  | 225/300 [01:29<00:43,  1.71it/s]
+sandbox:  75%|███████▌  | 226/300 [01:30<00:42,  1.74it/s]
+sandbox:  76%|███████▌  | 227/300 [01:30<00:41,  1.75it/s]
+sandbox:  76%|███████▌  | 228/300 [01:31<00:40,  1.78it/s]
+sandbox:  76%|███████▋  | 229/300 [01:31<00:39,  1.80it/s]
+sandbox:  77%|███████▋  | 230/300 [01:32<00:38,  1.81it/s]
+sandbox:  77%|███████▋  | 231/300 [01:33<00:38,  1.81it/s]
+sandbox:  77%|███████▋  | 232/300 [01:33<00:37,  1.82it/s]
+sandbox:  78%|███████▊  | 233/300 [01:34<00:36,  1.81it/s]
+sandbox:  78%|███████▊  | 234/300 [01:34<00:36,  1.82it/s]
+sandbox:  78%|███████▊  | 235/300 [01:35<00:35,  1.81it/s]
+sandbox:  79%|███████▊  | 236/300 [01:35<00:35,  1.79it/s]
+sandbox:  79%|███████▉  | 237/300 [01:42<02:23,  2.27s/it]
+sandbox:  79%|███████▉  | 238/300 [01:42<01:48,  1.76s/it]
+sandbox:  80%|███████▉  | 239/300 [01:43<01:25,  1.40s/it]
+sandbox:  80%|████████  | 240/300 [01:43<01:10,  1.17s/it]
+sandbox:  80%|████████  | 241/300 [01:44<00:58,  1.01it/s]
+sandbox:  81%|████████  | 242/300 [01:44<00:49,  1.16it/s]
+sandbox:  81%|████████  | 243/300 [01:45<00:43,  1.30it/s]
+sandbox:  81%|████████▏ | 244/300 [01:46<00:40,  1.39it/s]
+sandbox:  82%|████████▏ | 245/300 [01:46<00:36,  1.50it/s]
+sandbox:  82%|████████▏ | 246/300 [01:47<00:34,  1.58it/s]
+sandbox:  82%|████████▏ | 247/300 [01:47<00:32,  1.64it/s]
+sandbox:  83%|████████▎ | 248/300 [01:48<00:30,  1.69it/s]
+sandbox:  83%|████████▎ | 249/300 [01:48<00:29,  1.74it/s]
+sandbox:  83%|████████▎ | 250/300 [01:49<00:28,  1.76it/s]
+sandbox:  84%|████████▎ | 251/300 [01:49<00:27,  1.78it/s]
+sandbox:  84%|████████▍ | 252/300 [01:50<00:26,  1.78it/s]
+sandbox:  84%|████████▍ | 253/300 [01:51<00:26,  1.80it/s]
+sandbox:  85%|████████▍ | 254/300 [01:51<00:25,  1.80it/s]
+sandbox:  85%|████████▌ | 255/300 [01:52<00:24,  1.81it/s]
+sandbox:  85%|████████▌ | 256/300 [01:52<00:24,  1.82it/s]
+sandbox:  86%|████████▌ | 257/300 [01:53<00:23,  1.81it/s]
+sandbox:  86%|████████▌ | 258/300 [01:53<00:23,  1.81it/s]
+sandbox:  86%|████████▋ | 259/300 [01:54<00:22,  1.81it/s]
+sandbox:  87%|████████▋ | 260/300 [01:54<00:22,  1.81it/s]
+sandbox:  87%|████████▋ | 261/300 [01:55<00:21,  1.81it/s]
+sandbox:  87%|████████▋ | 262/300 [01:56<00:21,  1.78it/s]
+sandbox:  88%|████████▊ | 263/300 [01:56<00:20,  1.79it/s]
+sandbox:  88%|████████▊ | 264/300 [01:57<00:19,  1.80it/s]
+sandbox:  88%|████████▊ | 265/300 [01:57<00:19,  1.78it/s]
+sandbox:  89%|████████▊ | 266/300 [01:58<00:18,  1.80it/s]
+sandbox:  89%|████████▉ | 267/300 [01:58<00:18,  1.81it/s]
+sandbox:  89%|████████▉ | 268/300 [01:59<00:17,  1.79it/s]
+sandbox:  90%|████████▉ | 269/300 [01:59<00:17,  1.78it/s]
+sandbox:  90%|█████████ | 270/300 [02:00<00:16,  1.78it/s]
+sandbox:  90%|█████████ | 271/300 [02:01<00:16,  1.79it/s]
+sandbox:  91%|█████████ | 272/300 [02:01<00:15,  1.79it/s]
+sandbox:  91%|█████████ | 273/300 [02:02<00:15,  1.80it/s]
+sandbox:  91%|█████████▏| 274/300 [02:02<00:14,  1.81it/s]
+sandbox:  92%|█████████▏| 275/300 [02:03<00:13,  1.81it/s]
+sandbox:  92%|█████████▏| 276/300 [02:03<00:13,  1.80it/s]
+sandbox:  92%|█████████▏| 277/300 [02:04<00:12,  1.80it/s]
+sandbox:  93%|█████████▎| 278/300 [02:04<00:12,  1.80it/s]
+sandbox:  93%|█████████▎| 279/300 [02:05<00:11,  1.79it/s]
+sandbox:  93%|█████████▎| 280/300 [02:06<00:11,  1.76it/s]
+sandbox:  94%|█████████▎| 281/300 [02:06<00:10,  1.77it/s]
+sandbox:  94%|█████████▍| 282/300 [02:07<00:10,  1.78it/s]
+sandbox:  94%|█████████▍| 283/300 [02:07<00:09,  1.79it/s]
+sandbox:  95%|█████████▍| 284/300 [02:08<00:08,  1.80it/s]
+sandbox:  95%|█████████▌| 285/300 [02:08<00:08,  1.80it/s]
+sandbox:  95%|█████████▌| 286/300 [02:09<00:07,  1.80it/s]
+sandbox:  96%|█████████▌| 287/300 [02:10<00:07,  1.80it/s]
+sandbox:  96%|█████████▌| 288/300 [02:10<00:06,  1.79it/s]
+sandbox:  96%|█████████▋| 289/300 [02:11<00:06,  1.80it/s]
+sandbox:  97%|█████████▋| 290/300 [02:11<00:05,  1.80it/s]
+sandbox:  97%|█████████▋| 291/300 [02:12<00:04,  1.81it/s]
+sandbox:  97%|█████████▋| 292/300 [02:12<00:04,  1.81it/s]
+sandbox:  98%|█████████▊| 293/300 [02:13<00:03,  1.81it/s]
+sandbox:  98%|█████████▊| 294/300 [02:13<00:03,  1.82it/s]
+sandbox:  98%|█████████▊| 295/300 [02:14<00:02,  1.82it/s]
+sandbox:  99%|█████████▊| 296/300 [02:14<00:02,  1.83it/s]
+sandbox:  99%|█████████▉| 297/300 [02:15<00:01,  1.83it/s]
+sandbox:  99%|█████████▉| 298/300 [02:16<00:01,  1.78it/s]
+sandbox: 100%|█████████▉| 299/300 [02:16<00:00,  1.78it/s]
+sandbox: 100%|██████████| 300/300 [02:17<00:00,  1.81it/s]
+sandbox: 100%|██████████| 300/300 [02:17<00:00,  2.19it/s]
+10105.3s	504	unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
+10242.5s	285	
+10242.5s	286	2026-06-26 10:24:42.187 | INFO     | dpo_rag.eval.code_run:run_code_eval:218 - Code eval code_eval: pass_rate=0.310 pre_syntax=4 post_syntax=4
+10242.6s	287	2026-06-26 10:24:42.207 | INFO     | dpo_rag.core.session:save_predictions:147 - Saved 300 predictions -> predictions_post.json
+10242.6s	288	2026-06-26 10:24:42.208 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_repair_std/20260626_093957 — starting fresh
+10242.6s	289	2026-06-26 10:24:42.209 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=True
+10246.5s	505	
+10246.5s	506	=== scripts/run.py code05e_repair_min ===
+10246.6s	290	2026-06-26 10:24:46.248 | INFO     | __main__:main:51 - Resolved config for code05e_repair_min:
+10246.6s	291	{
+10246.6s	292	  "format_version": "v1",
+10246.6s	293	  "seed": 42,
+10246.6s	294	  "backend": "code_opt",
+10246.6s	295	  "topic": "code_opt",
+10246.6s	296	  "checkpoint_topic": "code_opt",
+10246.6s	297	  "model_slug": "unsloth/Qwen2.5-3B-Instruct-bnb-4bit",
+10246.6s	298	  "inference_base_slug": "Qwen/Qwen2.5-3B-Instruct",
+10246.6s	299	  "mbpp_slug": "Muennighoff/mbpp",
+10246.6s	300	  "coderM_slug": "KAKA22/CodeRM-UnitTest",
+10246.6s	301	  "split_file": "data/splits/code_opt_seed42.json",
+10246.6s	302	  "load_in_4bit": true,
+10246.6s	303	  "max_seq_length": 2048,
+10246.6s	304	  "per_device_train_batch_size": 4,
+10246.6s	305	  "per_device_eval_batch_size": 8,
+10246.6s	306	  "eval_batch_size_fallbacks": [
+10246.6s	307	    8,
+10246.6s	308	    4,
+10246.6s	309	    2
+10246.6s	310	  ],
+10246.6s	311	  "gradient_accumulation_steps": 2,
+10246.6s	312	  "lora_r": 16,
+10246.6s	313	  "lora_alpha_multiplier": 2,
+10246.6s	314	  "batch_order": "sorted_batch_shuffle",
+10246.6s	315	  "generation": {
+10246.6s	316	    "max_new_tokens": 768,
+10246.6s	317	    "do_sample": false,
+10246.6s	318	    "temperature": 0
+10246.6s	319	  },
+10246.6s	320	  "exec_timeout_sec": 2.0,
+10246.6s	321	  "coderM_exec_timeout_sec": 3.0,
+10246.6s	322	  "coderM_max_test_blocks": 15,
+10246.6s	323	  "coderM_memory_limit_mb": 512,
+10246.6s	324	  "eval_sources": [
+10246.6s	325	    "mbpp",
+10246.6s	326	    "coderM"
+10246.6s	327	  ],
+10246.6s	328	  "logging_steps": 10,
+10246.6s	329	  "eval_only": true,
+10246.6s	330	  "checkpoint": "code02s_cur_e2_best",
+10246.6s	331	  "inference_strategy": "repair_minimal",
+10246.6s	332	  "repair_max_extra_iters": 1,
+10246.6s	333	  "hypotheses": [
+10246.6s	334	    "Phase 5 Track C: greedy + 1 minimalist repair (failed code only)."
+10246.6s	335	  ],
+10246.6s	336	  "preliminary": false
+10246.6s	337	}
+10249.5s	338	2026-06-26 10:24:49.182 | INFO     | dpo_rag.pipeline_code:resolve_seq_lengths:100 - Applied seq caps from /kaggle/working/dpo-rag-opt/analysis/code_opt_max_seq.json
+10249.5s	339	2026-06-26 10:24:49.186 | INFO     | dpo_rag.core.session:__init__:44 - Experiment session code05e_repair_min -> /kaggle/working/dpo-rag-opt/results/code_opt/code05e_repair_min/20260626_102449
+10249.8s	340	2026-06-26 10:24:49.468 | INFO     | dpo_rag.data.code_datasets:load_mbpp_sanitized_rows:101 - Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
+10267.5s	341	2026-06-26 10:25:07.114 | INFO     | dpo_rag.data.code_datasets:load_coderM_rows:149 - Loaded 17562 CodeRM rows
+10267.9s	342	2026-06-26 10:25:07.532 | INFO     | dpo_rag.core.checkpoints:find_best_adapter:91 - Resolved best adapter for code02s_cur_e2 -> /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best
+10269.4s	343	/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+10269.4s	344	  warnings.warn(
+10270.4s	345	2026-06-26 10:25:10.052343: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+10270.4s	346	WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+10270.4s	347	E0000 00:00:1782469510.071719    2380 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+10270.4s	348	E0000 00:00:1782469510.078332    2380 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+10270.4s	349	W0000 00:00:1782469510.096170    2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+10270.4s	350	W0000 00:00:1782469510.096191    2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+10270.4s	351	W0000 00:00:1782469510.096194    2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+10270.4s	352	W0000 00:00:1782469510.096196    2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+10275.8s	353	/usr/local/lib/python3.12/dist-packages/unsloth_zoo/__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
+10275.8s	354	  _install_fused_forward()
+10284.3s	355	2026-06-26 10:25:23.976 | INFO     | dpo_rag.train.sft:load_model_tokenizer:52 - Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
+10284.8s	507	🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+10284.8s	508	🦥 Unsloth Zoo will now patch everything to make training faster!
+10284.8s	509	Unsloth: WARNING `trust_remote_code` is True.
+10284.8s	510	Are you certain you want to do remote code execution?
+10284.8s	511	==((====))==  Unsloth 2026.6.9: Fast Qwen2 patching. Transformers: 4.53.3.
+10284.8s	512	   \\   /|    Tesla T4. Num GPUs = 2. Max memory: 14.562 GB. Platform: Linux.
+10284.8s	513	O^O/ \_/ \    Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
+10284.8s	514	\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.35. FA2 = False]
+10284.8s	515	 "-____-"     Free license: http://github.com/unslothai/unsloth
+10284.8s	516	Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+10293.2s	356	2026-06-26 10:25:32.888 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+10293.2s	357	2026-06-26 10:25:32.889 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+10293.2s	358	2026-06-26 10:25:32.889 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+10293.2s	359	2026-06-26 10:25:32.889 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+10293.2s	360	2026-06-26 10:25:32.889 | INFO     | dpo_rag.train.sft:load_peft_adapter:199 - Loading PEFT adapter from /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code02s_cur_e2/kaggle_input/best (is_trainable=False)
+10293.9s	361	2026-06-26 10:25:33.568 | INFO     | dpo_rag.core.checkpoints:find_latest_checkpoint:62 - No HF checkpoint found in /kaggle/working/dpo-rag-opt/cache/checkpoints/code_opt/code05e_repair_min/20260626_102449 — starting fresh
+10293.9s	362	2026-06-26 10:25:33.569 | INFO     | dpo_rag.core.session:save_checkpoint_ref:122 - checkpoint_ref epochs=0/1 train_done=True post_done=False
+10293.9s	363	2026-06-26 10:25:33.582 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:57 - Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
+10293.9s	364	2026-06-26 10:25:33.582 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_start id=151644 (<|im_start|>)
+10293.9s	365	2026-06-26 10:25:33.582 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:67 - im_end id=151645 (<|im_end|>)
+10293.9s	366	2026-06-26 10:25:33.582 | INFO     | dpo_rag.core.tokenizer:_log_special_tokens:68 - pad_token_id=151665
+10293.9s	367	2026-06-26 10:25:33.582 | INFO     | dpo_rag.train.inference:prepare_for_inference:16 - Model prepared for inference (Unsloth for_inference + padding_side=left)
+
+

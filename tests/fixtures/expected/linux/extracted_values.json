@@ -1,0 +1,235 @@
+{
+  "308": {
+    "line_no": 42,
+    "kind": "group",
+    "keys": [
+      "ACPI",
+      "CPU",
+      "Console"
+    ],
+    "summary": "group (2 hashes, 22 keys)",
+    "value": {
+      "e820": "0000000000100000",
+      "totalpages": "32430",
+      "zone": "0",
+      "acpi": "force",
+      "hard": "02345000",
+      "soft": "02344000",
+      "entries": "1024",
+      "Console": "colour",
+      "SELinux": "Registering",
+      "selinux_register_security": "Registering",
+      "CPU": "Intel",
+      "NET": "Registered",
+      "bus": "1",
+      "PCI": "Using",
+      "list_2": [
+        20020519
+      ],
+      "ACPI": "ACPI",
+      "usbcore": "registered",
+      "generator": "succeeded",
+      "apm": "BIOS",
+      "audit": "initializing",
+      "pcmcia": "succeeded",
+      "VFS": "Disk"
+    }
+  },
+  "309": {
+    "line_no": 73,
+    "kind": "group",
+    "keys": [
+      "Device",
+      "ICH",
+      "IP"
+    ],
+    "summary": "group (2 hashes, 25 keys)",
+    "value": {
+      "pci_hotplug": "PCI",
+      "version": "0.5",
+      "isapnp": "No",
+      "agpgart": "AGP",
+      "parameters": "succeeded",
+      "interface": "succeeded",
+      "Revision": "3.20",
+      "initialized": "16",
+      "filesystems": "succeeded",
+      "idebus": "xx",
+      "ide": "Assuming",
+      "ICH": "not",
+      "mode": "will",
+      "hdc": "ATAPI",
+      "Device": "/dev/hda,",
+      "hda": "hda1",
+      "usbcore": "registered",
+      "serio": "i8042",
+      "input": "AT",
+      "MAX_MD_DEVS": "256",
+      "MD_SB_DISKS": "27",
+      "md": "md",
+      "NET": "Registered",
+      "IP": "routing",
+      "TCP": "Hash"
+    }
+  },
+  "310": {
+    "line_no": 171,
+    "kind": "group",
+    "keys": [
+      "Bluetooth",
+      "NET",
+      "PCI"
+    ],
+    "summary": "group (2 hashes, 20 keys)",
+    "value": {
+      "NET": "Registered",
+      "md": "autorun",
+      "RAMDISK": "Compressed",
+      "hpoj": "succeeded",
+      "VFS": "Mounted",
+      "fs": "mounted",
+      "SELinux": "Unregistering",
+      "PCI": "Found",
+      "cdrom": "open",
+      "microcode": "No",
+      "parport0": "irq",
+      "Bluetooth": "RFCOMM",
+      "lp0": "console",
+      "service": "telnet",
+      "working": "30",
+      "list_4": [
+        -150093696
+      ],
+      "readahead": "succeeded",
+      "Parent": "child",
+      "precision": "1.000",
+      "configure": "keyword"
+    }
+  },
+  "311": {
+    "line_no": 272,
+    "kind": "group",
+    "keys": [
+      "ACPI",
+      "CPU",
+      "Console"
+    ],
+    "summary": "group (2 hashes, 24 keys)",
+    "value": {
+      "MySQL": "succeeded",
+      "stratum": "10",
+      "e820": "0000000000100000",
+      "totalpages": "32430",
+      "zone": "0",
+      "acpi": "force",
+      "hard": "02345000",
+      "soft": "02344000",
+      "entries": "1024",
+      "Console": "colour",
+      "SELinux": "Starting",
+      "selinux_register_security": "Registering",
+      "CPU": "Intel",
+      "NET": "Registered",
+      "bus": "1",
+      "PCI": "Using",
+      "list_3": [
+        20020519
+      ],
+      "ACPI": "ACPI",
+      "usbcore": "registered",
+      "generator": "succeeded",
+      "pcmcia": "succeeded",
+      "apm": "BIOS",
+      "audit": "initializing",
+      "VFS": "Disk"
+    }
+  },
+  "312": {
+    "line_no": 295,
+    "kind": "group",
+    "keys": [
+      "ICH",
+      "IP",
+      "MAX_MD_DEVS"
+    ],
+    "summary": "group (2 hashes, 26 keys)",
+    "value": {
+      "SELinux": "Registering",
+      "pci_hotplug": "PCI",
+      "version": "0.5",
+      "isapnp": "No",
+      "kernel.core_uses_pid": "1",
+      "parameters": "succeeded",
+      "interface": "succeeded",
+      "agpgart": "AGP",
+      "Revision": "3.20",
+      "initialized": "16",
+      "idebus": "xx",
+      "ide": "Assuming",
+      "ICH": "not",
+      "mode": "will",
+      "filesystems": "succeeded",
+      "hdc": "ATAPI",
+      "hda": "hda1",
+      "usbcore": "registered",
+      "serio": "i8042",
+      "input": "AT",
+      "MAX_MD_DEVS": "256",
+      "MD_SB_DISKS": "27",
+      "md": "md",
+      "NET": "Registered",
+      "IP": "routing",
+      "TCP": "Hash"
+    }
+  },
+  "313": {
+    "line_no": 365,
+    "kind": "group",
+    "keys": [
+      "Bluetooth",
+      "Device",
+      "NET"
+    ],
+    "summary": "group (2 hashes, 19 keys)",
+    "value": {
+      "NET": "Registered",
+      "md": "autorun",
+      "RAMDISK": "Compressed",
+      "VFS": "Mounted",
+      "fs": "mounted",
+      "Device": "/dev/hda,",
+      "SELinux": "Unregistering",
+      "PCI": "Found",
+      "hpoj": "succeeded",
+      "cdrom": "open",
+      "microcode": "No",
+      "parport0": "irq",
+      "Bluetooth": "RFCOMM",
+      "lp0": "console",
+      "service": "telnet",
+      "working": "30",
+      "list_5": [
+        -150769536
+      ],
+      "readahead": "succeeded",
+      "Parent": "child"
+    }
+  },
+  "307": {
+    "line_no": 1691,
+    "kind": "group",
+    "keys": [
+      "MySQL",
+      "configure",
+      "precision"
+    ],
+    "summary": "group (4 hashes, 5 keys)",
+    "value": {
+      "precision": "2.000",
+      "configure": "keyword",
+      "MySQL": "succeeded",
+      "stratum": "10",
+      "user": "test"
+    }
+  }
+}
