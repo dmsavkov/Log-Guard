@@ -12,18 +12,25 @@ from log_guard.lg.history import format_history
 from log_guard.lg.passthrough import is_passthrough
 from log_guard.lg.pipeline import compress_for_lg
 from log_guard.lg.reader import read_file
-from log_guard.lg.runner import merge_output, run_shell
+from log_guard.lg.runner import (
+    format_argv,
+    merge_output,
+    run_exec,
+    run_shell,
+    split_command_string,
+)
 from log_guard.lg.stats import compute_stats, format_dashboard
 from log_guard.lg.storage import load_raw, load_values, new_run_id, save_run
+from log_guard.io_config import configure_stdio_utf8, safe_write
 from log_guard.logging_config import configure_cli_logging
 
 HEADER_PREFIX = "LogGuard"
 
 
 def _print_header(run_id: str, body: str) -> None:
-    sys.stdout.write(f"[{HEADER_PREFIX}:{run_id}]\n{body}")
+    safe_write(sys.stdout, f"[{HEADER_PREFIX}:{run_id}]\n{body}")
     if body and not body.endswith("\n"):
-        sys.stdout.write("\n")
+        safe_write(sys.stdout, "\n")
 
 
 def _execute_and_compress(
@@ -66,22 +73,39 @@ def _execute_and_compress(
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    command = " ".join(args.cmd)
-    if is_passthrough(command):
+    argv = list(args.cmd)
+    # argparse.REMAINDER keeps a literal "--" separator; drop it.
+    if argv and argv[0] == "--":
+        argv = argv[1:]
+    if not argv:
+        sys.stderr.write(f"[{HEADER_PREFIX} Error: lg run requires a command]\n")
+        return 2
+
+    if args.shell:
+        # Opt-in raw shell string: pipes, &&, redirects. Quote the whole command.
+        command = argv[0] if len(argv) == 1 else " ".join(argv)
         proc = run_shell(command)
-        raw = merge_output(proc.stdout, proc.stderr)
-        return _execute_and_compress(
-            raw, cmd=command, exit_code=proc.exit_code, dry_run=args.dry_run, passthrough=True
-        )
-    proc = run_shell(command)
+    else:
+        # Default exec mode: argv list straight to the OS — no quoting loss.
+        # UX nicety: `lg run "python x.py"` (one quoted arg) is split for the user.
+        if len(argv) == 1 and " " in argv[0]:
+            argv = split_command_string(argv[0])
+        command = format_argv(argv)
+        proc = run_exec(argv)
+
     if proc.timed_out:
         sys.stderr.write(
             f"[{HEADER_PREFIX} Error: Command timed out. Did it require interactive input?]\n"
         )
         return 124
+
     raw = merge_output(proc.stdout, proc.stderr)
     return _execute_and_compress(
-        raw, cmd=command, exit_code=proc.exit_code, dry_run=args.dry_run, passthrough=False
+        raw,
+        cmd=command,
+        exit_code=proc.exit_code,
+        dry_run=args.dry_run,
+        passthrough=is_passthrough(command),
     )
 
 
@@ -101,7 +125,7 @@ def cmd_read(args: argparse.Namespace) -> int:
 
 def cmd_raw(args: argparse.Namespace) -> int:
     try:
-        sys.stdout.write(load_raw(args.id))
+        safe_write(sys.stdout, load_raw(args.id))
     except FileNotFoundError:
         sys.stderr.write(f"[{HEADER_PREFIX} Error: unknown run id {args.id!r}]\n")
         return 1
@@ -118,22 +142,22 @@ def cmd_get(args: argparse.Namespace) -> int:
         key = str(hash_id)
         entry = store.get(key)
         if entry is None:
-            sys.stdout.write(f"[#{hash_id}] (not found)\n")
+            safe_write(sys.stdout, f"[#{hash_id}] (not found)\n")
             continue
         value = entry.get("value", entry.get("summary", ""))
         if isinstance(value, (dict, list)):
             value = json.dumps(value, ensure_ascii=False)
-        sys.stdout.write(f"[#{hash_id}] {value}\n")
+        safe_write(sys.stdout, f"[#{hash_id}] {value}\n")
     return 0
 
 
 def cmd_stats(_args: argparse.Namespace) -> int:
-    sys.stdout.write(format_dashboard(compute_stats()))
+    safe_write(sys.stdout, format_dashboard(compute_stats()))
     return 0
 
 
 def cmd_history(args: argparse.Namespace) -> int:
-    sys.stdout.write(format_history(limit=args.limit))
+    safe_write(sys.stdout, format_history(limit=args.limit))
     return 0
 
 
@@ -142,6 +166,7 @@ def cmd_debug(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> None:
+    configure_stdio_utf8()
     configure_cli_logging()
     parser = argparse.ArgumentParser(
         prog="lg",
@@ -149,9 +174,18 @@ def main(argv: list[str] | None = None) -> None:
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
-    run_p = sub.add_parser("run", help="Execute shell command and compress stdout")
-    run_p.add_argument("cmd", nargs=argparse.REMAINDER, help="Shell command")
+    run_p = sub.add_parser("run", help="Execute command and compress stdout")
     run_p.add_argument("--dry-run", action="store_true", help="Skip Gemini distill")
+    run_p.add_argument(
+        "--shell",
+        action="store_true",
+        help="Interpret command as raw shell string (pipes, &&, redirects)",
+    )
+    run_p.add_argument(
+        "cmd",
+        nargs=argparse.REMAINDER,
+        help="Command to execute (use -- before commands with their own flags)",
+    )
     run_p.set_defaults(handler=cmd_run)
 
     read_p = sub.add_parser("read", help="Read file and compress contents")

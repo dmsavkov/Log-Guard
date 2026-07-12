@@ -1,10 +1,32 @@
 ## LogGuard Terminal Compression
 
-Always prefix EVERY execution command with `uv run lg run` (e.g., `uv run lg run pytest`, `uv run lg run npm install`, `uv run lg run make`).
+Always prefix execution commands with `uv run lg run` (default: exec mode, no shell quoting loss).
 
-// - `uv run lg run <command>`: Run and compress output of any command.
-// - `uv run lg raw <id>`: Show full, uncompressed output by ID.
-// - `uv run lg get <id> <n> [<m> ...]`: Print only specific tagged ([#n]) outputs with values.
-// - `uv run lg read <file_path>`: Similar to lg run, but for a file.
+### Default (exec mode — safe, quoting preserved)
+
+```bash
+uv run lg run python script.py
+uv run lg run python -c "import fastapi, bleach; print('ok')"
+uv run lg run -- pytest tests/ -k "not slow"
+uv run lg run -- uv run python -c "print(1)"
+```
+
+Use `--` before commands that have their own flags (POSIX convention).
+
+### Shell mode (opt-in — pipes, &&, redirects)
+
+```bash
+uv run lg run --shell "cat file.log | grep ERROR | head"
+uv run lg run --shell "echo first && echo second"
+```
+
+Do **not** use `--shell` for normal commands; default exec mode handles spaces and quotes correctly.
+
+### Other commands
+
+- `uv run lg read <file_path>`: Compress a log file.
+- `uv run lg raw <id>`: Full uncompressed output by run ID.
+- `uv run lg get <id> <n> [<m> ...]`: Print specific `[#n]` extracted values.
+- `uv run lg history [-n N]`: Recent runs with compression metrics.
 
 If a compressed summary hides critical details, retrieve the full output using `uv run lg raw <id>` where `<id>` is shown in the `[LogGuard:<id>]` header.
