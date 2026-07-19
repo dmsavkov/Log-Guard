@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-PASSTHROUGH_PREFIXES = ("cat ", "head ", "tail ", "grep ", "sed ", "awk ")
+from log_guard.lg.track_config import passthrough_prefixes
+
+PASSTHROUGH_PREFIXES = passthrough_prefixes()
 
 
 def is_passthrough(command: str) -> bool:
     stripped = command.lstrip()
-    return stripped.startswith(PASSTHROUGH_PREFIXES)
+    return any(stripped.lower().startswith(p.lower()) for p in PASSTHROUGH_PREFIXES)

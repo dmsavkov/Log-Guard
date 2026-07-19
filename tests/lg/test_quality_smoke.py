@@ -37,7 +37,7 @@ def test_v3_output_matches_reference(eval_id: str, tmp_path, monkeypatch):
 
     monkeypatch.setenv("LOGGUARD_HOME", str(tmp_path))
     result = compress_for_lg(raw_path.read_text(encoding="utf-8"), eval_id, dry_run=True)
-    run_inter = tmp_path / "runs" / eval_id / "intermediate"
+    run_inter = tmp_path / eval_id / "intermediate"
 
     failures: list[str] = []
     for name in STAGE_FILES:

@@ -18,7 +18,7 @@ _SEQ_ID = re.compile(r"<\s*SEQ:[^>]+>")
 
 
 def _strip_drain_markup(text: str) -> str:
-    """Remove internal Drain/SEQ cluster ids; preserve [×N] RLE multipliers."""
+    """Remove internal Drain/SEQ cluster ids; preserve [xN] RLE multipliers."""
     out = _DRAIN_ID.sub("", text)
     out = _SEQ_ID.sub("", out)
     return re.sub(r"  +", " ", out).strip()
@@ -167,7 +167,7 @@ def build_drain_rle_timeline(
             raw_kept += 1
         else:
             tpl = _normalize_template(clusters[cid]["template"])
-            out.append(f"[×{run}] {tpl}")
+            out.append(f"[x{run}] {tpl}")
             rle_blocks += 1
             if run > 1:
                 merged += run - 1
@@ -196,7 +196,7 @@ def collapse_consecutive_cid_patterns(
             continue
         input_blocks += 1
 
-        # Phase 1: consecutive verbatim duplicates → [×N] one raw line.
+        # Phase 1: consecutive verbatim duplicates → [xN] one raw line.
         line_key = normalize_cluster_line(lines[i])
         dup_run = 1
         j = i + 1
@@ -204,7 +204,7 @@ def collapse_consecutive_cid_patterns(
             dup_run += 1
             j += 1
         if dup_run > 1:
-            out.append(f"[×{dup_run}] {lines[i].strip()}")
+            out.append(f"[x{dup_run}] {lines[i].strip()}")
             patterns_collapsed += 1
             i = j
             continue
@@ -228,7 +228,7 @@ def collapse_consecutive_cid_patterns(
 
         if best_run > 1 and best_len >= 2:
             pattern_lines = [lines[i + k].strip() for k in range(best_len)]
-            seq_header = f"[×{best_run}] Sequence:"
+            seq_header = f"[x{best_run}] Seq:"
             body = "\n".join(f"  {ln}" for ln in pattern_lines)
             out.append(f"{seq_header}\n{body}")
             patterns_collapsed += 1

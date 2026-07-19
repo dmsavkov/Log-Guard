@@ -1,4 +1,4 @@
-[T1] RuntimeError: 'CUDA out of memory' @ train.py:120
-[×120] Sequence:
+[T1] RuntimeError: 'CUDA out of memory' @ U:train.py:120
+[x120] Seq:
   host= port=8080 env=prod region=us-east-1 service=api-gateway
   [PROGRESS]

@@ -14,7 +14,6 @@ Copied kaggle_support -> .../kaggle_support
 Copied data -> .../data
 Split file missing — building .../bitext_seed42.json (downloads Bitext once)
 | __main__:<module>:36 - Loading bitext/Bitext-customer-support-llm-chatbot-training-dataset ...
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 [PROGRESS]
 Built splits: val=100 test=2000 lean_test=300 train_pool=24772 (27 intent classes, 27 strata)
 Saved splits to .../bitext_seed42.json
@@ -100,8 +99,6 @@ CodeRM SFT rows: 418 (pool=17412)
 Mixed SFT: 500 MBPP + 418 CodeRM -> 918 total (ratio=1.0)
 code sample [coderM_dpo]: prompt='You are given an array A containing N integers. Find if it is possible to choose exactly M elements from the array such that the MEX of the chosen elements is exactly K.\n\nRecall that the *MEX* of an array is the smallest non-negative integer that does not belong to the array. For example, the *MEX* of [2, 2, 1] is 0 because 0 does not belong to the array, the *MEX* of [3, 1, 0, 1] is 2 because 0 and 1 belong to the array, but 2 does not.\n\n- Input Format - \n\n- The first line contains an' code='from collections import Counter\n\ndef can_achieve_mex(A, M, K):\n # Count the occurrences of each element in the array\n b = Counter(A)\n \n # Count the number of elements less than K\n s_count = sum(1 for x in b if x < K)\n \n # Check the conditions for achieving the required MEX\n if s_count < K or K > M or M > len(A) - b.get(K, 0):\n return False\n else:\n return True'
 CodeRM DPO triples: 500 stats={'requested': 500, 'usable': 500, 'skipped_same': 0, 'skipped_no_reject': 0, 'skipped_syntax': 0, 'skipped_missing_def': 89, 'pair_rate': 1.0}
-.../hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-warnings.warn(
 Seq audit: max_new_tokens=1024 eval_prompt=1536 sft_max=1664 model_max=2560
 {
 "method": "p99_10pct_margin_align128",
@@ -186,17 +183,13 @@ Experiment session code05e_parallel3 -> .../20260626_073743
 Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
 Loaded 17562 CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-.../hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-warnings.warn(
 2026-06-26 07:38:08.274451: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
 E0000 00:00:1782459488.700500 180 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
 E0000 00:00:1782459488.832942 180 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
 W0000 00:00:1782459489.905879 180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782459489.905923 180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782459489.905926 180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782459489.905929 180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-.../__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
 _install_fused_forward()
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
 🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
@@ -280,17 +273,13 @@ Experiment session code05e_parallel3 -> .../20260626_074037
 Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
 Loaded 17562 CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-.../hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-warnings.warn(
 2026-06-26 07:40:59.148488: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
 E0000 00:00:1782459659.168914 366 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
 E0000 00:00:1782459659.175759 366 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
 W0000 00:00:1782459659.194098 366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782459659.194143 366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782459659.194147 366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782459659.194149 366 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-.../__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
 _install_fused_forward()
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
 🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
@@ -381,17 +370,13 @@ Experiment session code05e_repair_std -> .../20260626_093957
 Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
 Loaded 17562 CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-.../hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-warnings.warn(
 2026-06-26 09:40:19.313372: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
 E0000 00:00:1782466819.333913 1371 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
 E0000 00:00:1782466819.340932 1371 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
 W0000 00:00:1782466819.360243 1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782466819.360264 1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782466819.360266 1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782466819.360269 1371 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-.../__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
 _install_fused_forward()
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
 Tokenizer special tokens: {'eos_token': '<|im_end|>', 'pad_token': '<|PAD_TOKEN|>', 'additional_special_tokens': "['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']"}
@@ -466,17 +451,13 @@ Experiment session code05e_repair_min -> .../20260626_102449
 Loaded 427 MBPP sanitized rows from sanitized-mbpp.json
 Loaded 17562 CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-.../hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-warnings.warn(
 2026-06-26 10:25:10.052343: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
 E0000 00:00:1782469510.071719 2380 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
 E0000 00:00:1782469510.078332 2380 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
 W0000 00:00:1782469510.096170 2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782469510.096191 2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782469510.096194 2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 00:00:1782469510.096196 2380 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-.../__init__.py:405: UserWarning: Unsloth fused-forward install skipped: requires transformers >= 4.56.0.
 _install_fused_forward()
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit (4bit=True) ...
 🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
@@ -499,3 +480,8 @@ im_start id=151644 (<|im_start|>)
 im_end id=151645 (<|im_end|>)
 pad_token_id=151665
 Model prepared for inference (Unsloth for_inference + padding_side=left)
+WARNING: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster...
+[x5] FutureWarning @ .../hub.py:111 : Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+[x5] WARNING: s.warn(
+[x4] WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+[x4] UserWarning @ .../__init__.py:405 : Unsloth fused-forward install skipped: requires transformers >= 4.56.0.

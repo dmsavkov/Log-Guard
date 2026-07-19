@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 
 from loguru import logger
 
-_PROTECTED_MARKER = re.compile(r"\[#\d+\]|\[T\d+\]|\[×\d+\]|\[PROGRESS\]")
+_PROTECTED_MARKER = re.compile(r"\[#\d+\]|\[T\d+\]|\[[x×]\d+\]|\[PROGRESS\]")
 _ORPHAN_BRACKETS = re.compile(r"[\{\}\[\]\(\)]")
 _BOX_DRAWING = re.compile(r"[\u2500-\u257f\u2580-\u259f]|[━─]+")
 _EMOJI = re.compile(

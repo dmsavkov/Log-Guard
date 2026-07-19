@@ -1,5 +1,8 @@
+.env
 .venv/
 __pycache__/
 *.py[oc]
 .pytest_cache/
-.env
+dist/
+*.egg-info/
+ci_failure.log

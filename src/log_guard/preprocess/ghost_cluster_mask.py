@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 # Preserve timeline markers through ghost clustering (never compress away).
-_GHOST_PROTECTED = re.compile(r"(\[T\d+\]|\[#\d+\]|\[PROGRESS\]|\[×\d+\]|### Block \d+)")
+_GHOST_PROTECTED = re.compile(r"(\[T\d+\]|\[#\d+\]|\[PROGRESS\]|\[[x×]\d+\]|### Block \d+)")
 _HOST = re.compile(r"\b[a-zA-Z0-9][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}\b")
 _ALL_DIGITS = re.compile(r"\d")
 _GHOST_PUNCT = re.compile(r"[@$^&?*!;'`~<>\\|№#.,/\\:;=\-+_\[\]\(\)\{\}\"]+")

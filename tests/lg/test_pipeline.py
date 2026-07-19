@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from log_guard.lg.pipeline import compress_for_lg
 from log_guard.pipeline.config import build_v3_config
 from tests.fixtures.lg import full_route_synth_text, medium_cicd_text, tiny_trace_text
@@ -13,6 +11,9 @@ def test_v3_config_invariants():
     built = build_v3_config()
     assert built["length_route_v23"] is True
     assert built["payload_mode"] == "ghost_projection"
+    assert built["block_mode"] == "chars"
+    assert built["block_char_budget"] == 15000
+    assert built["warning_extract"] is True
 
 
 def test_pipeline_fallback_on_error(monkeypatch, tmp_path):

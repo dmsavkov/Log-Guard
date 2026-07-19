@@ -99,7 +99,7 @@ SCSI subsystem initialized
 inserting floppy driver for 2.6.5-1.358
 Floppy drive s : fd0 is 1.44M
 FDC 0 is a National Semiconductor PC87306
-[×2] Sequence:
+[x2] Seq:
   3c59x: Donald Becker and others. /network/
   .0: 3Com PCI 3c905C Tornado at <ADDR>. Vers LK1.1.19
   ip_tables: C 2000-2002 Netfilter core team
@@ -137,7 +137,7 @@ starting BIND 9.2.3 -u named -t /var/named/chroot
 using 1 CPU
 named startup succeeded
 loading configuration from '/etc/ '
-[×6] Sequence:
+[x6] Seq:
   listening on IPv4 interface lo, #53
   listening on IPv4 interface eth0, #53
 snmpd startup succeeded
@@ -147,7 +147,7 @@ NET-SNMP version 5.1.1
 listening on IPv4 interface eth0:13, #53
 ntpd 4.2.0@1.1161-r Thu Mar 11 EST 2004 1
 ntpd startup succeeded
-[×3] Sequence:
+[x3] Seq:
   listening on IPv4 interface eth0:14, #53
   listening on IPv4 interface eth0:15, #53
 kernel time sync status 0040
@@ -161,26 +161,26 @@ running
 rsyncd version 2.6.2 starting, listening on port 873
 mdadm succeeded
 mdmpd failed
-[×3] Sequence:
+[x3] Seq:
   creating device node '/udev/vcs2'
   creating device node '/udev/vcsa2'
-[×3] Sequence:
+[x3] Seq:
   removing device node '/udev/vcs2'
   removing device node '/udev/vcsa8'
-[×2] Sequence:
+[x2] Seq:
   creating device node '/udev/vcs2'
   removing device node '/udev/vcs8'
   creating device node '/udev/vcsa3'
-[×3] Sequence:
+[x3] Seq:
   creating device node '/udev/vcs1'
   creating device node '/udev/vcs6'
-[×2] Sequence:
+[x2] Seq:
   creating device node '/udev/vcs5'
   removing device node '/udev/vcsa3'
   removing device node '/udev/vcs3'
 removing device node '/udev/vcsa6'
 removing device node '/udev/vcsa4'
-[×4] Sequence:
+[x4] Seq:
   creating device node '/udev/vcsa3'
   creating device node '/udev/vcs3'
 removing device node '/udev/vcs7'
@@ -295,7 +295,7 @@ SCSI subsystem initialized
 inserting floppy driver for 2.6.5-1.358
 Floppy drive s : fd0 is 1.44M
 FDC 0 is a National Semiconductor PC87306
-[×2] Sequence:
+[x2] Seq:
   3c59x: Donald Becker and others. /network/
   .0: 3Com PCI 3c905C Tornado at <ADDR>. Vers LK1.1.19
   ip_tables: C 2000-2002 Netfilter core team
@@ -333,7 +333,7 @@ starting BIND 9.2.3 -u named -t /var/named/chroot
 using 1 CPU
 named startup succeeded
 loading configuration from '/etc/ '
-[×6] Sequence:
+[x6] Seq:
   listening on IPv4 interface lo, #53
   listening on IPv4 interface eth0, #53
 listening on IPv4 interface eth0:11, #53
@@ -348,7 +348,7 @@ listening on IPv4 interface eth0:15, #53
 kernel time sync status 0040
 listening on IPv4 interface eth0:16, #53
 frequency initialized 0.000 PPM from .../drift
-[×3] Sequence:
+[x3] Seq:
   listening on IPv4 interface eth0:17, #53
   listening on IPv4 interface eth0:18, #53
 couldn't add command channel #953: not found
@@ -357,18 +357,18 @@ running
 rsyncd version 2.6.2 starting, listening on port 873
 mdadm succeeded
 mdmpd failed
-[×4] Sequence:
+[x4] Seq:
   creating device node '/udev/vcs4'
   creating device node '/udev/vcsa4'
-[×4] Sequence:
+[x4] Seq:
   removing device node '/udev/vcsa3'
   removing device node '/udev/vcsa5'
-[×5] Sequence:
+[x5] Seq:
   creating device node '/udev/vcs6'
   creating device node '/udev/vcsa6'
 removing device node '/udev/vcs6'
 removing device node '/udev/vcsa6'
-[×2] Sequence:
+[x2] Seq:
   creating device node '/udev/vcs6'
   creating device node '/udev/vcsa6'
 removing device node '/udev/vcs7'
@@ -379,7 +379,7 @@ kernel time sync disabled 0041
 kernel time sync enabled 0001
 check pass; user unknown
 authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×23] connection from at Sat Jun 11 2005
+[x23] connection from at Sat Jun 11 2005
 file descriptor of service comsat has been closed
 select reported EBADF but no bad file descriptors were found
 session opened for user cyrus by uid=0
@@ -387,88 +387,88 @@ session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×23] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×23] connection from at Sun Jun 12 2005
+[x23] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x23] connection from at Sun Jun 12 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 cupsd shutdown succeeded
 cupsd startup succeeded
 1.4.1: restart.
 ALERT exited abnormally with 1
-[×2] Sequence:
+[x2] Seq:
   session opened for user news by uid=0
   session closed for user news
-[×13] Sequence:
+[x13] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×23] connection from at Mon Jun 13 2005
+[x23] connection from at Mon Jun 13 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×2] Sequence:
+[x2] Seq:
   bad username ;;
   Couldn't authenticate user
-[×23] connection from at Mon Jun 13 2005
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×6] gethostbyname error for ^X^X^Z^Z%8x%8x%8x%8x%8x%8x%8x%8x%8x%62716x%hn%51859x%hn\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220
-[×23] connection from at Mon Jun 13 2005
-[×12] Sequence:
+[x23] connection from at Mon Jun 13 2005
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x6] gethostbyname error for ^X^X^Z^Z%8x%8x%8x%8x%8x%8x%8x%8x%8x%62716x%hn%51859x%hn\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220
+[x23] connection from at Mon Jun 13 2005
+[x12] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×10] Sequence:
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x10] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×14] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x14] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×12] Sequence:
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x12] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×5] Sequence:
+[x5] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×3] check pass; user unknown
+[x3] check pass; user unknown
 authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
 check pass; user unknown
-[×3] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×18] Sequence:
+[x3] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
+[x18] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
-[×2] Sequence:
+[x2] Seq:
   session opened for user news by uid=0
   session closed for user news
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×8] connection from at Fri Jun 17 2005
+[x8] connection from at Fri Jun 17 2005
 session opened for user test by uid=509
 session closed for user test
-[×7] connection from at Fri Jun 17 2005
-[×10] Sequence:
+[x7] connection from at Fri Jun 17 2005
+[x10] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×15] connection from at Sat Jun 18 2005
+[x15] connection from at Sat Jun 18 2005
 User unknown timed out after 900 seconds at Sat Jun 18 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
-[×2] Sequence:
+[x2] Seq:
   session opened for user news by uid=0
   session closed for user news
 cupsd shutdown succeeded
@@ -477,14 +477,14 @@ cupsd startup succeeded
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×12] connection from at Mon Jun 20 2005
+[x12] connection from at Mon Jun 20 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
 Received SNMP packet s from
-[×10] Sequence:
+[x10] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
 session opened for user cyrus by uid=0
@@ -492,16 +492,16 @@ session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×23] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x23] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×10] Sequence:
+[x10] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×23] connection from at Wed Jun 22 2005
+[x23] connection from at Wed Jun 22 2005
 check pass; user unknown
 authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
 session opened for user cyrus by uid=0
@@ -509,109 +509,109 @@ session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×9] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x9] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×13] connection from at Fri Jun 24 2005
+[x13] connection from at Fri Jun 24 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×10] Sequence:
+[x10] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
 gethostbyname error for ^X^X^Z^Z%8x%8x%8x%8x%8x%8x%8x%8x%8x%62716x%hn%51859x%hn\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220\220
-[×31] connection from at Sat Jun 25 2005
+[x31] connection from at Sat Jun 25 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 cupsd shutdown succeeded
 cupsd startup succeeded
 1.4.1: restart.
 ALERT exited abnormally with 1
-[×2] Sequence:
+[x2] Seq:
   session opened for user news by uid=0
   session closed for user news
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×5] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x5] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×19] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×5] Sequence:
+[x19] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x5] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×23] connection from at Wed Jun 29 2005
+[x23] connection from at Wed Jun 29 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×23] connection from at Wed Jun 29 2005
-[×13] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×7] connection from at Wed Jun 29 2005
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x23] connection from at Wed Jun 29 2005
+[x13] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x7] connection from at Wed Jun 29 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×8] Sequence:
+[x8] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×15] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×6] Sequence:
+[x15] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x6] Seq:
   Authentication failed from : Permission denied in replay cache code
   Kerberos authentication failed
-[×2] Authentication failed from : Permission denied in replay cache code
+[x2] Authentication failed from : Permission denied in replay cache code
 Authentication failed from : Software caused connection abort
-[×3] Kerberos authentication failed
-[×8] Sequence:
+[x3] Kerberos authentication failed
+[x8] Seq:
   Authentication failed from : Software caused connection abort
   Kerberos authentication failed
-[×3] Authentication failed from : Software caused connection abort
-[×2] Sequence:
+[x3] Authentication failed from : Software caused connection abort
+[x2] Seq:
   Kerberos authentication failed
   Authentication failed from : Software caused connection abort
 Authentication failed from : Software caused connection abort
-[×4] Kerberos authentication failed
-[×8] session opened for user test by uid=509
-[×2] session closed for user test
-[×2] session opened for user test by uid=509
-[×8] session closed for user test
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x4] Kerberos authentication failed
+[x8] session opened for user test by uid=509
+[x2] session closed for user test
+[x2] session opened for user test by uid=509
+[x8] session closed for user test
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
-[×5] Sequence:
+[x5] Seq:
   session opened for user news by uid=0
   session closed for user news
-[×23] connection from at Fri Jul 1 2005
-[×2] session opened for user test by uid=509
-[×2] Sequence:
+[x23] connection from at Fri Jul 1 2005
+[x2] session opened for user test by uid=509
+[x2] Seq:
   session closed for user test
   session opened for user test by uid=509
-[×2] session closed for user test
-[×10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×4] session opened for user test by uid=509
-[×4] session closed for user test
+[x2] session closed for user test
+[x10] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x4] session opened for user test by uid=509
+[x4] session closed for user test
 session opened for user test by uid=509
 session closed for user test
-[×3] session opened for user test by uid=509
-[×3] session closed for user test
+[x3] session opened for user test by uid=509
+[x3] session closed for user test
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×10] Sequence:
+[x10] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
 session opened for user cyrus by uid=0
@@ -622,64 +622,64 @@ cupsd startup succeeded
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×46] connection from at Sun Jul 3 2005
+[x46] connection from at Sun Jul 3 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×3] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
-[×23] connection from at Mon Jul 4 2005
-[×13] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x3] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x23] connection from at Mon Jul 4 2005
+[x13] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×5] Sequence:
+[x5] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×23] connection from at Tue Jul 5 2005
-[×5] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
+[x23] connection from at Tue Jul 5 2005
+[x5] authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost= user=root
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×23] connection from at Wed Jul 6 2005
+[x23] connection from at Wed Jul 6 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
-[×2] Sequence:
+[x2] Seq:
   session opened for user news by uid=0
   session closed for user news
   session opened for user test by uid=509
-[×2] session closed for user test
-[×2] session opened for user test by uid=509
+[x2] session closed for user test
+[x2] session opened for user test by uid=509
 session closed for user test
 session opened for user test by uid=509
-[×2] session closed for user test
+[x2] session closed for user test
 * info mice.c 1766 :
 imps2: Auto-detected intellimouse PS/2
 session opened for user root by LOGIN uid=0
 root PID : ROOT LOGIN ON tty2
 session closed for user root
-[×2] Sequence:
+[x2] Seq:
   removing device node '/udev/vcsa2'
   removing device node '/udev/vcs2'
   creating device node '/udev/vcs2'
   creating device node '/udev/vcsa2'
-[×4] Sequence:
+[x4] Seq:
   check pass; user unknown
   authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=
-[×31] connection from at Thu Jul 7 2005
+[x31] connection from at Thu Jul 7 2005
 session opened for user cyrus by uid=0
 session closed for user cyrus
 ALERT exited abnormally with 1
-[×2] Sequence:
+[x2] Seq:
   session opened for user news by uid=0
   session closed for user news
 ALERT exited abnormally with 1
 session opened for user news by uid=0
 session closed for user news
-[×38] connection from at Sat Jul 9 2005
+[x38] connection from at Sat Jul 9 2005

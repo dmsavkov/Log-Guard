@@ -5,76 +5,35 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from typing import Any
-
 from log_guard.lg.debug_cmd import print_debug
+from log_guard.lg.executor import execute_read, execute_run
 from log_guard.lg.history import format_history
-from log_guard.lg.passthrough import is_passthrough
-from log_guard.lg.pipeline import compress_for_lg
 from log_guard.lg.reader import read_file
-from log_guard.lg.runner import (
-    format_argv,
-    merge_output,
-    run_exec,
-    run_shell,
-    split_command_string,
-)
+from log_guard.lg.runner import format_argv, split_command_string
 from log_guard.lg.stats import compute_stats, format_dashboard
-from log_guard.lg.storage import load_raw, load_values, new_run_id, save_run
+from log_guard.lg.storage import load_raw, load_values
+from log_guard.lg.telemetry import InvocationTimer, log_invocation, resolve_experimental
 from log_guard.io_config import configure_stdio_utf8, safe_write
 from log_guard.logging_config import configure_cli_logging
 
 HEADER_PREFIX = "LogGuard"
 
 
-def _print_header(run_id: str, body: str) -> None:
-    safe_write(sys.stdout, f"[{HEADER_PREFIX}:{run_id}]\n{body}")
+def _exp(args: argparse.Namespace) -> bool:
+    return resolve_experimental(bool(getattr(args, "experimental", False)))
+
+
+def _print_output(run_id: str, body: str, *, show_header: bool) -> None:
+    if show_header:
+        safe_write(sys.stdout, f"[{HEADER_PREFIX}:{run_id}]\n{body}")
+    else:
+        safe_write(sys.stdout, body)
     if body and not body.endswith("\n"):
         safe_write(sys.stdout, "\n")
 
 
-def _execute_and_compress(
-    raw: str,
-    *,
-    cmd: str | None,
-    exit_code: int,
-    dry_run: bool,
-    passthrough: bool,
-) -> int:
-    run_id = new_run_id()
-    if passthrough:
-        compressed = raw
-        route = "passthrough"
-        values: dict[str, Any] = {}
-        distill_called = False
-    else:
-        result = compress_for_lg(raw, run_id, dry_run=dry_run, preliminary=False)
-        compressed = result.compressed
-        route = result.route
-        values = result.values
-        distill_called = result.distill_called
-
-    save_run(
-        run_id,
-        raw=raw,
-        compressed=compressed,
-        values=values,
-        meta={
-            "cmd": cmd,
-            "exit_code": exit_code,
-            "route": route,
-            "distill_called": distill_called,
-            "passthrough": passthrough,
-            "dry_run": dry_run,
-        },
-    )
-    _print_header(run_id, compressed)
-    return exit_code
-
-
 def cmd_run(args: argparse.Namespace) -> int:
     argv = list(args.cmd)
-    # argparse.REMAINDER keeps a literal "--" separator; drop it.
     if argv and argv[0] == "--":
         argv = argv[1:]
     if not argv:
@@ -82,31 +41,26 @@ def cmd_run(args: argparse.Namespace) -> int:
         return 2
 
     if args.shell:
-        # Opt-in raw shell string: pipes, &&, redirects. Quote the whole command.
         command = argv[0] if len(argv) == 1 else " ".join(argv)
-        proc = run_shell(command)
     else:
-        # Default exec mode: argv list straight to the OS — no quoting loss.
-        # UX nicety: `lg run "python x.py"` (one quoted arg) is split for the user.
         if len(argv) == 1 and " " in argv[0]:
             argv = split_command_string(argv[0])
         command = format_argv(argv)
-        proc = run_exec(argv)
 
-    if proc.timed_out:
+    result = execute_run(
+        command=command,
+        argv=argv,
+        shell_mode=args.shell,
+        dry_run=args.dry_run,
+        experimental=_exp(args),
+    )
+    if result.timed_out:
         sys.stderr.write(
             f"[{HEADER_PREFIX} Error: Command timed out. Did it require interactive input?]\n"
         )
         return 124
-
-    raw = merge_output(proc.stdout, proc.stderr)
-    return _execute_and_compress(
-        raw,
-        cmd=command,
-        exit_code=proc.exit_code,
-        dry_run=args.dry_run,
-        passthrough=is_passthrough(command),
-    )
+    _print_output(result.run_id, result.body, show_header=result.show_header)
+    return result.exit_code
 
 
 def cmd_read(args: argparse.Namespace) -> int:
@@ -118,21 +72,36 @@ def cmd_read(args: argparse.Namespace) -> int:
     except OSError as exc:
         sys.stderr.write(f"[{HEADER_PREFIX} Error: {exc}]\n")
         return 1
-    return _execute_and_compress(
-        raw, cmd=f"read {args.filepath}", exit_code=0, dry_run=args.dry_run, passthrough=False
+    result = execute_read(
+        raw,
+        filepath=args.filepath,
+        dry_run=args.dry_run,
+        experimental=_exp(args),
     )
+    _print_output(result.run_id, result.body, show_header=result.show_header)
+    return 0
 
 
 def cmd_raw(args: argparse.Namespace) -> int:
+    timer = InvocationTimer()
     try:
-        safe_write(sys.stdout, load_raw(args.id))
+        text = load_raw(args.id)
     except FileNotFoundError:
         sys.stderr.write(f"[{HEADER_PREFIX} Error: unknown run id {args.id!r}]\n")
         return 1
+    safe_write(sys.stdout, text)
+    log_invocation(
+        subcommand="raw",
+        run_id=args.id,
+        raw_chars=len(text),
+        latency_ms=timer.elapsed_ms,
+        experimental=_exp(args),
+    )
     return 0
 
 
 def cmd_get(args: argparse.Namespace) -> int:
+    timer = InvocationTimer()
     try:
         store = load_values(args.id)
     except FileNotFoundError:
@@ -148,21 +117,48 @@ def cmd_get(args: argparse.Namespace) -> int:
         if isinstance(value, (dict, list)):
             value = json.dumps(value, ensure_ascii=False)
         safe_write(sys.stdout, f"[#{hash_id}] {value}\n")
+    log_invocation(
+        subcommand="get",
+        run_id=args.id,
+        latency_ms=timer.elapsed_ms,
+        experimental=_exp(args),
+        extra={"hashes": args.hashes},
+    )
     return 0
 
 
 def cmd_stats(_args: argparse.Namespace) -> int:
+    timer = InvocationTimer()
     safe_write(sys.stdout, format_dashboard(compute_stats()))
+    log_invocation(
+        subcommand="stats",
+        latency_ms=timer.elapsed_ms,
+        experimental=_exp(_args),
+    )
     return 0
 
 
 def cmd_history(args: argparse.Namespace) -> int:
+    timer = InvocationTimer()
     safe_write(sys.stdout, format_history(limit=args.limit))
+    log_invocation(
+        subcommand="history",
+        latency_ms=timer.elapsed_ms,
+        experimental=_exp(args),
+    )
     return 0
 
 
 def cmd_debug(args: argparse.Namespace) -> int:
-    return print_debug(args.id, args.file)
+    timer = InvocationTimer()
+    code = print_debug(args.id, args.file)
+    log_invocation(
+        subcommand="debug",
+        run_id=args.id,
+        latency_ms=timer.elapsed_ms,
+        experimental=_exp(args),
+    )
+    return code
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -172,9 +168,13 @@ def main(argv: list[str] | None = None) -> None:
         prog="lg",
         description="LogGuard — compress terminal output for coding agents",
     )
+    # Hidden from --help / agent docs. Prefer LOGGUARD_EXPERIMENTAL=1 for probes.
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--experimental", action="store_true", help=argparse.SUPPRESS)
+
     sub = parser.add_subparsers(dest="command", required=True)
 
-    run_p = sub.add_parser("run", help="Execute command and compress stdout")
+    run_p = sub.add_parser("run", parents=[common], help="Execute command and compress stdout")
     run_p.add_argument("--dry-run", action="store_true", help="Skip Gemini distill")
     run_p.add_argument(
         "--shell",
@@ -188,24 +188,24 @@ def main(argv: list[str] | None = None) -> None:
     )
     run_p.set_defaults(handler=cmd_run)
 
-    read_p = sub.add_parser("read", help="Read file and compress contents")
+    read_p = sub.add_parser("read", parents=[common], help="Read file and compress contents")
     read_p.add_argument("filepath", help="Path to log file")
     read_p.add_argument("--dry-run", action="store_true", help="Skip Gemini distill")
     read_p.set_defaults(handler=cmd_read)
 
-    raw_p = sub.add_parser("raw", help="Dump uncompressed output for a run id")
+    raw_p = sub.add_parser("raw", parents=[common], help="Dump uncompressed output for a run id")
     raw_p.add_argument("id", help="4-char run id")
     raw_p.set_defaults(handler=cmd_raw)
 
-    get_p = sub.add_parser("get", help="Extract [#N] values from a prior run")
+    get_p = sub.add_parser("get", parents=[common], help="Extract [#N] values from a prior run")
     get_p.add_argument("id", help="4-char run id")
     get_p.add_argument("hashes", nargs="+", type=int, help="Hash indices")
     get_p.set_defaults(handler=cmd_get)
 
-    stats_p = sub.add_parser("stats", help="Session compression dashboard")
+    stats_p = sub.add_parser("stats", parents=[common], help="Session compression dashboard")
     stats_p.set_defaults(handler=cmd_stats)
 
-    hist_p = sub.add_parser("history", help="List recent runs with compression metrics")
+    hist_p = sub.add_parser("history", parents=[common], help="List recent runs with compression metrics")
     hist_p.add_argument(
         "-n",
         "--limit",
@@ -216,7 +216,7 @@ def main(argv: list[str] | None = None) -> None:
     )
     hist_p.set_defaults(handler=cmd_history)
 
-    dbg_p = sub.add_parser("debug", help="List or print per-stage debug files")
+    dbg_p = sub.add_parser("debug", parents=[common], help="List or print per-stage debug files")
     dbg_p.add_argument("id", help="4-char run id")
     dbg_p.add_argument("file", nargs="?", help="Intermediate filename to print")
     dbg_p.set_defaults(handler=cmd_debug)

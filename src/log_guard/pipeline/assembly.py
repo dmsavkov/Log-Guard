@@ -16,7 +16,7 @@ def apply_trace_reinjection(text: str, trace_records: list[ExtractedRecord]) -> 
         if r.hash_id.isdigit():
             by_id[r.hash_id.upper()] = r
 
-    placeholder_only = re.compile(r"^\[T(\d+)\]\s+(.+)$")
+    placeholder_only = re.compile(r"^\[T(\d+)\]\s+\S+\s*$")
     lines = text.splitlines()
     out: list[str] = []
     for line in lines:

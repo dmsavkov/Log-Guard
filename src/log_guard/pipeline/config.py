@@ -26,7 +26,10 @@ def build_v3_config() -> dict:
         "extract_kv": True,
         "extract_tensor": True,
         "extract_entropy": True,
-        "block_size": 300,
+        # Line-safe char budgets for LLM context windows (chunk_line_boundaries).
+        "block_size": 0,
+        "block_mode": "chars",
+        "block_char_budget": 15000,
         "group_hash_buffer": 10,
         "short_hash": True,
         "pointer_format": "bracket",
@@ -39,4 +42,7 @@ def build_v3_config() -> dict:
         "drain_max_children": 10,
         **baseline_v2_exp_cfg(),
         "entropy_delete": True,
+        "truncate_warnings": False,
+        "warning_extract": True,
+        "skip_warning_extract": False,
     }

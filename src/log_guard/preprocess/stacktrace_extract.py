@@ -343,20 +343,77 @@ def _short_file(path: str) -> str:
     return path.rsplit("/", 1)[-1].rsplit("\\", 1)[-1]
 
 
+def _is_user_frame(filename: str) -> bool:
+    low = filename.lower().replace("\\", "/")
+    if filename.startswith("<"):
+        return False
+    if "attrs generated" in low:
+        return False
+    for marker in (
+        "site-packages",
+        "dist-packages",
+        "/usr/lib",
+        "<frozen",
+        "<built-in",
+    ):
+        if marker in low:
+            return False
+    return True
+
+
+def _frame_path_label(frame: ParsedFrame, *, user: bool) -> str:
+    short = _short_file(frame.file)
+    if short.startswith("<") and short.endswith(">"):
+        import re
+
+        short = re.sub(r"\s+[a-f0-9]{8,}", "", short)
+        if "attrs generated" in short.lower():
+            short = "<attrs>"
+    loc = f"{short}:{frame.line}" if frame.line is not None else short
+    prefix = "U:" if user else "L:"
+    return f"{prefix}{loc}"
+
+
+def _select_frames(frames: list[ParsedFrame]) -> list[ParsedFrame]:
+    if not frames:
+        return []
+    if len(frames) == 1:
+        return frames
+    user_frames = [f for f in frames if _is_user_frame(f.file)]
+    keep: list[ParsedFrame] = []
+    if user_frames:
+        keep.append(user_frames[0])
+        if len(user_frames) > 1:
+            keep.append(user_frames[-1])
+    if frames[-1] not in keep:
+        keep.append(frames[-1])
+    seen: set[tuple[str, int | None, str]] = set()
+    out: list[ParsedFrame] = []
+    for fr in keep:
+        key = (fr.file, fr.line, fr.func)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(fr)
+    return out[:3]
+
+
 def _format_telegraphic(block: ParsedTraceBlock, *, trace_id: str) -> str:
     if not block.exceptions:
         return f"[T{trace_id}] extraction_failed"
     exc = block.exceptions[-1]
-    crashing = exc.frames[-1] if exc.frames else None
+    frames = _select_frames(exc.frames)
+    display = [f for f in frames if _is_user_frame(f.file) or f is frames[-1]]
+    if not display and frames:
+        display = [frames[-1]]
+    if not display:
+        msg = exc.message.replace("'", "\\'")[:120]
+        return f"[T{trace_id}] {exc.error_type}: '{msg}'"
+    chain = " -> ".join(
+        _frame_path_label(fr, user=_is_user_frame(fr.file)) for fr in display
+    )
     msg = exc.message.replace("'", "\\'")[:120]
-    if crashing and crashing.line is not None:
-        loc = f"{_short_file(crashing.file)}:{crashing.line}"
-    elif crashing:
-        loc = _short_file(crashing.file)
-    else:
-        loc = "?"
-    func = f" (**{crashing.func}**)" if crashing and crashing.func else ""
-    return f"[T{trace_id}] {exc.error_type}: '{msg}' @ {loc}{func}"
+    return f"[T{trace_id}] {exc.error_type}: '{msg}' @ {chain}"
 
 
 def _next_trace_id(records: list[ExtractedRecord]) -> str:

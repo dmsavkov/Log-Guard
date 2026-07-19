@@ -116,8 +116,7 @@ def extract_pytest_blocks(lines: list[str]) -> tuple[list[str], list[tuple[int, 
         insert_at = len("\n".join(out_parts).splitlines()) if out_parts else 0
         for test_name, telegraphic, _ in failures:
             trace_idx += 1
-            tag = test_name or "pytest_failure"
-            placeholder = f"[T{trace_idx}] pytest: {tag}"
+            placeholder = f"[T{trace_idx}] {telegraphic}"
             extracted.append((line_no, test_name, telegraphic))
             markers.append((insert_at, placeholder))
             insert_at += 1

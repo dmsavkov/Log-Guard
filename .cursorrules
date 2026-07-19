@@ -30,3 +30,11 @@ Do **not** use `--shell` for normal commands; default exec mode handles spaces a
 - `uv run lg history [-n N]`: Recent runs with compression metrics.
 
 If a compressed summary hides critical details, retrieve the full output using `uv run lg raw <id>` where `<id>` is shown in the `[LogGuard:<id>]` header.
+
+### LogGuard Usage Rules
+
+Do not use `lg run` for:
+
+1. Interactive commands that require keystrokes (vim, nano, less, -i).
+2. Daemon servers or infinite loops (uvicorn, next dev, npm start).
+   Run these natively in your terminal instead.

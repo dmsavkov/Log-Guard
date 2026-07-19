@@ -3,17 +3,19 @@ name = "log-guard"
 version = "1.0.0"
 description = "LogGuard CLI — v3 log compression for coding agents"
 readme = "README.md"
-requires-python = ">=3.13.5,<3.14"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12.1,<3.14"
+authors = [{ name = "LogGuard contributors" }]
+keywords = ["logs", "compression", "cli", "agents", "gemini"]
 dependencies = [
     "drain3>=0.9.11",
-    "google-genai>=2.10.0",
-    "lark>=1.2.2",
-    "loguru>=0.7.3",
-    "numpy>=2.4.0",
-    "pydantic>=2.13.4",
-    "python-dotenv>=1.2.2",
-    "scikit-learn>=1.9.0",
-    "tenacity>=9.1.4",
+    "google-genai>=1.0.0,<3",
+    "lark>=1.1.0,<2",
+    "loguru>=0.7.0,<1",
+    "python-dotenv>=1.0.0,<2",
+    "scikit-learn>=1.4.0,<2",
+    "tenacity>=8.0.0,<10",
 ]
 
 [project.scripts]
@@ -23,8 +25,21 @@ lg = "log_guard.lg.cli:main"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/LICENSE",
+    "/README.md",
+    "/.cursorrules",
+    "/.env.example",
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/log_guard"]
+
+# Ensure non-Python package data ships in the wheel.
+[tool.hatch.build.targets.wheel.force-include]
+"src/log_guard/lg/tracks.toml" = "log_guard/lg/tracks.toml"
 
 [tool.uv]
 package = true

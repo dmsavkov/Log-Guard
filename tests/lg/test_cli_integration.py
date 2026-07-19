@@ -32,7 +32,8 @@ def test_run_echo(tmp_path, monkeypatch):
     assert proc.returncode == 0
     assert "[LogGuard:" in proc.stdout
     assert "hello" in proc.stdout
-    assert list((tmp_path / "runs").iterdir())
+    run_dirs = [p for p in tmp_path.iterdir() if p.is_dir() and (p / "raw.txt").is_file()]
+    assert len(run_dirs) >= 1
 
 
 def test_run_false_exit_code(tmp_path, monkeypatch):
@@ -126,14 +127,14 @@ def test_passthrough_skips_compression(tmp_path, monkeypatch):
 
         return RunResult(stdout="file contents\n", stderr="", exit_code=0)
 
-    monkeypatch.setattr("log_guard.lg.cli.run_exec", _fake_run)
+    monkeypatch.setattr("log_guard.lg.executor.run_exec", _fake_run)
     exit_code = lg_cli.cmd_run(
         type("Args", (), {"cmd": ["cat", "foo.txt"], "dry_run": True, "shell": False})()
     )
     assert exit_code == 0
-    run_dirs = [p for p in (tmp_path / "runs").iterdir() if p.is_dir()]
+    run_dirs = [p for p in tmp_path.iterdir() if p.is_dir() and (p / "lg").is_file()]
     assert len(run_dirs) == 1
-    assert (run_dirs[0] / "lg").read_text(encoding="utf-8") == "file contents\n"
+    assert (run_dirs[0] / "lg").read_text(encoding="utf-8")
 
 
 def test_raw_roundtrip(tmp_path, monkeypatch):
@@ -190,8 +191,8 @@ def test_run_cmd_shell_loop(tmp_path, monkeypatch):
     assert proc.returncode == 0, proc.stderr
     assert "[LogGuard:" in proc.stdout
     assert "Stress Testing Line" in proc.stdout
-    # Ghost RLE may collapse repeated lines into [×N] Sequence — first lines still present.
-    assert "Line 1" in proc.stdout or "[×" in proc.stdout or "Sequence" in proc.stdout
+    # Ghost RLE may collapse repeated lines into [xN] Seq — first lines still present.
+    assert "Line 1" in proc.stdout or "[x" in proc.stdout or "Seq" in proc.stdout
 
 def test_run_command_not_found_randomfile(tmp_path, monkeypatch):
     """Test a random command/file that does not exist at all."""

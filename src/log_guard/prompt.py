@@ -4,9 +4,8 @@ _STREAM_BASE_RULES = """
 Hard rules (always):
 - Do NOT prefix lines with Info:, Warn:, or Error:.
 - Preserve all distinct experiments, configuration loads, and crashes chronologically — do not skip events for brevity.
-- When the payload contains traceback patterns as [TN] cite them inline.
-- Facts only from the payload; no inference.
-- Explicitly reference line blocks in the payload similarly to the original. """
+- When the payload contains [Ref N], [HASH_...], or [#N] pointers, cite them inline when documenting parameters or configs.
+- Facts only from the payload; no inference."""
 
 DISTILL_SYSTEM = f"""You are LogGuard. Compress the log into a single markdown bulleted list.
 

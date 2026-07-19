@@ -10,7 +10,7 @@ from log_guard.lg.storage import run_dir
 
 
 class LgRunSession:
-    """Writes numbered intermediate files under runs/<id>/intermediate/."""
+    """Writes numbered intermediate files under <id>/intermediate/."""
 
     def __init__(self, run_id: str) -> None:
         self.run_id = run_id

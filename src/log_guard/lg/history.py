@@ -31,8 +31,11 @@ def _clip(text: str, width: int) -> str:
     return text[: width - 3] + "..."
 
 
-def format_history(limit: int = 10) -> str:
-    metas = list_run_metas()[:limit]
+def format_history(limit: int = 10, *, include_experimental: bool = False) -> str:
+    metas = list_run_metas()
+    if not include_experimental:
+        metas = [m for m in metas if not m.get("experimental")]
+    metas = metas[:limit]
     if not metas:
         return "No LogGuard runs yet.\n"
 

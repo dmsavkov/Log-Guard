@@ -8,7 +8,7 @@ from dataclasses import asdict, dataclass
 from loguru import logger
 
 # Preserve timeline markers through sanitization.
-_PROTECTED = re.compile(r"(\[#\d+\]|\[T\d+\]|\[×\d+\]|\[PROGRESS\])")
+_PROTECTED = re.compile(r"(\[#\d+\]|\[T\d+\]|\[[x×]\d+\]|\[PROGRESS\])")
 _HOST = re.compile(r"\b[a-zA-Z0-9][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}\b")
 _IPV6 = re.compile(r"\b(?:[0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4}\b")
 _IPV4 = re.compile(r"\b\d{1,3}(?:\.\d{1,3}){3}\b")

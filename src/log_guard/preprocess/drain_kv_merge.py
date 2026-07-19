@@ -14,7 +14,7 @@ from log_guard.preprocess.value_extract_v18 import _hash_id
 _DRAIN_MASK_TOKEN = re.compile(r"<\:([^:]*)\:")
 # drain3 join tokens with spaces, splitting <:NAME:> into "<", "NAME", ">"
 _SPLIT_MASK_TOKEN = re.compile(r"<\s+([^>]+?)\s+>")
-_RLE_PREFIX = re.compile(r"^(\[×\d+\]\s*)")
+_RLE_PREFIX = re.compile(r"^(\[x\d+\]\s*)")
 # sequence-collapse templates use <MASK> after drain_dedup._normalize_template
 _NORM_MASK = re.compile(r"<MASK>")
 
@@ -232,7 +232,7 @@ def pointerize_rle_timeline(
     pointer_format: str = "bracket",
     short_hash: bool = True,
 ) -> list[str]:
-    """Replace <:MASK:> / <MASK> tokens in [×N] RLE lines with [#N] pointers from Drain params."""
+    """Replace <:MASK:> / <MASK> tokens in [xN] RLE lines with [#N] pointers from Drain params."""
     values = source_lines if source_lines is not None else masked_lines
     cid_hids = dict(cid_to_hid or {})
     out: list[str] = []

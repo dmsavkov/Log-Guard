@@ -73,6 +73,13 @@ def run_v23_stages(
         lines, trace_records = apply_stacktrace(lines, cfg, session)  # type: ignore[arg-type]
     save_phase_lines(session, "03_stacktrace.txt", lines)
 
+    if cfg.get("warning_extract", True) and not cfg.get("skip_warning_extract"):
+        from log_guard.lg.warning_handling import extract_warnings, stats_dict as warn_stats
+
+        lines, wstats = extract_warnings(lines)
+        session.record_phase("warning_extract", warn_stats(wstats))
+        save_phase_lines(session, "03c_warnings.txt", lines)
+
     route_char_count = sum(len(ln) for ln in lines)
     pipe_route = route_v23(route_char_count)
     force_ghost = bool(cfg.get("force_ghost") or cfg.get("force_ghost_all"))

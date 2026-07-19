@@ -1,4 +1,4 @@
 = test session starts =
 collected 12 items
-[T1] AssertionError: 'assert 503 == 200' @ test_api.py:44 (**test_health**)
-[×180] INFO: Step docker/build — layer cache miss repo=app/web sha=abc123
+[T1] AssertionError: 'assert 503 == 200' @ U:test_api.py:44
+[x180] INFO: Step docker/build — layer cache miss repo=app/web sha=abc123

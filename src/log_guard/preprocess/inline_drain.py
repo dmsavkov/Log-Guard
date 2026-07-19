@@ -80,7 +80,7 @@ def build_inline_drain_timeline(
     rare_max_count: int = 2,
     always_emit_rare: bool = True,
 ) -> tuple[list[str], InlineDrainStats]:
-    """Walk lines in order; collapse repeated drain templates as [×N] <DRAIN:id> tpl."""
+    """Walk lines in order; collapse repeated drain templates as [xN] <DRAIN:id> tpl."""
     cids, clusters = assign_line_clusters(lines, exp_cfg)
     out: list[str] = []
     merged = 0
@@ -117,7 +117,7 @@ def build_inline_drain_timeline(
             run += 1
             j += 1
         tpl = _normalize_template(clusters[cid]["template"])
-        out.append(f"[×{run}] <DRAIN:{cid}> {tpl}")
+        out.append(f"[x{run}] <DRAIN:{cid}> {tpl}")
         templates_used.add(cid)
         if run > 1:
             merged += run - 1

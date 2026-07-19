@@ -1,0 +1,73 @@
+# LogGuard lg run routing tracks (see ARCHITECTURE.md)
+
+[lossless_no_truncate]
+commands = [
+  "git status",
+  "git stash list",
+  "cargo test",
+  "cargo build",
+  "cargo check",
+  "go test",
+  "pip install",
+  "docker ps",
+  "docker images",
+  "tsc",
+  "eslint",
+  "ruff check",
+  "mypy",
+  "cargo clippy",
+  "gh",
+  "aws",
+  "kubectl get pods",
+  "pnpm list",
+  "npm list",
+]
+
+[rtk_fast]
+commands = ["ls", "find", "grep"]
+
+[passthrough_prefixes]
+prefixes = [
+  "cat ",
+  "head ",
+  "tail ",
+  "sed ",
+  "awk ",
+  "git diff ",
+  "git show ",
+  "git log ",
+  "curl ",
+  "wget ",
+  "ping ",
+  "ip ",
+  "ifconfig ",
+  "netstat ",
+  "Test-NetConnection ",
+  "tnc ",
+  "df ",
+  "du ",
+  "free ",
+  "whoami ",
+  "hostname ",
+  "dir ",
+  "Get-ChildItem ",
+  "fd ",
+  "git ls-files ",
+]
+
+[daemon_warn]
+commands = [
+  "uvicorn",
+  "vite",
+  "next",
+  "flask",
+  "http.server",
+  "runserver",
+  "vim",
+  "nano",
+  "top",
+  "htop",
+  "less",
+  "more",
+  "man",
+]

@@ -1,13 +1,13 @@
 {
-  "127": {
-    "line_no": 26,
+  "120": {
+    "line_no": 16,
     "kind": "group",
     "keys": [
-      "SFT",
       "STATUS",
-      "exists"
+      "exists",
+      "free_disk_gb"
     ],
-    "summary": "group (2 hashes, 28 keys)",
+    "summary": "group (2 hashes, 14 keys)",
     "value": {
       "free_disk_gb": "19.46",
       "exists": "False",
@@ -23,11 +23,20 @@
       "src": "OK",
       "verify": "ok",
       "list_7": [
-        3,
-        1,
-        0,
-        1
-      ],
+        "datasets"
+      ]
+    }
+  },
+  "107": {
+    "line_no": 25,
+    "kind": "group",
+    "keys": [
+      "SFT",
+      "list_3",
+      "list_7"
+    ],
+    "summary": "group (8 hashes, 15 keys)",
+    "value": {
       "seed": 42,
       "stratify": "mbpp_length_quartile_sanitized",
       "mbpp_eval_ids": [
@@ -86,6 +95,12 @@
       "rows": "418",
       "nExplanation": "There",
       "SFT": "500",
+      "list_7": [
+        3,
+        1,
+        0,
+        1
+      ],
       "requested": 500,
       "usable": 500,
       "skipped_same": 0,
@@ -95,17 +110,16 @@
       "pair_rate": 1.0
     }
   },
-  "128": {
-    "line_no": 30,
+  "108": {
+    "line_no": 25,
     "kind": "group",
     "keys": [
-      "FutureWarning",
-      "backend",
-      "batch_order"
+      "coderM",
+      "dpo_max_length",
+      "dpo_max_prompt_length"
     ],
-    "summary": "group (2 hashes, 49 keys)",
+    "summary": "group (2 hashes, 16 keys)",
     "value": {
-      "FutureWarning": "Using",
       "max_new_tokens": 1024,
       "eval_prompt": "1536",
       "sft_max": "1664",
@@ -126,14 +140,26 @@
         "p99_eval_prompt_tokens": 1411
       },
       "eval_max_prompt_length": 1536,
-      "max_seq_length": 2048,
+      "max_seq_length": 1664,
       "sft_max_seq_length": 1664,
       "dpo_max_length": 1920,
       "dpo_max_prompt_length": 1280,
       "model_max_seq_length": 2560,
       "n_sft_rows": 918,
       "n_dpo_triples": 500,
-      "experiment": "code02s_cur_e2",
+      "experiment": "code02s_cur_e2"
+    }
+  },
+  "3": {
+    "line_no": 28,
+    "kind": "dict",
+    "keys": [
+      "backend",
+      "batch_order",
+      "checkpoint"
+    ],
+    "summary": "dict: backend, batch_order, checkpoint, checkpoint_topic, coderM_exec_timeout_sec, coderM_max_test_blocks, coderM_memory_limit_mb, coderM_slug…",
+    "value": {
       "format_version": "v1",
       "seed": 42,
       "backend": "code_opt",
@@ -145,6 +171,7 @@
       "coderM_slug": "KAKA22/CodeRM-UnitTest",
       "split_file": "data/splits/code_opt_seed42.json",
       "load_in_4bit": true,
+      "max_seq_length": 2048,
       "per_device_train_batch_size": 4,
       "per_device_eval_batch_size": 8,
       "eval_batch_size_fallbacks": [
@@ -181,22 +208,20 @@
       "preliminary": true
     }
   },
-  "129": {
-    "line_no": 57,
+  "121": {
+    "line_no": 52,
     "kind": "group",
     "keys": [
-      "FutureWarning",
       "Unsloth",
-      "UserWarning"
+      "backend",
+      "batch_order"
     ],
-    "summary": "group (2 hashes, 47 keys)",
+    "summary": "group (3 hashes, 45 keys)",
     "value": {
-      "FutureWarning": "Using",
       "factory": "Attempting",
-      "UserWarning": "Unsloth",
       "Unsloth": "Fast",
       "memory": "14.562",
-      "list_5": [
+      "list_3": [
         "<|im_start|>",
         "<|im_end|>",
         "<|object_ref_start|>",
@@ -281,22 +306,20 @@
       "preliminary": false
     }
   },
-  "130": {
-    "line_no": 89,
+  "122": {
+    "line_no": 79,
     "kind": "group",
     "keys": [
-      "FutureWarning",
       "Unsloth",
-      "UserWarning"
+      "factory",
+      "id"
     ],
-    "summary": "group (2 hashes, 46 keys)",
+    "summary": "group (3 hashes, 12 keys)",
     "value": {
-      "FutureWarning": "Using",
       "factory": "Attempting",
-      "UserWarning": "Unsloth",
       "Unsloth": "Fast",
       "memory": "14.562",
-      "list_5": [
+      "list_3": [
         "<|im_start|>",
         "<|im_end|>",
         "<|object_ref_start|>",
@@ -332,7 +355,19 @@
       ],
       "pass_rate": "0.260",
       "pre_syntax": "0",
-      "post_syntax": "0",
+      "post_syntax": "0"
+    }
+  },
+  "5": {
+    "line_no": 80,
+    "kind": "dict",
+    "keys": [
+      "backend",
+      "batch_order",
+      "checkpoint"
+    ],
+    "summary": "dict: backend, batch_order, checkpoint, checkpoint_topic, coderM_exec_timeout_sec, coderM_max_test_blocks, coderM_memory_limit_mb, coderM_slug…",
+    "value": {
       "format_version": "v1",
       "seed": 42,
       "backend": "code_opt",
@@ -380,20 +415,18 @@
       "preliminary": false
     }
   },
-  "131": {
-    "line_no": 111,
+  "123": {
+    "line_no": 98,
     "kind": "group",
     "keys": [
-      "FutureWarning",
-      "UserWarning",
-      "backend"
+      "factory",
+      "id",
+      "list_0"
     ],
-    "summary": "group (2 hashes, 43 keys)",
+    "summary": "group (2 hashes, 10 keys)",
     "value": {
-      "FutureWarning": "Using",
       "factory": "Attempting",
-      "UserWarning": "Unsloth",
-      "list_3": [
+      "list_1": [
         "<|im_start|>",
         "<|im_end|>",
         "<|object_ref_start|>",
@@ -412,9 +445,36 @@
       "pad_token_id": "151665",
       "train_done": "True",
       "post_done": "True",
+      "list_0": [
+        "<|im_start|>",
+        "<|im_end|>",
+        "<|object_ref_start|>",
+        "<|object_ref_end|>",
+        "<|box_start|>",
+        "<|box_end|>",
+        "<|quad_start|>",
+        "<|quad_end|>",
+        "<|vision_start|>",
+        "<|vision_end|>",
+        "<|vision_pad|>",
+        "<|image_pad|>",
+        "<|video_pad|>"
+      ],
       "pass_rate": "0.310",
       "pre_syntax": "4",
-      "post_syntax": "4",
+      "post_syntax": "4"
+    }
+  },
+  "6": {
+    "line_no": 100,
+    "kind": "dict",
+    "keys": [
+      "backend",
+      "batch_order",
+      "checkpoint"
+    ],
+    "summary": "dict: backend, batch_order, checkpoint, checkpoint_topic, coderM_exec_timeout_sec, coderM_max_test_blocks, coderM_memory_limit_mb, coderM_slug…",
+    "value": {
       "format_version": "v1",
       "seed": 42,
       "backend": "code_opt",
@@ -462,22 +522,20 @@
       "preliminary": false
     }
   },
-  "132": {
-    "line_no": 131,
+  "124": {
+    "line_no": 120,
     "kind": "group",
     "keys": [
-      "FutureWarning",
       "Unsloth",
-      "UserWarning"
+      "WARNING",
+      "factory"
     ],
-    "summary": "group (2 hashes, 11 keys)",
+    "summary": "group (3 hashes, 11 keys)",
     "value": {
-      "FutureWarning": "Using",
       "factory": "Attempting",
-      "UserWarning": "Unsloth",
       "Unsloth": "Fast",
       "memory": "14.562",
-      "list_5": [
+      "list_3": [
         "<|im_start|>",
         "<|im_end|>",
         "<|object_ref_start|>",
@@ -510,7 +568,9 @@
         "<|vision_pad|>",
         "<|image_pad|>",
         "<|video_pad|>"
-      ]
+      ],
+      "WARNING": "All",
+      "skipped": "requires"
     }
   }
 }

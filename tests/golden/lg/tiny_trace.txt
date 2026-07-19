@@ -1,1 +1,1 @@
-[T1] AttributeError: '\'NoneType\' object has no attribute \'version\'' @ app.py:5 (**main**)
+[T1] AttributeError: '\'NoneType\' object has no attribute \'version\'' @ U:app.py:9 -> U:app.py:5

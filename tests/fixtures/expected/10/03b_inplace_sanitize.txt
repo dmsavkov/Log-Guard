@@ -8,7 +8,6 @@ Copied kaggle_support -> .../kaggle_support
 Copied data -> .../data
 Split file missing — building .../bitext_seed42.json downloads Bitext once
 | __main__:<module>:36 - Loading bitext/Bitext-customer-support-llm-chatbot-training-dataset ...
-You are sending unauthenticated requests to the HF Hub. P...
 [PROGRESS]
 Saved splits to .../bitext_seed42.json
 code_input: .../dpo-rag-opt-code
@@ -32,7 +31,6 @@ Experiment session code05e_parallel3 -> .../20260626_073743
 Loaded 427 MBPP sanitized rows from
 Loaded CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-All log messages before absl InitializeLog is called a...
 W0000 . 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 180 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
@@ -40,7 +38,6 @@ W0000 . 180 computation_placer.cc:177 computation placer already registered. Ple
 _install_fused_forward
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
 Unsloth Zoo will now patch everything to make training faster!
-`trust_remote_code` is True.
 Are you certain you want to do remote code execution?
 O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
 \ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
@@ -58,7 +55,6 @@ Experiment session code05e_parallel3 -> .../20260626_074037
 Loaded 427 MBPP sanitized rows from
 Loaded CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-All log messages before absl InitializeLog is called a...
 W0000 . 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 366 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
@@ -66,7 +62,6 @@ W0000 . 366 computation_placer.cc:177 computation placer already registered. Ple
 _install_fused_forward
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
 Unsloth Zoo will now patch everything to make training faster!
-`trust_remote_code` is True.
 Are you certain you want to do remote code execution?
 O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
 \ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
@@ -76,7 +71,6 @@ Model prepared for inference Unsloth for_inference + padding_side=left
 unsloth/Qwen2.5-3B-Instruct-bnb-4bit does not have a padding token! Will use pad_token = <|PAD_TOKEN|>.
 = scripts/ code05e_repair_std =
 Unsloth Zoo will now patch everything to make training faster!
-`trust_remote_code` is True.
 Are you certain you want to do remote code execution?
 O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
 \ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
@@ -89,7 +83,6 @@ Experiment session code05e_repair_std -> .../20260626_093957
 Loaded 427 MBPP sanitized rows from
 Loaded CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-All log messages before absl InitializeLog is called a...
 W0000 . 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 1371 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
@@ -110,7 +103,6 @@ Experiment session code05e_repair_min -> .../20260626_102449
 Loaded 427 MBPP sanitized rows from
 Loaded CodeRM rows
 Resolved best adapter for code02s_cur_e2 -> .../best
-All log messages before absl InitializeLog is called a...
 W0000 . 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
 W0000 . 2380 computation_placer.cc:177 computation placer already registered. Please check linkage and avoid linking the same target more than once.
@@ -118,10 +110,11 @@ W0000 . 2380 computation_placer.cc:177 computation placer already registered. Pl
 _install_fused_forward
 Loading unsloth/Qwen2.5-3B-Instruct-bnb-4bit 4bit=True ...
 Unsloth Zoo will now patch everything to make training faster!
-`trust_remote_code` is True.
 Are you certain you want to do remote code execution?
 O^O/ \_/ \ Torch: 2.10.0+cu128. CUDA: 7.5. CUDA Toolkit: 12.8. Triton: 3.6.0
 \ / Bfloat16 = FALSE. FA Xformers = 0.0.35. FA2 = False
 Loading PEFT adapter from .../best is_trainable=False
 No HF checkpoint found in .../20260626_102449 — starting fresh
 Model prepared for inference Unsloth for_inference + padding_side=left
+[x5] FutureWarning @ .../ :111 : Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+[x5] WARNING:
