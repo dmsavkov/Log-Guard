@@ -4,16 +4,16 @@ _Built for developers who regularly paste large pytest, build, CI, or runtime lo
 
 **Reduce execution-log context before it reaches AI coding agents.**
 
-Instruct agents via `[.cursorrules](.cursorrules)` (or your editor’s equivalent) so terminal commands go through `lg run`.
+Instruct agents via [.cursorrules](.cursorrules) (or your editor’s equivalent) so terminal commands go through `lg run`.
 
-LogGuard demo — agent commands compressed for the model
+![LogGuard demo — agent commands compressed for the model](docs/media/demo.gif)
 
 - **~69%** overall character reduction on a Terminal-Bench active-cli dogfood slice
 - Showcase peaks: **98%** pytest failure, **94%** CI log, **98%** Kaggle notebook log
 - Agents called `lg raw` only **~1–2%** of the time in those windows
 - Compression is **local** by default; Gemini is optional
 
-Methodology: `[docs/benchmarks.md](docs/benchmarks.md)`. Pipeline: `[docs/architecture.md](docs/architecture.md)`.
+Methodology: [docs/benchmarks.md](docs/benchmarks.md). Pipeline: [docs/architecture.md](docs/architecture.md).
 
 ## Results (character reduction)
 
@@ -24,7 +24,7 @@ Methodology: `[docs/benchmarks.md](docs/benchmarks.md)`. Pipeline: `[docs/archit
 | CI / Docker / pytest log | 10,958 → 685      | 94%       |
 | Kaggle notebook log      | 83,211 → 1,702    | 98%       |
 
-These are **size** reductions (chars), not a scored “debugging quality” metric. Full caveats in `[docs/benchmarks.md](docs/benchmarks.md)`.
+These are **size** reductions (chars), not a scored “debugging quality” metric. Full caveats in [docs/benchmarks.md](docs/benchmarks.md).
 
 **Concrete example** — pytest failure track (`pytest_native`):
 
@@ -55,7 +55,7 @@ pip install -e "git+https://github.com/dmsavkov/Log-Guard.git@main"
 ## Agent setup
 
 1. Install `lg` and put it on `PATH`.
-2. Copy `[.cursorrules](.cursorrules)` into the project the agent works on.
+2. Copy [.cursorrules](.cursorrules) into the project the agent works on.
 3. Prefer: `lg run -- <command>` and `lg read <file>` for large static logs.
 
 ## How it works
@@ -71,7 +71,7 @@ flowchart LR
   E -->|if needed| G[lg raw]
 ```
 
-Tracks, flags (`--dry-run`, `--shell`), RTK, storage: `[docs/architecture.md](docs/architecture.md)`.
+Tracks, flags (`--dry-run`, `--shell`), RTK, storage: [docs/architecture.md](docs/architecture.md).
 
 ## Quick start
 
@@ -113,7 +113,7 @@ Default mode is **exec** (safe quoting). Use `--shell` only for pipes / `&&`. Us
 ## Demo
 
 - **GIF** (above) — silent loop of agent + `lg` in practice
-- **Short clip** (~same session): `[docs/media/demo-short.mp4](docs/media/demo-short.mp4)`
+- **Short clip** (~same session): [docs/media/demo-short.mp4](docs/media/demo-short.mp4)
 - **Full walkthrough (~3 min):** publish the source recording as a GitHub Release asset and/or unlisted YouTube, then replace this line with the URL
 
 Text fallback if media does not load: wrap noisy terminal output with `lg run` / `lg read`; agent sees a short summary; recover with `lg raw <id>` when needed.
@@ -127,4 +127,4 @@ Text fallback if media does not load: wrap noisy terminal output with `lg run` /
 
 ## License
 
-MIT — see `[LICENSE](LICENSE)`.
+MIT — see [LICENSE](LICENSE).
