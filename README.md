@@ -1,165 +1,130 @@
-# LogGuard CLI (`lg`) v1.0.0
+# LogGuard
 
-Standalone production package for the LogGuard v3 log compression CLI.
+_Built for developers who regularly paste large pytest, build, CI, or runtime logs into Claude Code, Cursor, or similar coding agents._
 
-**License:** MIT (see `LICENSE`)
+**Reduce execution-log context before it reaches AI coding agents.**
+
+Instruct agents via `[.cursorrules](.cursorrules)` (or your editor’s equivalent) so terminal commands go through `lg run`.
+
+LogGuard demo — agent commands compressed for the model
+
+- **~69%** overall character reduction on a Terminal-Bench active-cli dogfood slice
+- Showcase peaks: **98%** pytest failure, **94%** CI log, **98%** Kaggle notebook log
+- Agents called `lg raw` only **~1–2%** of the time in those windows
+- Compression is **local** by default; Gemini is optional
+
+Methodology: `[docs/benchmarks.md](docs/benchmarks.md)`. Pipeline: `[docs/architecture.md](docs/architecture.md)`.
+
+## Results (character reduction)
+
+| Workload                 | Example           | Reduction |
+| ------------------------ | ----------------- | --------- |
+| pytest failure           | 5,202 → 123 chars | 98%       |
+| pytest success           | 4,432 → 20 chars  | ~100%     |
+| CI / Docker / pytest log | 10,958 → 685      | 94%       |
+| Kaggle notebook log      | 83,211 → 1,702    | 98%       |
+
+These are **size** reductions (chars), not a scored “debugging quality” metric. Full caveats in `[docs/benchmarks.md](docs/benchmarks.md)`.
+
+**Concrete example** — pytest failure track (`pytest_native`):
+
+```text
+# raw (excerpt): multi-hundred-line ImportError traceback …
+# agent sees:
+[T1] ImportError: 'cannot import name \'TaskProgressColumn\' …' @ U:__init__.py:88 -> L:evaluate.py:63
+```
 
 ## Install
 
-### Recommended: editable install (development & daily use)
-
-From this directory:
+Requires **Python 3.13.x** (Windows / Linux / macOS).
 
 ```bash
 pip install -e .
-```
-
-Ensure the Python **Scripts** directory is on your `PATH`:
-
-| OS | Typical location |
-| --- | --- |
-| Windows | `%USERPROFILE%\.local\bin` or `<venv>\Scripts` or `Python313\Scripts` |
-| Linux / macOS | `~/.local/bin` or `<venv>/bin` |
-
-Verify:
-
-```bash
-lg --help
+# ensure Scripts / bin is on PATH, then:
 lg run --dry-run -- python -c "print('hello')"
 ```
 
-Expected: `[LogGuard:abcd]` then `hello`.
-
-**Git install (same result, no clone required for end users):**
+Or without cloning:
 
 ```bash
 pip install -e "git+https://github.com/dmsavkov/Log-Guard.git@main"
 ```
 
-### Wheel / PyPI-style install
+**Optional Gemini summarization** (long `full_pipe` logs): set `GOOGLE_API_KEY` in the environment or `.env`. Without a key, use `--dry-run` or `USE_LLM_SUMMARIZATION=false` — deterministic compression still works.
+
+## Agent setup
+
+1. Install `lg` and put it on `PATH`.
+2. Copy `[.cursorrules](.cursorrules)` into the project the agent works on.
+3. Prefer: `lg run -- <command>` and `lg read <file>` for large static logs.
+
+## How it works
+
+```mermaid
+flowchart LR
+  A[Command or log file] --> B[lg]
+  B --> C[Track / pipeline]
+  C --> D[Compressed stdout]
+  D --> E[Coding agent]
+  C -.-> F[Optional Gemini distill]
+  F --> E
+  E -->|if needed| G[lg raw]
+```
+
+Tracks, flags (`--dry-run`, `--shell`), RTK, storage: `[docs/architecture.md](docs/architecture.md)`.
+
+## Quick start
 
 ```bash
-pip install path/to/log_guard-1.0.0-py3-none-any.whl
-# or: pip install git+https://github.com/dmsavkov/Log-Guard.git@main
-lg run -- python -c "print('hello')"
+# Wrap a command (agent-facing)
+lg run -- pytest tests/ -q --tb=short
+
+# Compress an existing log file
+lg read path/to/build.log
+
+# Recover the full original for a run id shown in the header
+lg raw <id>
 ```
 
-### Optional: uv for locked dev deps only
+Default mode is **exec** (safe quoting). Use `--shell` only for pipes / `&&`. Use `--dry-run` to skip LLM distill.
 
-`uv` is **not** required to run `lg`. Use it only if you want a locked dev environment:
+## When to use it
 
-```bash
-uv sync --group dev
-uv run pytest tests/lg/ -q
-```
+- Agent context fills with pytest, build, CI, or package-manager spam
+- Someone `cat`s / reads a huge log into the chat (especially with summarization on)
+- You want less context pollution without teaching the agent a new UI
 
-## Commands
+**Not for:** log storage, observability, OpenTelemetry, interactive TUIs (`vim`, `less`), long-running servers (`uvicorn`, `npm run dev`), binary/streaming log platforms, or replacing `grep`.
 
-| Command | Description |
-| --- | --- |
-| `lg run [--dry-run] [--shell] [--] <cmd...>` | Run command, compress stdout |
-| `lg read <file>` | Compress a log file |
-| `lg raw <id>` | Full uncompressed output |
-| `lg get <id> <hashes...>` | Extract `[#N]` values |
-| `lg stats` | Compression dashboard |
-| `lg history [-n N]` | Recent runs (default last 10) |
-| `lg debug <id> [file]` | Per-stage debug files |
+## vs related tools
 
-### Command classification & routing (`run` vs `read`)
+|                               | LogGuard                                                    | Headroom     | RTK alone                       |
+| ----------------------------- | ----------------------------------------------------------- | ------------ | ------------------------------- |
+| Agent exec / pytest / CI logs | Primary focus                                               | General text | Structural filter for some cmds |
+| Lossiness                     | Deterministic stages keep debug structure; distill optional | Varies       | Can be aggressive               |
+| Needs API key                 | Only for optional Gemini distill                            | —            | No                              |
 
-* **`lg run <command...>`** — Command classifier selects a track (`passthrough`, `pytest_native`, `rtk_*`, `full_pipe`, …). If an RTK track matches and the `rtk` binary is available, LogGuard executes through RTK once.
-* **`lg read <file>`** — Always uses the `full_pipe` Python pipeline (no classifier / RTK).
+## Security
 
-### `lg run` execution modes
+- By default, compression is **local** under `~/.logguard/` (override with `LOGGUARD_HOME`).
+- Text leaves the machine for Gemini **only** when summarization is enabled and a `GOOGLE_API_KEY` is set.
+- Prefer `--dry-run` / disable summarization for sensitive logs.
 
-**Default (exec mode)** — argv list, `shell=False`:
+## Demo
 
-```bash
-lg run python -c "print('ok')"
-lg run -- pytest tests/ -k "not slow"
-```
+- **GIF** (above) — silent loop of agent + `lg` in practice
+- **Short clip** (~same session): `[docs/media/demo-short.mp4](docs/media/demo-short.mp4)`
+- **Full walkthrough (~3 min):** publish the source recording as a GitHub Release asset and/or unlisted YouTube, then replace this line with the URL
 
-**Shell mode (opt-in)** — raw string with pipes, `&&`, redirects:
+Text fallback if media does not load: wrap noisy terminal output with `lg run` / `lg read`; agent sees a short summary; recover with `lg raw <id>` when needed.
 
-```bash
-lg run --shell "cat file.log | grep ERROR | head"
-```
+## Limitations
 
-Use `--dry-run` to skip Gemini (deterministic stages only). Same effect: `USE_LLM_SUMMARIZATION=false` in `.env` or the environment.
+- Optional Gemini distill adds latency and needs an API key; keep it off for fast local loops.
+- Deterministic stages keep debugging structure; semantic summaries can omit detail — use `lg raw`.
+- Early project: learning-stage, not pristine; best on Python-centric agent logs.
+- Effect of compression on model accuracy is not fully validated.
 
-## RTK (optional native binary)
+## License
 
-Some `lg run` commands route through **[RTK](https://www.rtk-ai.app/)** — a **separate Rust application**, not installed by `pip install log-guard`.
-
-| Without RTK | With RTK on `PATH` or in `vendor/rtk/` |
-| --- | --- |
-| `git status`, `ls`, `grep`, … still work | Same commands use `rtk` for faster structural filtering |
-| May use Python `full_pipe` instead | `meta.json` records `"rtk_used": true` |
-
-**First-time setup:**
-
-1. Download `rtk` / `rtk.exe` from [rtk-ai.app](https://www.rtk-ai.app/).
-2. Either add it to your **`PATH`**, or copy it to `vendor/rtk/` in this repo (see [`vendor/rtk/README.md`](vendor/rtk/README.md)).
-3. Verify: `python -c "from log_guard.lg.rtk_adapter import find_rtk_binary; print(find_rtk_binary())"`
-
-Full install paths, Docker notes, and troubleshooting: **[`vendor/rtk/README.md`](vendor/rtk/README.md)**.
-
-## Storage
-
-Default artifact root: `~/.logguard`
-
-```
-~/.logguard/<id>/
-├── raw.txt, lg, values.json, meta.json
-└── intermediate/   # per-stage debug files (lg debug)
-```
-
-Override:
-
-```bash
-export LOGGUARD_HOME=/path/to/artifacts
-```
-
-Or set `LOGGUARD_HOME` in `.env` (loaded automatically).
-
-## Environment
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `LOGGUARD_HOME` | `~/.logguard` | Root folder for saved run artifacts |
-| `GOOGLE_API_KEY` | — | Live Gemini distillation on long logs |
-| `USE_LLM_SUMMARIZATION` | `true` | Set `false` to skip Gemini distill (like `--dry-run`) |
-| `LOGGUARD_VERBOSE` | off | Set `1` to show pipeline logs on stderr |
-
-## Testing
-
-With `lg` installed editable (`pip install -e .`):
-
-```bash
-pip install pytest
-pytest tests/lg/ -q
-```
-
-Or via uv lockfile:
-
-```bash
-uv sync --group dev
-uv run pytest tests/lg/ -q
-```
-
-Golden refresh: `pytest tests/lg/ --golden-update`
-
-## Agent usage
-
-See [`.cursorrules`](.cursorrules) — prefix commands with `lg run` (not `uv run lg`).
-
-## Maintainer probes
-
-Tag inspection runs so they do not appear in default `lg stats` / `lg history`:
-
-```bash
-lg run --experimental --dry-run -- echo hello
-# or: LOGGUARD_EXPERIMENTAL=1
-```
-
-Do **not** document `--experimental` in agent-facing `.cursorrules`.
+MIT — see `[LICENSE](LICENSE)`.

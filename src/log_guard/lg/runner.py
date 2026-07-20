@@ -10,6 +10,7 @@ Two execution modes:
 from __future__ import annotations
 
 import os
+import re
 import shlex
 import subprocess
 from dataclasses import dataclass
@@ -39,6 +40,10 @@ def run_exec(argv: list[str], *, timeout: int = COMMAND_TIMEOUT_SEC) -> RunResul
     The list is passed unchanged to CreateProcess (Windows) / execvp (POSIX),
     so arguments containing spaces, commas, or quotes survive intact.
     """
+    if os.name == "nt":
+        from log_guard.lg.runner_windows import resolve_windows_argv
+
+        argv = resolve_windows_argv(argv)
     try:
         proc = subprocess.run(
             argv,
@@ -116,8 +121,22 @@ def split_command_string(command: str) -> list[str]:
     quotes on tokens, so we strip them afterwards.
     """
     if os.name == "nt":
-        return [_strip_quotes(tok) for tok in shlex.split(command, posix=False)]
+        try:
+            return [_strip_quotes(tok) for tok in shlex.split(command, posix=False)]
+        except ValueError:
+            return _split_python_c_fallback(command)
     return shlex.split(command)
+
+
+def _split_python_c_fallback(command: str) -> list[str]:
+    match = re.match(r"^(python3?|py)\s+-c\s+(.*)$", command.strip(), flags=re.IGNORECASE | re.DOTALL)
+    if not match:
+        raise ValueError(f"Cannot parse command: {command!r}")
+    exe = match.group(1).lower()
+    code = match.group(2).strip()
+    if len(code) >= 2 and code[0] == code[-1] and code[0] in ("'", '"'):
+        code = code[1:-1]
+    return [exe, "-c", code]
 
 
 def _strip_quotes(token: str) -> str:

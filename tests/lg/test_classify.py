@@ -66,3 +66,7 @@ def test_rtk_lossless_git_status():
 
 def test_rtk_fast_ls():
     assert _resolve("ls -la") == Track.RTK_FAST
+
+
+def test_python_inline_passthrough():
+    assert _resolve("python -c \"print(1)\"") == Track.PASSTHROUGH

@@ -51,6 +51,7 @@ prefixes = [
   "hostname ",
   "dir ",
   "Get-ChildItem ",
+  "New-Item ",
   "fd ",
   "git ls-files ",
 ]

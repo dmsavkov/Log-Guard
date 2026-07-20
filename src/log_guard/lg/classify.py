@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import shlex
@@ -9,6 +10,7 @@ from enum import Enum
 
 _COMPOUND_OPS = frozenset({"&&", "||", ";", "|"})
 _WRAPPER_PREFIXES = frozenset({"sudo", "uv", "run", "npx", "poetry", "python", "python3", "py"})
+_PYTHON_NAMES = frozenset({"python", "python3", "py"})
 
 
 class Track(str, Enum):
@@ -28,8 +30,48 @@ def _strip_quotes(token: str) -> str:
 
 def split_command_string(command: str) -> list[str]:
     if os.name == "nt":
-        return [_strip_quotes(tok) for tok in shlex.split(command, posix=False)]
+        try:
+            return [_strip_quotes(tok) for tok in shlex.split(command, posix=False)]
+        except ValueError:
+            return _split_python_c_fallback(command)
     return shlex.split(command)
+
+
+def _split_python_c_fallback(command: str) -> list[str]:
+    """When shlex fails (triple quotes, etc.), keep ``python -c <code>`` as one argv token."""
+    match = re.match(r"^(python3?|py)\s+-c\s+(.*)$", command.strip(), flags=re.IGNORECASE | re.DOTALL)
+    if not match:
+        raise ValueError(f"Cannot parse command: {command!r}")
+    exe = match.group(1).lower()
+    code = match.group(2).strip()
+    if len(code) >= 2 and code[0] == code[-1] and code[0] in ("'", '"'):
+        code = code[1:-1]
+    return [exe, "-c", code]
+
+
+def is_python_inline(command: str) -> bool:
+    """True when command runs ``python -c`` (machine-readable stdout expected)."""
+    try:
+        tokens = split_command_string(command)
+    except ValueError:
+        return False
+    for index, token in enumerate(tokens):
+        base = token.rsplit("\\", 1)[-1].rsplit("/", 1)[-1].lower()
+        if base in _PYTHON_NAMES and index + 1 < len(tokens) and tokens[index + 1] == "-c":
+            return True
+    return False
+
+
+def looks_like_machine_json(text: str) -> bool:
+    """True when stdout is a single JSON object/array (downstream json.loads target)."""
+    stripped = text.lstrip()
+    if not stripped or stripped[0] not in "{[":
+        return False
+    try:
+        json.loads(stripped)
+        return True
+    except json.JSONDecodeError:
+        return False
 
 
 def is_compound_command(command: str) -> bool:
@@ -105,6 +147,9 @@ def resolve_track(
 
     stripped = command.lstrip()
     if any(stripped.lower().startswith(p.lower()) for p in passthrough_prefixes):
+        return Track.PASSTHROUGH
+
+    if is_python_inline(stripped):
         return Track.PASSTHROUGH
 
     base = classify_base_command(command)

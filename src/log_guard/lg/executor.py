@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from log_guard.lg.classify import Track, resolve_track, DAEMON_WARN_MSG
+from log_guard.lg.classify import Track, resolve_track, DAEMON_WARN_MSG, is_python_inline, looks_like_machine_json
 from log_guard.lg.pipeline import compress_for_lg
 from log_guard.lg.pytest_summary import format_pytest_success
 from log_guard.lg.rtk_adapter import find_rtk_binary, run_via_rtk
@@ -103,6 +103,30 @@ def _rtk_argv_from_command(command: str, argv: list[str]) -> list[str]:
     return split_command_string(command)
 
 
+def _rtk_result_usable(result) -> bool:
+    """False when RTK ran but failed to spawn the target (fall back to native exec)."""
+    if not result.used_rtk:
+        return False
+    if result.exit_code == 127:
+        return False
+    blob = f"{result.stdout}\n{result.stderr}".lower()
+    markers = (
+        "failed to resolve",
+        "not found on path",
+        "program not found",
+        "failed to spawn",
+    )
+    return not any(m in blob for m in markers)
+
+
+def _should_passthrough_output(*, command: str, raw: str, track: str) -> bool:
+    if track == Track.PASSTHROUGH.value:
+        return True
+    if is_python_inline(command):
+        return True
+    return looks_like_machine_json(raw)
+
+
 def _run_subprocess(
     *,
     command: str,
@@ -153,7 +177,7 @@ def execute_run(
     if use_rtk:
         rtk_argv = _rtk_argv_from_command(command, argv)
         rtk_result = run_via_rtk(rtk_argv, run_dir=run_dir(run_id))
-        if rtk_result.used_rtk and rtk_result.exit_code != 127:
+        if _rtk_result_usable(rtk_result):
             filtered = simple_green(rtk_result.stdout)
             if rtk_result.raw_path and rtk_result.raw_path.is_file():
                 tee_raw = rtk_result.raw_path.read_text(encoding="utf-8")
@@ -199,7 +223,7 @@ def execute_run(
         "shell_mode": shell_mode,
     }
 
-    if track == Track.PASSTHROUGH:
+    if _should_passthrough_output(command=command, raw=raw, track=track.value):
         compressed = simple_green(raw)
         return _save_and_finish(
             run_id,
@@ -208,7 +232,7 @@ def execute_run(
             values={},
             meta={**base_meta, "passthrough": True},
             exit_code=proc.exit_code,
-            track=track.value,
+            track=Track.PASSTHROUGH.value,
             show_header=True,
             timer=timer,
             experimental=experimental,
