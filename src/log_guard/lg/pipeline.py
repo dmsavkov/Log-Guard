@@ -9,6 +9,7 @@ from typing import Any
 from loguru import logger
 
 from log_guard.distill import distill_with_retries
+from log_guard.io_config import llm_summarization_enabled
 from log_guard.lg.preprocess_input import prepare_log_lines
 from log_guard.lg.session import LgRunSession
 from log_guard.pipeline.assembly import assemble_output
@@ -89,11 +90,13 @@ def compress_for_lg(
             session.save_phases_json()
             return _result(session, out, raw_chars, t0, distill_called=False)
 
-        if dry_run:
+        skip_distill = dry_run or not llm_summarization_enabled()
+        if skip_distill:
+            reason = "dry_run_full_route" if dry_run else "llm_summarization_disabled"
             save_passthrough(
                 session,
                 stages.payload,
-                reason="dry_run_full_route",
+                reason=reason,
                 cfg=cfg,
                 records=stages.records,
                 trace_records=stages.trace_records,

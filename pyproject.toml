@@ -30,8 +30,9 @@ include = [
     "/src",
     "/LICENSE",
     "/README.md",
-    "/.cursorrules",
     "/.env.example",
+    "/.cursorrules",
+    "/vendor/rtk",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -40,6 +41,7 @@ packages = ["src/log_guard"]
 # Ensure non-Python package data ships in the wheel.
 [tool.hatch.build.targets.wheel.force-include]
 "src/log_guard/lg/tracks.toml" = "log_guard/lg/tracks.toml"
+"vendor/rtk/README.md" = "log_guard/vendor/rtk/README.md"
 
 [tool.uv]
 package = true

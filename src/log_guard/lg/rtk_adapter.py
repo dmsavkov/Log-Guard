@@ -28,20 +28,45 @@ class RtkRunResult:
 
 
 def _vendor_roots() -> list[Path]:
-    repo = Path(__file__).resolve().parents[3]
+    """Directories that may contain a vendored ``rtk`` / ``rtk.exe`` binary."""
+    seen: set[Path] = set()
+    roots: list[Path] = []
+
+    def _add(path: Path) -> None:
+        resolved = path.resolve()
+        if resolved in seen:
+            return
+        seen.add(resolved)
+        roots.append(resolved)
+
+    lg_dir = Path(__file__).resolve().parent
+    log_guard_pkg = lg_dir.parent
+    # Packaged vendor copy (if shipped): log_guard/vendor/rtk
+    _add(log_guard_pkg / "vendor" / "rtk")
+    # Source / git checkout: <repo>/vendor/rtk (src/log_guard -> repo is parents[1])
+    if len(log_guard_pkg.parents) >= 2:
+        _add(log_guard_pkg.parents[1] / "vendor" / "rtk")
+    # Walk upward from install location (editable installs, monorepos)
+    for parent in Path(__file__).resolve().parents:
+        _add(parent / "vendor" / "rtk")
+    return roots
+
+
+def _candidate_paths(root: Path) -> list[Path]:
+    name = "rtk.exe" if os.name == "nt" else "rtk"
+    os_sub = "nt" if os.name == "nt" else "posix"
     return [
-        repo / "vendor" / "rtk",
-        Path(__file__).resolve().parent / "vendor",
+        root / name,
+        root / "bin" / name,
+        root / os_sub / name,
     ]
 
 
 def find_rtk_binary() -> Path | None:
-    name = "rtk.exe" if os.name == "nt" else "rtk"
     for root in _vendor_roots():
         if not root.is_dir():
             continue
-        for sub in (root, root / "bin", root / os.name):
-            candidate = sub / name
+        for candidate in _candidate_paths(root):
             if candidate.is_file():
                 return candidate
     return shutil.which("rtk")
@@ -70,6 +95,7 @@ def run_via_rtk(
     timeout: int = 300,
 ) -> RtkRunResult:
     """Execute `rtk <argv...>` once; tee raw into run_dir/raw.txt."""
+    _ = shell_command
     binary = find_rtk_binary()
     run_dir.mkdir(parents=True, exist_ok=True)
     env = {**subprocess_env(), "RTK_TEE_DIR": str(run_dir.resolve())}

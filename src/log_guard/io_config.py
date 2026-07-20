@@ -1,13 +1,16 @@
-"""UTF-8 stdio defaults for cross-platform CLI output."""
+"""UTF-8 stdio defaults and lg runtime toggles."""
 
 from __future__ import annotations
 
 import os
 import sys
 
+_TRUTHY = frozenset({"1", "true", "yes", "on"})
+_FALSY = frozenset({"0", "false", "no", "off"})
+
 
 def configure_stdio_utf8() -> None:
-    """Force UTF-8 on stdout/stderr so ghost RLE (×) and pytest output never crash."""
+    """Force UTF-8 on stdout/stderr so ghost RLE (x) and pytest output never crash."""
     os.environ.setdefault("PYTHONIOENCODING", "utf-8")
     os.environ.setdefault("PYTHONUTF8", "1")
     for stream in (sys.stdout, sys.stderr):
@@ -24,6 +27,30 @@ def subprocess_env() -> dict[str, str]:
     env.setdefault("PYTHONIOENCODING", "utf-8")
     env.setdefault("PYTHONUTF8", "1")
     return env
+
+
+def _env_flag(name: str, *, default: bool) -> bool:
+    """Parse a boolean env var (truthy/falsy tokens); load .env when present."""
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except ImportError:
+        pass
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    token = raw.strip().lower()
+    if token in _TRUTHY:
+        return True
+    if token in _FALSY:
+        return False
+    return default
+
+
+def llm_summarization_enabled() -> bool:
+    """When False, skip Gemini distill (same effect as ``lg run --dry-run`` on FULL route)."""
+    return _env_flag("USE_LLM_SUMMARIZATION", default=True)
 
 
 def safe_write(stream, text: str) -> None:

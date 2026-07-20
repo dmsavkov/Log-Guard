@@ -54,7 +54,24 @@ uv run lg run -- pytest tests/ -k "not slow"
 uv run lg run --shell "cat file.log | grep ERROR | head"
 ```
 
-Use `--dry-run` to skip Gemini (deterministic stages only).
+Use `--dry-run` to skip Gemini (deterministic stages only). Same effect: `USE_LLM_SUMMARIZATION=false` in `.env` or the environment.
+
+## RTK (optional native binary)
+
+Some `lg run` commands route through **[RTK](https://www.rtk-ai.app/)** — a **separate Rust application**, not installed by `pip install log-guard`.
+
+| Without RTK | With RTK on `PATH` or in `vendor/rtk/` |
+| --- | --- |
+| `git status`, `ls`, `grep`, … still work | Same commands use `rtk` for faster structural filtering |
+| May use Python `full_pipe` instead | `meta.json` records `"rtk_used": true` |
+
+**First-time setup:**
+
+1. Download `rtk` / `rtk.exe` from [rtk-ai.app](https://www.rtk-ai.app/).
+2. Either add it to your **`PATH`**, or copy it to `vendor/rtk/` in this repo (see [`vendor/rtk/README.md`](vendor/rtk/README.md)).
+3. Verify: `python -c "from log_guard.lg.rtk_adapter import find_rtk_binary; print(find_rtk_binary())"`
+
+Full install paths, Docker notes, and troubleshooting: **[`vendor/rtk/README.md`](vendor/rtk/README.md)**.
 
 ## Storage
 
@@ -80,6 +97,7 @@ Or set `LOGGUARD_HOME` in `.env` (loaded automatically).
 | --- | --- | --- |
 | `LOGGUARD_HOME` | `~/.logguard` | Root folder for saved run artifacts |
 | `GOOGLE_API_KEY` | — | Live Gemini distillation on long logs |
+| `USE_LLM_SUMMARIZATION` | `true` | Set `false` to skip Gemini distill (like `--dry-run`) |
 | `LOGGUARD_VERBOSE` | off | Set `1` to show pipeline logs on stderr |
 
 ## Testing

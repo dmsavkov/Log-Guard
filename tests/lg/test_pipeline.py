@@ -54,3 +54,13 @@ def test_full_route_dry(tmp_path, monkeypatch):
     result = compress_for_lg(raw, "full", dry_run=True)
     assert result.route == "full"
     assert not result.distill_called
+
+
+def test_use_llm_summarization_false_skips_distill(tmp_path, monkeypatch):
+    monkeypatch.setenv("LOGGUARD_HOME", str(tmp_path))
+    monkeypatch.setenv("USE_LLM_SUMMARIZATION", "false")
+    raw = full_route_synth_text()
+    result = compress_for_lg(raw, "full", dry_run=False)
+    assert result.route == "full"
+    assert not result.distill_called
+    assert result.phases.get("distill", {}).get("reason") == "llm_summarization_disabled"
