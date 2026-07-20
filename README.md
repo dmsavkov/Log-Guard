@@ -50,6 +50,8 @@ Or without cloning:
 pip install -e "git+https://github.com/dmsavkov/Log-Guard.git@main"
 ```
 
+To use advanced structural filtering for commands like `ls` and `grep`, install the optional RTK binary—see [vendor/rtk/README.md](vendor/rtk/README.md) for details.
+
 **Optional Gemini summarization** (long `full_pipe` logs): set `GOOGLE_API_KEY` in the environment or `.env`. Without a key, use `--dry-run` or `USE_LLM_SUMMARIZATION=false` — deterministic compression still works.
 
 ## Agent setup
