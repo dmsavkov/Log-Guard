@@ -6,11 +6,25 @@ Always prefix execution commands with `lg run` (default: exec mode, no shell quo
 
 ### Default (exec mode — safe, quoting preserved)
 
+Always wrap shell and build commands with `lg run`:
+
 ```bash
-lg run python script.py
-lg run python -c "import fastapi, bleach; print('ok')"
-lg run -- pytest tests/ -k "not slow"
-lg run -- python -c "print(1)"
+# Testing & Code Execution
+lg run -- python -m pytest tests/
+lg run python -c "import fastapi; print('ok')"
+
+# Git Operations (Status, Diff, Log)
+lg run -- git status
+lg run -- git diff
+lg run -- git log -n 10
+
+# Package & Dependency Management
+lg run -- pip install -e .
+lg run -- uv sync
+
+# Build & Tool Operations
+lg run -- cargo build
+lg run -- npm test
 ```
 
 Use `--` before commands that have their own flags (POSIX convention).
