@@ -6,21 +6,52 @@ Standalone production package for the LogGuard v3 log compression CLI.
 
 ## Install
 
-From this directory (editable / source):
+### Recommended: editable install (development & daily use)
+
+From this directory:
 
 ```bash
-uv sync
-uv run lg run -- python -c "print('hello')"
+pip install -e .
 ```
 
-From a built wheel:
+Ensure the Python **Scripts** directory is on your `PATH`:
+
+| OS | Typical location |
+| --- | --- |
+| Windows | `%USERPROFILE%\.local\bin` or `<venv>\Scripts` or `Python313\Scripts` |
+| Linux / macOS | `~/.local/bin` or `<venv>/bin` |
+
+Verify:
 
 ```bash
-uv pip install path/to/log_guard-1.0.0-py3-none-any.whl
+lg --help
+lg run --dry-run -- python -c "print('hello')"
+```
+
+Expected: `[LogGuard:abcd]` then `hello`.
+
+**Git install (same result, no clone required for end users):**
+
+```bash
+pip install -e "git+https://github.com/dmsavkov/Log-Guard.git@main"
+```
+
+### Wheel / PyPI-style install
+
+```bash
+pip install path/to/log_guard-1.0.0-py3-none-any.whl
+# or: pip install git+https://github.com/dmsavkov/Log-Guard.git@main
 lg run -- python -c "print('hello')"
 ```
 
-Expected: `[LogGuard:abcd]` then command output.
+### Optional: uv for locked dev deps only
+
+`uv` is **not** required to run `lg`. Use it only if you want a locked dev environment:
+
+```bash
+uv sync --group dev
+uv run pytest tests/lg/ -q
+```
 
 ## Commands
 
@@ -44,14 +75,14 @@ Expected: `[LogGuard:abcd]` then command output.
 **Default (exec mode)** — argv list, `shell=False`:
 
 ```bash
-uv run lg run python -c "print('ok')"
-uv run lg run -- pytest tests/ -k "not slow"
+lg run python -c "print('ok')"
+lg run -- pytest tests/ -k "not slow"
 ```
 
 **Shell mode (opt-in)** — raw string with pipes, `&&`, redirects:
 
 ```bash
-uv run lg run --shell "cat file.log | grep ERROR | head"
+lg run --shell "cat file.log | grep ERROR | head"
 ```
 
 Use `--dry-run` to skip Gemini (deterministic stages only). Same effect: `USE_LLM_SUMMARIZATION=false` in `.env` or the environment.
@@ -102,23 +133,32 @@ Or set `LOGGUARD_HOME` in `.env` (loaded automatically).
 
 ## Testing
 
+With `lg` installed editable (`pip install -e .`):
+
+```bash
+pip install pytest
+pytest tests/lg/ -q
+```
+
+Or via uv lockfile:
+
 ```bash
 uv sync --group dev
 uv run pytest tests/lg/ -q
 ```
 
-Golden refresh: `uv run pytest tests/lg/ --golden-update`
+Golden refresh: `pytest tests/lg/ --golden-update`
 
 ## Agent usage
 
-See `.cursorrules` — prefix commands with `lg run`.
+See [`.cursorrules`](.cursorrules) — prefix commands with `lg run` (not `uv run lg`).
 
 ## Maintainer probes
 
 Tag inspection runs so they do not appear in default `lg stats` / `lg history`:
 
 ```bash
-uv run lg run --experimental --dry-run -- echo hello
+lg run --experimental --dry-run -- echo hello
 # or: LOGGUARD_EXPERIMENTAL=1
 ```
 

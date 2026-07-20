@@ -1,14 +1,16 @@
 ## LogGuard Terminal Compression
 
-Always prefix execution commands with `uv run lg run` (default: exec mode, no shell quoting loss).
+Always prefix execution commands with `lg run` (default: exec mode, no shell quoting loss).
+
+**Prerequisite:** `lg` must be on your `PATH` (see README — `pip install -e .` from this repo, or `pip install log-guard`).
 
 ### Default (exec mode — safe, quoting preserved)
 
 ```bash
-uv run lg run python script.py
-uv run lg run python -c "import fastapi, bleach; print('ok')"
-uv run lg run -- pytest tests/ -k "not slow"
-uv run lg run -- uv run python -c "print(1)"
+lg run python script.py
+lg run python -c "import fastapi, bleach; print('ok')"
+lg run -- pytest tests/ -k "not slow"
+lg run -- python -c "print(1)"
 ```
 
 Use `--` before commands that have their own flags (POSIX convention).
@@ -16,20 +18,20 @@ Use `--` before commands that have their own flags (POSIX convention).
 ### Shell mode (opt-in — pipes, &&, redirects)
 
 ```bash
-uv run lg run --shell "cat file.log | grep ERROR | head"
-uv run lg run --shell "echo first && echo second"
+lg run --shell "cat file.log | grep ERROR | head"
+lg run --shell "echo first && echo second"
 ```
 
 Do **not** use `--shell` for normal commands; default exec mode handles spaces and quotes correctly.
 
 ### Other commands
 
-- `uv run lg read <file_path>`: Compress a log file.
-- `uv run lg raw <id>`: Full uncompressed output by run ID.
-- `uv run lg get <id> <n> [<m> ...]`: Print specific `[#n]` extracted values.
-- `uv run lg history [-n N]`: Recent runs with compression metrics.
+- `lg read <file_path>`: Compress a log file.
+- `lg raw <id>`: Full uncompressed output by run ID.
+- `lg get <id> <n> [<m> ...]`: Print specific `[#n]` extracted values.
+- `lg history [-n N]`: Recent runs with compression metrics.
 
-If a compressed summary hides critical details, retrieve the full output using `uv run lg raw <id>` where `<id>` is shown in the `[LogGuard:<id>]` header.
+If a compressed summary hides critical details, retrieve the full output using `lg raw <id>` where `<id>` is shown in the `[LogGuard:<id>]` header.
 
 ### LogGuard Usage Rules
 
